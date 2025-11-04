@@ -1,0 +1,25 @@
+@import "var.css";
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'PT Mono', monospace;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "PT Mono";
+    src: url("../fonts/PT_Mono.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: var(--prime-back);
+}
+
+#app {
+    width: 100%;
+    height: 100vh;
+}
