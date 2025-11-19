@@ -1,5 +1,8 @@
 <template>
-    <div class="dragmodal-wrapper" ref="el" :style="style" style="position: fixed">
+    <div class="dragmodal-wrapper"
+         ref="el"
+         :style="style"
+         style="position: fixed">
         <div class="dragmodal__inner dragmodal__inner-header">
             <slot name="header"></slot>
             <div @click="emits('close')" class="dragmodal__inner-cross-wrapper">
@@ -13,7 +16,8 @@
 </template>
 <script setup lang="ts">
 import {useDraggable} from '@vueuse/core'
-import {useTemplateRef} from 'vue'
+import {onUnmounted, useTemplateRef} from 'vue'
+import {useEventListener} from '@vueuse/core'
 
 const emits = defineEmits<{
     (e: 'close'): void
@@ -26,6 +30,12 @@ const el: any = useTemplateRef<HTMLElement>('el')
 const {style} = useDraggable(el, {
     initialValue: props.initialPosition ?? {x: 10, y: 60},
 })
+const cleanup = useEventListener(window, 'keydown', (e) => {
+    if (e.code === 'Escape') {
+        emits('close')
+    }
+})
+onUnmounted(() => cleanup())
 </script>
 <style scoped>
 .dragmodal-wrapper {

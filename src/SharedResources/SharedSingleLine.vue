@@ -1,23 +1,59 @@
 <template>
     <space-between style="align-items: center">
         <span>{{ map.get(name) }}</span>
-        <div style="display: flex; align-items: center; gap: 6px">
-            <div class="shared__single-line-item">{{ $rs(value.Amount, 3) }}</div>
-            <div class="shared__single-line-item">{{ $rs(value.TotalVolume, 3) }}</div>
-            <input class="shared__remove-input" type="number">
-            <div style="cursor:pointer;">❌</div>
+        <div class="shared__single-line-wrapper">
+            <div class="shared__single-line-item">
+                {{ $rs(value.Amount, 3) }}
+            </div>
+            <div class="shared__single-line-item">
+                {{ $rs(value.TotalVolume, 3) }}
+            </div>
+            <input
+                v-model="inputValue"
+                class="shared__remove-input"
+                type="number">
+            <transition name="fade" mode="out-in">
+                <div v-if="success"
+                     style="cursor:pointer;">
+                    ✅
+                </div>
+                <div v-else @click="remove()"
+                     style="cursor:pointer;">
+                    ❌
+                </div>
+            </transition>
         </div>
     </space-between>
 </template>
 <script setup lang="ts">
 import {$rs} from "@/helpers.ts";
 import SpaceBetween from "@/components/containers/SpaceBetween.vue";
+import {ref} from "vue";
+import {user} from "@/__global/UserStore.ts";
+import {useTimeoutFn} from '@vueuse/core'
 
-defineProps<{
+const props = defineProps<{
     name: string,
     value: { Amount: number, TotalVolume: number },
     map: Map<string, string>,
 }>()
+
+const success = ref(false);
+const inputValue = ref();
+
+function remove() {
+    if (!inputValue.value || inputValue.value > props.value.Amount) return
+    try {
+        console.log({userId: user.value.id, name: props.name, countToRemove: inputValue.value})
+        inputValue.value = undefined
+    } catch (e) {
+    } finally {
+        success.value = true
+        useTimeoutFn(() => {
+            success.value = false
+        }, 1000)
+    }
+}
 </script>
 <style scoped>
 .shared__remove-input {
@@ -43,10 +79,25 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.shared__single-line-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 .shared__single-line-item {
     color: var(--prime-light);
     width: 80px;
     display: flex;
     justify-content: end;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: 0.2s;
+}
+
+.fade-leave-to, .fade-enter-from {
+    opacity: 0;
+    transform: rotateY(180deg);
 }
 </style>

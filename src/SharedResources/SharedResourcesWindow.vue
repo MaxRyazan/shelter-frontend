@@ -28,6 +28,8 @@
                           type="components"
                           :entity="SharedResourcesStore.Components"/>
         </transition>
+        <s-divider space="10"/>
+        <shared-title />
     </drag-modal>
 </template>
 <script setup lang="ts">
@@ -36,11 +38,30 @@ import DragModal from "@/components/modals/DragModal.vue";
 import SharedGroup from "./SharedGroup.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import SText from "@/components/common/SText.vue";
-import {ref} from "vue";
+import {onUnmounted, ref} from "vue";
 import SharedMenu from "@/SharedResources/SharedMenu.vue";
 import SharedTableHeader from "@/SharedResources/SharedTableHeader.vue";
+import SharedTitle from "@/SharedResources/SharedTitle.vue";
+import {useEventListener} from '@vueuse/core'
+
 
 const currentTab = ref('resources');
+
+const cleanup = useEventListener(window, 'keydown', (e) => {
+    if (e.code === 'Digit1') {
+        currentTab.value = 'resources';
+    }
+    if (e.code === 'Digit2') {
+        currentTab.value = 'materials';
+    }
+    if (e.code === 'Digit3') {
+        currentTab.value = 'metamaterials';
+    }
+    if (e.code === 'Digit4') {
+        currentTab.value = 'components';
+    }
+})
+onUnmounted(() => cleanup())
 
 const resourceMap = new Map<string, string>([
     ['Clay', 'Глина'],

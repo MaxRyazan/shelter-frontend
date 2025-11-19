@@ -4,7 +4,7 @@
         <span>{{ $rs(SharedResourcesStore.MaxStorage, 3) }}</span>
     </space-between>
     <space-between>
-        <span>Занято ~{{ $rs(SharedResourcesStore.StorageUsagePercent, 1) }}%</span>
+        <span>Всего заполнено ~{{ $rs(SharedResourcesStore.StorageUsagePercent, 1) }}%</span>
         <span>{{ $rs(SharedResourcesStore.CurrentStorage, 3) }}</span>
     </space-between>
 </template>
