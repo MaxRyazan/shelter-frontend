@@ -1,6 +1,19 @@
 :root {
+    --prime-black: rgba(19, 19, 19, 1);
     --prime-back: linear-gradient(rgba(19, 19, 19, 1), rgba(0, 0, 0, 1), var(--green-dark));
+    --prime-back-reverse: linear-gradient(var(--green-dark), rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 1));
     --green-dark: rgba(9, 19, 19, 1);
     --header-back: linear-gradient(rgba(0, 0, 0, 1), rgba(29, 29, 29, 1));
     --footer-back: var(--green-dark);
+
+    --prime-light: lightgray;
+
+
+    --divider: rgba(255, 255, 255, .2);
+    --accent: rgba(0, 206, 209);
+    --accent-light: rgba(0, 260, 260);
+    --resources: rgba(205, 133, 63);
+    --materials: rgba(70, 130, 180);
+    --metamaterials: rgba(147, 112, 219);
+    --components: rgba(34, 139, 34);
 }
