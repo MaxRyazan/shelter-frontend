@@ -17,7 +17,7 @@ import SharedResourcesWindow from "./SharedResources/SharedResourcesWindow.vue";
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const userId = 139;
+    const userId = 140;
     const resourceSSE = new EventSource(`http://localhost:5083/api/sse/${userId}`);
 
     resourceSSE.onopen = function () {

@@ -24,7 +24,7 @@ const props = defineProps<{
 const el: any = useTemplateRef<HTMLElement>('el')
 
 const {style} = useDraggable(el, {
-    initialValue: props.initialPosition ?? {x: 40, y: 60},
+    initialValue: props.initialPosition ?? {x: 10, y: 60},
 })
 </script>
 <style scoped>

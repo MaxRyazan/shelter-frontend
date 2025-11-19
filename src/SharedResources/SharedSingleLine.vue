@@ -2,7 +2,8 @@
     <space-between style="align-items: center">
         <span>{{ map.get(name) }}</span>
         <div style="display: flex; align-items: center; gap: 6px">
-            <span>{{ $rs(value, 3) }}</span>
+            <div class="shared__single-line-item">{{ $rs(value.Amount, 3) }}</div>
+            <div class="shared__single-line-item">{{ $rs(value.TotalVolume, 3) }}</div>
             <input class="shared__remove-input" type="number">
             <div style="cursor:pointer;">❌</div>
         </div>
@@ -14,7 +15,7 @@ import SpaceBetween from "@/components/containers/SpaceBetween.vue";
 
 defineProps<{
     name: string,
-    value: number,
+    value: { Amount: number, TotalVolume: number },
     map: Map<string, string>,
 }>()
 </script>
@@ -40,5 +41,12 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.shared__single-line-item {
+    color: var(--prime-light);
+    width: 80px;
+    display: flex;
+    justify-content: end;
 }
 </style>

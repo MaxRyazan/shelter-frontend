@@ -1,19 +1,15 @@
 <template>
-    <drag-modal @close="isSharedResourcesWindowOpen = false">
+    <drag-modal style="min-width: 400px"
+                @close="isSharedResourcesWindowOpen = false">
         <template #header>
             <s-text size="14px" semi-bold>Межпланетное хранилище</s-text>
         </template>
-        <space-between>
-            <span>Лимит</span>
-            <span>{{ $rs(SharedResourcesStore.MaxStorage, 3) }}</span>
-        </space-between>
-        <space-between>
-            <span>Занято ~{{ $rs(SharedResourcesStore.StorageUsagePercent, 1) }}%</span>
-            <span>{{ $rs(SharedResourcesStore.CurrentStorage, 3) }}</span>
-        </space-between>
-        <s-divider space="6"/>
         <shared-menu @click="(p: string) => currentTab = p"
                      :current-tab="currentTab"/>
+        <s-divider space="0"/>
+
+        <shared-table-header style="margin: 10px 0" />
+
         <transition name="fade" mode="out-in">
             <shared-group v-if="currentTab === 'resources'"
                           :map="resourceMap"
@@ -32,19 +28,17 @@
                           type="components"
                           :entity="SharedResourcesStore.Components"/>
         </transition>
-
     </drag-modal>
 </template>
 <script setup lang="ts">
 import {isSharedResourcesWindowOpen, SharedResourcesStore} from "@/__global/SharedResourcesStore.ts";
-import {$rs} from "@/helpers.ts";
 import DragModal from "@/components/modals/DragModal.vue";
-import SpaceBetween from "@/components/containers/SpaceBetween.vue";
 import SharedGroup from "./SharedGroup.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import SText from "@/components/common/SText.vue";
 import {ref} from "vue";
 import SharedMenu from "@/SharedResources/SharedMenu.vue";
+import SharedTableHeader from "@/SharedResources/SharedTableHeader.vue";
 
 const currentTab = ref('resources');
 

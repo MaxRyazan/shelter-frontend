@@ -32,7 +32,6 @@ defineProps<{
 }
 
 .group__line-container {
-    padding-left: 16px;
     display: flex;
     flex-direction: column;
     gap: 4px;
