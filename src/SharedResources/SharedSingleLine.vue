@@ -9,11 +9,12 @@
                 {{ $rs(value.TotalVolume, 3) }}
             </div>
             <input
+                @keydown.stop
                 v-model="inputValue"
                 class="shared__remove-input"
                 type="number">
             <transition name="fade" mode="out-in">
-                <div v-if="success"
+                <div v-if="success && !apiError"
                      style="cursor:pointer;">
                     ✅
                 </div>
@@ -30,7 +31,8 @@ import {$rs} from "@/helpers.ts";
 import SpaceBetween from "@/components/containers/SpaceBetween.vue";
 import {ref} from "vue";
 import {user} from "@/__global/UserStore.ts";
-import {useTimeoutFn} from '@vueuse/core'
+import {useTimeoutFn} from '@vueuse/core';
+import {useFetch} from '@vueuse/core';
 
 const props = defineProps<{
     name: string,
@@ -38,13 +40,21 @@ const props = defineProps<{
     map: Map<string, string>,
 }>()
 
+const apiError = ref()
 const success = ref(false);
 const inputValue = ref();
 
-function remove() {
+async function remove() {
     if (!inputValue.value || inputValue.value > props.value.Amount) return
     try {
-        console.log({userId: user.value.id, name: props.name, countToRemove: inputValue.value})
+        const body = {userId: user.value.id, resourceName: props.name, countToRemove: inputValue.value};
+        const {error} = await useFetch('http://localhost:5083/api/user/remove-shared-item', {
+            method: 'POST', body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        apiError.value = error.value;
         inputValue.value = undefined
     } catch (e) {
     } finally {
