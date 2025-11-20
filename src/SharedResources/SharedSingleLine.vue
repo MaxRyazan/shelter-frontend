@@ -9,6 +9,8 @@
                 {{ $rs(value.TotalVolume, 3) }}
             </div>
             <input
+                @keydown.esc="blurInput"
+                @keydown.enter="remove"
                 @keydown.stop
                 v-model="inputValue"
                 class="shared__remove-input"
@@ -44,6 +46,11 @@ const apiError = ref()
 const success = ref(false);
 const inputValue = ref();
 
+function blurInput(e: KeyboardEvent) {
+    const target = e.target as HTMLInputElement
+    if (target) target.blur();
+}
+
 async function remove() {
     if (!inputValue.value || inputValue.value > props.value.Amount) return
     try {
@@ -75,6 +82,7 @@ async function remove() {
     border: 1px solid var(--prime-light);;
     outline: none;
     border-radius: 4px;
+    text-align: center;
 }
 
 input[type="number"] {
