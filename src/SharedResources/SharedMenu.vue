@@ -1,18 +1,22 @@
 <template>
     <div class="shared__top-menu">
-            <span :class="{active: currentTab==='resources'}"
+            <span class="shared__top-menu-item"
+                  :class="{active: currentTab==='resources'}"
                   @click="emits('click', 'resources')">
                 Ресурсы
             </span>
-        <span :class="{active: currentTab==='materials'}"
+        <span class="shared__top-menu-item"
+              :class="{active: currentTab==='materials'}"
               @click="emits('click', 'materials')">
                 Материалы
             </span>
-        <span :class="{active: currentTab==='metamaterials'}"
+        <span class="shared__top-menu-item"
+              :class="{active: currentTab==='metamaterials'}"
               @click="emits('click', 'metamaterials')">
                 Метаматериалы
             </span>
-        <span :class="{active: currentTab==='components' }"
+        <span class="shared__top-menu-item"
+              :class="{active: currentTab==='components' }"
               @click="emits('click', 'components')">
                 Компоненты
             </span>
@@ -42,5 +46,10 @@ defineProps<{
 
 .active {
     color: var(--accent)
+}
+
+.shared__top-menu-item {
+    font-family: IBM_Plex_Mono monospace !important;
+    font-weight: 700;
 }
 </style>

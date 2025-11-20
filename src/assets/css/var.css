@@ -9,6 +9,7 @@
     --prime-light: lightgray;
 
 
+    --shadow: inset 0 0 2px 1px rgba(0, 206, 209, .6);
     --divider: rgba(255, 255, 255, .2);
     --accent: rgba(0, 206, 209);
     --accent-light: rgba(0, 260, 260);

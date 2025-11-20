@@ -29,7 +29,7 @@
                           :entity="SharedResourcesStore.Components"/>
         </transition>
         <s-divider space="10"/>
-        <shared-title />
+        <shared-summary />
     </drag-modal>
 </template>
 <script setup lang="ts">
@@ -41,7 +41,7 @@ import SText from "@/components/common/SText.vue";
 import {onUnmounted, ref} from "vue";
 import SharedMenu from "@/SharedResources/SharedMenu.vue";
 import SharedTableHeader from "@/SharedResources/SharedTableHeader.vue";
-import SharedTitle from "@/SharedResources/SharedTitle.vue";
+import SharedSummary from "@/SharedResources/SharedSummary.vue";
 import {useEventListener} from '@vueuse/core'
 
 
