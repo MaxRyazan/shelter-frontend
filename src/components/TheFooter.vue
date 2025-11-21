@@ -10,5 +10,7 @@
     padding: 4px;
     background-color: var(--footer-back);
     height: 20px;
+    position: absolute;
+    bottom: 0;
 }
 </style>

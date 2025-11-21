@@ -1,0 +1,7 @@
+.base-enter-from, .base-leave-to {
+    opacity: 0;
+}
+
+.base-enter-active, .base-leave-active {
+    transition: opacity 0.1s;
+}

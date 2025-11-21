@@ -1,4 +1,5 @@
 @import "var.css";
+@import "transitions.css";
 
 * {
     padding: 0;

@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import {useDraggable} from '@vueuse/core'
 import {onUnmounted, useTemplateRef} from 'vue'
-import {useEventListener} from '@vueuse/core'
+import {useEventListener, useWindowSize} from '@vueuse/core'
 
 const emits = defineEmits<{
     (e: 'close'): void
@@ -26,9 +26,9 @@ const props = defineProps<{
     initialPosition?: { x: number, y: number }
 }>()
 const el: any = useTemplateRef<HTMLElement>('el')
-
+const {width} = useWindowSize()
 const {style} = useDraggable(el, {
-    initialValue: props.initialPosition ?? {x: 10, y: 60},
+    initialValue: props.initialPosition ?? {x: width.value > 600 ? 20 : 42, y: 60},
 })
 const cleanup = useEventListener(window, 'keydown', (e) => {
     if (e.code === 'Escape') {

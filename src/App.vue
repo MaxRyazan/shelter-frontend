@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <the-header/>
+        <main-menu/>
         <the-content/>
         <the-footer/>
         <transition name="base" mode="out-in">
@@ -9,17 +9,33 @@
         <transition name="base" mode="out-in">
             <planet-window v-if="isPlanetWindowOpen"/>
         </transition>
+        <transition name="base">
+            <list-of-planets v-if="isPlanetChoserOpen"/>
+        </transition>
     </div>
 </template>
 <script setup lang="ts">
-import TheHeader from "./components/TheHeader.vue";
+import MainMenu from "./components/MainMenu.vue";
 import TheContent from "./components/TheContent.vue";
 import TheFooter from "./components/TheFooter.vue";
-import {isSharedResourcesWindowOpen, SharedResourcesStore} from "./__global/SharedResourcesStore.ts";
+import {isSharedResourcesWindowOpen, SharedResourcesStore} from "./__global/SharedResourcesStore";
 import SharedResourcesWindow from "./SharedResources/SharedResourcesWindow.vue";
-import {isPlanetWindowOpen} from "@/__global/PlanetView.ts";
+import {allPlanets, currentPlanet, isPlanetChoserOpen, isPlanetWindowOpen} from "@/__global/PlanetView";
 import PlanetWindow from "@/PlanetWindow/PlanetWindow.vue";
+import {onMounted} from "vue";
+import {useApiLazy} from "@/composables/useApi";
+import {GetPlanetResponseDto} from "@/_openapi/models";
+import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
+import ListOfPlanets from "@/components/modals/ListOfPlanets.vue";
 
+const {execute} = useApiLazy<GetPlanetResponseDto[]>();
+
+onMounted(async () => {
+    allPlanets.value = await execute(getApiUserGetPlanetsUserId, 140)
+    if (allPlanets.value?.length) {
+        currentPlanet.value = allPlanets.value?.find(planet => planet.isHomePlanet)
+    }
+})
 
 document.addEventListener('DOMContentLoaded', () => {
     const userId = 140;
@@ -44,16 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <style scoped>
 .wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-.base-enter-from, .base-leave-to {
-    opacity: 0;
-}
-
-.base-enter-active, .base-leave-active {
-    transition: opacity 0.1s;
+    @media screen and (max-width: 600px) {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-bottom: 22px;
+    }
 }
 </style>

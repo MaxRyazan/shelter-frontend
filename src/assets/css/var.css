@@ -3,7 +3,7 @@
     --prime-back: linear-gradient(rgba(19, 19, 19, 1), rgba(0, 0, 0, 1), var(--green-dark));
     --prime-back-reverse: linear-gradient(var(--green-dark), rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 1));
     --green-dark: rgba(9, 19, 19, 1);
-    --header-back: linear-gradient(rgba(0, 0, 0, 1), rgba(29, 29, 29, 1));
+    --menu-back: linear-gradient(rgba(0, 0, 0, 1), rgba(29, 29, 29, 1));
     --footer-back: var(--green-dark);
 
     --prime-light: lightgray;
