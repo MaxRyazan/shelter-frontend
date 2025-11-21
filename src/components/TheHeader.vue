@@ -3,16 +3,32 @@
         <shared-storage-icon
             class="shared-storage-icon"
             @click="switchSharedResources"/>
+        <planets-list-icon @click="switchPlanetWindow"/>
     </div>
 </template>
 <script setup lang="ts">
-import {isSharedResourcesWindowOpen} from "../__global/SharedResourcesStore.ts";
+import {isSharedResourcesWindowOpen} from "@/__global/SharedResourcesStore";
 import {onUnmounted} from "vue";
 import {useEventListener} from '@vueuse/core'
 import SharedStorageIcon from "@/components/icons/SharedStorageIcon.vue";
+import PlanetsListIcon from "@/components/icons/PlanetsListIcon.vue";
+import {isPlanetWindowOpen} from "@/__global/PlanetView";
+import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
+}
+
+async function switchPlanetWindow() {
+    isPlanetWindowOpen.value = !isPlanetWindowOpen.value
+    if (isPlanetWindowOpen.value) {
+        try {
+            const data = await getApiUserGetPlanetsUserId(140)
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 const cleanup = useEventListener(window, 'keydown', (e) => {
@@ -30,6 +46,7 @@ onUnmounted(() => cleanup())
     background: var(--header-back);
     display: flex;
     align-items: center;
+    gap: 16px;
 }
 
 .shared-storage-icon {

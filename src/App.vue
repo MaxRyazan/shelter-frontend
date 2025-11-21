@@ -3,8 +3,11 @@
         <the-header/>
         <the-content/>
         <the-footer/>
-        <transition name="shared" mode="out-in">
+        <transition name="base" mode="out-in">
             <shared-resources-window v-if="isSharedResourcesWindowOpen"/>
+        </transition>
+        <transition name="base" mode="out-in">
+            <planet-window v-if="isPlanetWindowOpen"/>
         </transition>
     </div>
 </template>
@@ -14,6 +17,8 @@ import TheContent from "./components/TheContent.vue";
 import TheFooter from "./components/TheFooter.vue";
 import {isSharedResourcesWindowOpen, SharedResourcesStore} from "./__global/SharedResourcesStore.ts";
 import SharedResourcesWindow from "./SharedResources/SharedResourcesWindow.vue";
+import {isPlanetWindowOpen} from "@/__global/PlanetView.ts";
+import PlanetWindow from "@/PlanetWindow/PlanetWindow.vue";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     min-height: 100vh;
 }
 
-.shared-enter-from, .shared-leave-to {
+.base-enter-from, .base-leave-to {
     opacity: 0;
 }
 
-.shared-enter-active, .shared-leave-active {
+.base-enter-active, .base-leave-active {
     transition: opacity 0.1s;
 }
 </style>

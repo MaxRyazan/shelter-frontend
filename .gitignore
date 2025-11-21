@@ -29,3 +29,10 @@ coverage
 
 *.tsbuildinfo
 /node_modules/
+
+# Vite
+.vite/
+node_modules/.vite/
+
+# node
+node_modules/
