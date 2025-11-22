@@ -1,7 +1,12 @@
 <template>
     <drag-modal @close="isPlanetWindowOpen = false">
         <template #header>
-            <s-text :size="14" semi-bold>Просмотр планеты {{ currentPlanet?.name }}</s-text>
+            <s-text :size="14" semi-bold>
+                Просмотр планеты
+                <span style="color: var(--accent-light)">
+                    {{ currentPlanet?.name }}
+                </span>
+            </s-text>
         </template>
     </drag-modal>
 </template>

@@ -29,10 +29,10 @@
     </space-between>
 </template>
 <script setup lang="ts">
-import {$rs} from "@/helpers.ts";
+import {$rs} from "@/helpers";
 import SpaceBetween from "@/components/containers/SpaceBetween.vue";
 import {ref} from "vue";
-import {user} from "@/__global/UserStore.ts";
+import {user} from "@/__global/UserStore";
 import {useTimeoutFn} from '@vueuse/core';
 import {useFetch} from '@vueuse/core';
 
