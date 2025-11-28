@@ -10,8 +10,8 @@
 </template>
 <script setup lang="ts">
 
-import {$rs} from "@/helpers.ts";
-import {SharedResourcesStore} from "@/__global/SharedResourcesStore.ts";
+import {$rs} from "@/helpers";
+import {SharedResourcesStore} from "@/__global/SharedResourcesStore";
 import SpaceBetween from "@/components/containers/SpaceBetween.vue";
 </script>
 <style scoped>

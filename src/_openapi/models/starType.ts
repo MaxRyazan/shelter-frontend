@@ -10,10 +10,10 @@ export type StarType = typeof StarType[keyof typeof StarType];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const StarType = {
-  YellowDwarf: YellowDwarf,
-  OrangeDwarf: OrangeDwarf,
-  RedDwarf: RedDwarf,
-  BlueGiant: BlueGiant,
-  WhiteDwarf: WhiteDwarf,
-  NeutronStar: NeutronStar,
+  YellowDwarf: 'YellowDwarf',
+  OrangeDwarf: 'OrangeDwarf',
+  RedDwarf: 'RedDwarf',
+  BlueGiant: 'BlueGiant',
+  WhiteDwarf: 'WhiteDwarf',
+  NeutronStar: 'NeutronStar',
 } as const;
