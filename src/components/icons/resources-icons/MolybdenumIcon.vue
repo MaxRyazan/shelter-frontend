@@ -1,6 +1,6 @@
 <template>
     <div class="resource-icon">
-        <img src="/image/resources/molybdenum.jpg" alt="иконка ресурса молибден">
+        <img src="/image/resources/molybdenum.webp" alt="иконка ресурса молибден">
     </div>
 </template>
 <script setup lang="ts">

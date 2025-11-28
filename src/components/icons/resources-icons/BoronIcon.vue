@@ -1,6 +1,6 @@
 <template>
     <div class="resource-icon">
-        <img src="/image/resources/boron.jpg" alt="иконка ресурса бор">
+        <img src="/image/resources/boron.webp" alt="иконка ресурса бор">
     </div>
 </template>
 <script setup lang="ts">

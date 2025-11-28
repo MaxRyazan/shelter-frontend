@@ -1,6 +1,6 @@
 <template>
     <div class="resource-icon">
-        <img src="/image/resources/nickel.jpg" alt="иконка ресурса никель">
+        <img src="/image/resources/nickel.webp" alt="иконка ресурса никель">
     </div>
 </template>
 <script setup lang="ts">
