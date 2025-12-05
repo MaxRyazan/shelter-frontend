@@ -1,5 +1,7 @@
 <template>
-    <button @click="emits('click')" class="white-button">
+    <button @keydown.enter="emits('click')"
+            @click="emits('click')"
+            class="white-button">
         <slot/>
     </button>
 </template>
@@ -11,13 +13,14 @@ const emits = defineEmits<{
 <style scoped>
 .white-button {
     background-color: transparent;
-    border-width: 1px;
+    border-width: 2px;
     border-color: var(--accent);
     border-style: solid;
     border-radius: 4px;
     color: var(--accent);
     padding: 4px 6px;
     cursor: pointer;
+    outline: none;
 
     &:hover {
         color: var(--accent-light);
@@ -26,6 +29,10 @@ const emits = defineEmits<{
 
     &:active {
         box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    &:focus {
+        box-shadow: var(--shadow);
     }
 }
 </style>

@@ -11,7 +11,7 @@
 </template>
 <script setup lang="ts">
 import type {Components, Materials, MetaMaterials, Resources} from "@/__global/SharedResourcesStore.ts";
-import SharedSingleLine from "@/SharedResources/SharedSingleLine.vue";
+import SharedSingleLine from "@/__global-views/shared-resources-window/SharedSingleLine.vue";
 import {ref, watch} from "vue";
 
 const props = defineProps<{

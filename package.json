@@ -10,14 +10,19 @@
     "orval": "orval"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "@vueuse/components": "^14.0.0",
-    "vue": "^3.5.21"
+    "@vueuse/integrations": "^14.1.0",
+    "dayjs": "^1.11.19",
+    "universal-cookie": "^7.2.2",
+    "vue": "^3.5.21",
+    "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
-    "orval": "^7.4.1",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "orval": "^7.4.1",
     "typescript": "~5.8.3",
     "vite": "^7.1.6",
     "vue-tsc": "^3.0.7"
