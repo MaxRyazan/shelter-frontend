@@ -2,51 +2,26 @@
     <div class="auth">
         <div class="auth-form">
             <s-text class="hello">{{ hello }}</s-text>
-            <accent-input v-model="auth.email">
-                <template #prefix>
-                    <mail-outlined class="input-icon"/>
-                </template>
-            </accent-input>
-            <accent-input v-model="auth.password"
-                          type="password">
-                <template #prefix>
-                    <key-outlined class="input-icon"/>
-                </template>
-            </accent-input>
-            <div class="button-block">
-                <div class="agree-wrapper">
-                    <accent-input class="checkbox"
-                                  v-model="auth.saveMe"
-                                  type="checkbox">
-                    </accent-input>
-                    <s-text color="var(--prime-light)">Запомнить меня?</s-text>
-                </div>
-                <accent-button @click="authentication"
-                               class="auth-button">Войти
-                </accent-button>
-            </div>
+            <auth-form/>
+            <registration-button
+                @click="showRegForm = true"/>
+            <transition name="reg">
+                <registration-form
+                    @close="showRegForm = false"
+                    v-if="showRegForm"/>
+            </transition>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import AccentInput from "@/components/inputs/AccentInput.vue";
-import AccentButton from "@/components/buttons/AccentButton.vue";
-import {MailOutlined, KeyOutlined} from "@ant-design/icons-vue";
-import {computed, onMounted, ref} from "vue";
+import {computed, ref} from "vue";
 import dayjs from "dayjs";
 import SText from "@/components/common/SText.vue";
-import {postApiAuthLogin} from "@/_openapi/api/auth/auth";
-import {useCookies} from '@vueuse/integrations/useCookies'
-import {user} from "@/__global/UserStore";
-import {useRouter} from "vue-router";
+import AuthForm from "@/_modules/authorization/AuthForm.vue";
+import RegistrationButton from "@/_modules/authorization/RegistrationButton.vue";
+import RegistrationForm from "@/_modules/authorization/RegistrationForm.vue";
 
-const router = useRouter()
-const cookies = useCookies(['shelter-email'])
-const auth = ref({
-    email: "",
-    password: "",
-    saveMe: false,
-})
+const showRegForm = ref(false);
 
 const hello = computed(() => {
     const now = dayjs().hour()
@@ -64,30 +39,7 @@ const hello = computed(() => {
     }
 })
 
-async function authentication() {
-    if (auth.value.email && auth.value.password) {
-        try {
-            const response = await postApiAuthLogin({
-                email: auth.value.email,
-                password: auth.value.password
-            })
-            if (auth.value.saveMe) {
-                cookies.set("shelter-email", auth.value.email)
-            }
-            user.value = response.user
-            await router.push('/')
-        } catch (e) {
-        } finally {
-        }
-    }
-}
 
-onMounted(() => {
-    const result = cookies.get("shelter-email");
-    if (result) {
-        auth.value.email = result
-    }
-})
 </script>
 <style scoped>
 .auth {
@@ -97,13 +49,16 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 12px;
 }
 
 .auth-form {
+    overflow: hidden;
+    position: relative;
     border-radius: 12px;
     max-width: 500px;
-    width: 96%;
-    padding: 54px 36px 36px;
+    width: 100%;
+    padding: 54px 48px 36px 36px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -112,27 +67,6 @@ onMounted(() => {
     background-color: var(--green-dark);
 }
 
-.auth-button {
-    width: 120px;
-    height: 36px;
-    color: var(--prime-light);
-}
-
-.button-block {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.input-icon {
-    position: absolute;
-    left: 12px;
-    font-size: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--prime-light);
-}
 
 .hello {
     align-self: center;
@@ -141,17 +75,11 @@ onMounted(() => {
     font-weight: 600;
 }
 
-.checkbox {
-    margin: 0;
-    width: 20px;
-    height: 20px;
-    outline: none;
-    border-radius: 4px;
+.reg-enter-from, .reg-leave-to {
+    transform: translateX(120%);
 }
 
-.agree-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.reg-enter-active, .reg-leave-active {
+    transition: transform .3s;
 }
 </style>

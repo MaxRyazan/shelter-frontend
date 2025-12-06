@@ -1,0 +1,115 @@
+<template>
+    <div class="auth-form-wrapper">
+        <accent-input v-model="auth.email">
+            <template #prefix>
+                <mail-outlined class="input-icon"/>
+            </template>
+        </accent-input>
+        <accent-input v-model="auth.password"
+                      type="password">
+            <template #prefix>
+                <key-outlined class="input-icon"/>
+            </template>
+        </accent-input>
+        <div class="button-block">
+            <div class="agree-wrapper">
+                <accent-input class="checkbox"
+                              v-model="auth.saveMe"
+                              type="checkbox">
+                </accent-input>
+                <s-text color="var(--prime-light)">Запомнить меня?</s-text>
+            </div>
+            <accent-button @click="authentication"
+                           class="auth-button">Войти
+            </accent-button>
+        </div>
+    </div>
+</template>
+<script setup lang="ts">
+import AccentInput from "@/components/inputs/AccentInput.vue";
+import {KeyOutlined, MailOutlined} from "@ant-design/icons-vue";
+import AccentButton from "@/components/buttons/AccentButton.vue";
+import SText from "@/components/common/SText.vue";
+import {onMounted, ref} from "vue";
+import {postApiAuthLogin} from "@/_openapi/api/auth/auth";
+import {user} from "@/__global/UserStore";
+import {useRouter} from "vue-router";
+import {useCookies} from "@vueuse/integrations/useCookies";
+
+const router = useRouter()
+const cookies = useCookies()
+
+
+const auth = ref({
+    email: "",
+    password: "",
+    saveMe: false,
+})
+
+async function authentication() {
+    if (auth.value.email && auth.value.password) {
+        try {
+            const response = await postApiAuthLogin({
+                email: auth.value.email,
+                password: auth.value.password
+            })
+            if (auth.value.saveMe) {
+                cookies.set("shelter-email", auth.value.email)
+            }
+            user.value = response.user
+            await router.push('/')
+        } catch (e) {
+        } finally {
+        }
+    }
+}
+
+onMounted(() => {
+    const result = cookies.get("shelter-email");
+    if (result) {
+        auth.value.email = result
+    }
+})
+</script>
+<style scoped>
+.auth-button {
+    width: 120px;
+    height: 36px;
+    color: var(--prime-light);
+}
+
+.button-block {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--prime-light);
+}
+.checkbox {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border-radius: 4px;
+}
+
+.agree-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.auth-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+</style>
