@@ -34,11 +34,16 @@ import {CloseOutlined, KeyOutlined, MailOutlined, UserOutlined} from "@ant-desig
 import AccentInput from "@/components/inputs/AccentInput.vue";
 import AccentButton from "@/components/buttons/AccentButton.vue";
 import {ref} from "vue";
+import {postApiUserCreate} from "@/_openapi/api/users/users";
+import {authentication} from "@/_modules/authorization/ts";
+import {user} from "@/__global/UserStore";
+import {useRouter} from "vue-router";
 
 const emits = defineEmits<{
     (e: 'close'): void
 }>()
 
+const router = useRouter()
 const reg = ref({
     email: "",
     login: "",
@@ -46,7 +51,31 @@ const reg = ref({
     confirmPassword: "",
 })
 
-function registration() {
+function isRegDataFilled() {
+    return reg.value &&
+        reg.value.email.length &&
+        reg.value.login.length &&
+        reg.value.password.length &&
+        reg.value.password === reg.value.confirmPassword
+}
+
+async function registration() {
+    if (!isRegDataFilled()) return
+    try {
+        const response = await postApiUserCreate({
+            nickName: reg.value.login,
+            email: reg.value.email,
+            password: reg.value.password,
+        });
+        if (response) {
+            await authentication({email: reg.value.email, password: reg.value.password})
+            if (user.value?.id) {
+                await router.push('/')
+            }
+        }
+    } catch (e) {
+    } finally {
+    }
 }
 </script>
 <style scoped>

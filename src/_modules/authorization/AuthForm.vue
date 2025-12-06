@@ -19,7 +19,7 @@
                 </accent-input>
                 <s-text color="var(--prime-light)">Запомнить меня?</s-text>
             </div>
-            <accent-button @click="authentication"
+            <accent-button @click="authenticate"
                            class="auth-button">Войти
             </accent-button>
         </div>
@@ -31,10 +31,10 @@ import {KeyOutlined, MailOutlined} from "@ant-design/icons-vue";
 import AccentButton from "@/components/buttons/AccentButton.vue";
 import SText from "@/components/common/SText.vue";
 import {onMounted, ref} from "vue";
-import {postApiAuthLogin} from "@/_openapi/api/auth/auth";
 import {user} from "@/__global/UserStore";
 import {useRouter} from "vue-router";
 import {useCookies} from "@vueuse/integrations/useCookies";
+import {authentication} from "@/_modules/authorization/ts";
 
 const router = useRouter()
 const cookies = useCookies()
@@ -46,21 +46,10 @@ const auth = ref({
     saveMe: false,
 })
 
-async function authentication() {
-    if (auth.value.email && auth.value.password) {
-        try {
-            const response = await postApiAuthLogin({
-                email: auth.value.email,
-                password: auth.value.password
-            })
-            if (auth.value.saveMe) {
-                cookies.set("shelter-email", auth.value.email)
-            }
-            user.value = response.user
-            await router.push('/')
-        } catch (e) {
-        } finally {
-        }
+async function authenticate() {
+    await authentication({email: auth.value.email, password: auth.value.password, saveMe: auth.value.saveMe})
+    if (user.value?.id) {
+        await router.push('/')
     }
 }
 
@@ -93,6 +82,7 @@ onMounted(() => {
     transform: translateY(-50%);
     color: var(--prime-light);
 }
+
 .checkbox {
     margin: 0;
     width: 20px;
@@ -106,6 +96,7 @@ onMounted(() => {
     align-items: center;
     gap: 10px;
 }
+
 .auth-form-wrapper {
     display: flex;
     flex-direction: column;

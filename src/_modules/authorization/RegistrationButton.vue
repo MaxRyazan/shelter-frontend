@@ -27,5 +27,7 @@
 .registration-title {
     color: #191919;
     user-select: none;
+    font-weight: 600;
+    font-family: IBM_Plex_Mono, sans-serif;
 }
 </style>
