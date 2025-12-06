@@ -18,7 +18,7 @@
 import MainMenu from "@/components/MainMenu.vue";
 import TheContent from "@/components/TheContent.vue";
 import TheFooter from "@/components/TheFooter.vue";
-import {isSharedResourcesWindowOpen, SharedResourcesStore} from "@/__global/SharedResourcesStore";
+import {isSharedResourcesWindowOpen, SharedResourcesStore} from "@/__stores/shared-resources-store";
 import SharedResourcesWindow from "@/__elements/shared-resources-window/vue/SharedResourcesWindow.vue";
 import {allPlanets, currentPlanet, isPlanetChoserOpen, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
 import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
@@ -27,7 +27,7 @@ import {useApiLazy} from "@/composables/useApi";
 import {GetPlanetResponseDto} from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
 import ListOfPlanets from "@/components/modals/ListOfPlanets.vue";
-import {user} from "@/__global/UserStore";
+import {user} from "@/__stores/usser-store";
 
 const {execute} = useApiLazy<GetPlanetResponseDto[]>();
 

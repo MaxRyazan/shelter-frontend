@@ -10,9 +10,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import type {Components, Materials, MetaMaterials, Resources} from "@/__global/SharedResourcesStore.ts";
 import SharedSingleLine from "@/__elements/shared-resources-window/vue/SharedSingleLine.vue";
 import {ref, watch} from "vue";
+import {Components, Materials, MetaMaterials, Resources} from "@/__elements/shared-resources-window/ts/types";
 
 const props = defineProps<{
     map: Map<string, string>

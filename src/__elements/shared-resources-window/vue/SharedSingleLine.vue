@@ -32,7 +32,7 @@
 import {$rs} from "@/helpers";
 import SpaceBetween from "@/components/containers/SpaceBetween.vue";
 import {ref} from "vue";
-import {user} from "@/__global/UserStore";
+import {user} from "@/__stores/usser-store";
 import {useTimeoutFn} from '@vueuse/core';
 import {useFetch} from '@vueuse/core';
 

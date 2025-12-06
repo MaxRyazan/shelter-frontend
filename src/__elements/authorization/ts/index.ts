@@ -1,5 +1,5 @@
 import {postApiAuthLogin} from "@/_openapi/api/auth/auth";
-import {user} from "@/__global/UserStore";
+import {user} from "@/__stores/usser-store";
 import {useCookies} from "@vueuse/integrations/useCookies";
 
 export async function authentication(args: { email: string, password: string, saveMe?: boolean }) {

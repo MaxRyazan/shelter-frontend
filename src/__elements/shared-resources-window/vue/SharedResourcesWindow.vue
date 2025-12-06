@@ -33,7 +33,7 @@
     </drag-modal>
 </template>
 <script setup lang="ts">
-import {isSharedResourcesWindowOpen, SharedResourcesStore} from "@/__global/SharedResourcesStore";
+import {isSharedResourcesWindowOpen, SharedResourcesStore} from "@/__stores/shared-resources-store";
 import DragModal from "@/components/modals/DragModal.vue";
 import SharedGroup from "./SharedGroup.vue";
 import SDivider from "@/components/common/SDivider.vue";

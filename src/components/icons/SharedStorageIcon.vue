@@ -20,7 +20,7 @@
     </svg>
 </template>
 <script setup lang="ts">
-import {isSharedResourcesWindowOpen} from "@/__global/SharedResourcesStore";
+import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
