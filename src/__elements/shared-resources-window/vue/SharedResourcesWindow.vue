@@ -33,7 +33,7 @@
     </drag-modal>
 </template>
 <script setup lang="ts">
-import {isSharedResourcesWindowOpen, SharedResourcesStore} from "@/__stores/shared-resources-store";
+import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import DragModal from "@/components/modals/DragModal.vue";
 import SharedGroup from "./SharedGroup.vue";
 import SDivider from "@/components/common/SDivider.vue";
@@ -43,6 +43,7 @@ import SharedMenu from "@/__elements/shared-resources-window/vue/SharedMenu.vue"
 import SharedTableHeader from "@/__elements/shared-resources-window/vue/SharedTableHeader.vue";
 import SharedSummary from "@/__elements/shared-resources-window/vue/SharedSummary.vue";
 import {useEventListener} from '@vueuse/core'
+import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 
 
 const currentTab = ref('resources');

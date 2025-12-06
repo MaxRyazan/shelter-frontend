@@ -31,7 +31,7 @@ import {KeyOutlined, MailOutlined} from "@ant-design/icons-vue";
 import AccentButton from "@/components/buttons/AccentButton.vue";
 import SText from "@/components/common/SText.vue";
 import {onMounted, ref} from "vue";
-import {user} from "@/__stores/usser-store";
+import {user} from "@/__stores/user-store";
 import {useRouter} from "vue-router";
 import {useCookies} from "@vueuse/integrations/useCookies";
 import {authentication} from "@/__elements/authorization/ts";

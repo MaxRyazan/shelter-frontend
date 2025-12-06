@@ -11,8 +11,8 @@
 <script setup lang="ts">
 
 import {$rs} from "@/helpers";
-import {SharedResourcesStore} from "@/__stores/shared-resources-store";
 import SpaceBetween from "@/components/containers/SpaceBetween.vue";
+import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 </script>
 <style scoped>
 

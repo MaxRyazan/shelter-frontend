@@ -36,7 +36,7 @@ import AccentButton from "@/components/buttons/AccentButton.vue";
 import {ref} from "vue";
 import {postApiUserCreate} from "@/_openapi/api/users/users";
 import {authentication} from "@/__elements/authorization/ts";
-import {user} from "@/__stores/usser-store";
+import {user} from "@/__stores/user-store";
 import {useRouter} from "vue-router";
 
 const emits = defineEmits<{
