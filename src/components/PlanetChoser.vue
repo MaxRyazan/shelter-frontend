@@ -1,11 +1,10 @@
 <template>
     <div @click="isPlanetChoserOpen = !isPlanetChoserOpen"
          class="planet__choser">
-        <planets-list-icon/>
+        <img src="/image/common/planet-icon.webp" alt="planet-icon" />
     </div>
 </template>
 <script setup lang="ts">
-import PlanetsListIcon from "@/components/icons/PlanetsListIcon.vue";
 import {isPlanetChoserOpen} from "@/__elements/planet-window/ts";
 </script>
 <style scoped>

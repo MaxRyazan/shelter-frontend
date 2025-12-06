@@ -1,22 +1,24 @@
 <template>
     <div class="menu">
-        <shared-storage-icon/>
-        <planet-choser/>
-        <boron-icon />
-        <clay-icon />
-        <titanium-icon />
-        <vanadium-icon />
-        <copper-icon />
+        <common-icon name="shared-resources-icon.webp"
+                     @click="switchSharedResources"/>
+        <common-icon name="planet-icon.webp"
+                     @click="switchPlanetWindow"/>
     </div>
 </template>
 <script setup lang="ts">
-import SharedStorageIcon from "@/components/icons/SharedStorageIcon.vue";
-import PlanetChoser from "@/components/PlanetChoser.vue";
-import BoronIcon from "@/components/icons/resources-icons/BoronIcon.vue";
-import ClayIcon from "@/components/icons/resources-icons/ClayIcon.vue";
-import TitaniumIcon from "@/components/icons/resources-icons/TitaniumIcon.vue";
-import VanadiumIcon from "@/components/icons/resources-icons/VanadiumIcon.vue";
-import CopperIcon from "@/components/icons/resources-icons/CopperIcon.vue";
+import CommonIcon from "@/components/icons/CommonIcon.vue";
+import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
+import {isPlanetChoserOpen} from "@/__elements/planet-window/ts";
+
+
+function switchSharedResources() {
+    isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
+}
+
+function switchPlanetWindow() {
+    isPlanetChoserOpen.value = !isPlanetChoserOpen.value
+}
 </script>
 <style scoped>
 .menu {
