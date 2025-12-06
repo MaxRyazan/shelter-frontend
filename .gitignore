@@ -36,3 +36,9 @@ node_modules/.vite/
 
 # node
 node_modules/
+# Но добавьте также:
+**/node_modules/*
+node_modules/**/*
+
+# Или просто убедитесь, что нет исключений:
+!node_modules/
