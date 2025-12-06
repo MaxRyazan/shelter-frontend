@@ -17,9 +17,9 @@
 import {computed, ref} from "vue";
 import dayjs from "dayjs";
 import SText from "@/components/common/SText.vue";
-import AuthForm from "@/_modules/authorization/vue/AuthForm.vue";
-import RegistrationButton from "@/_modules/authorization/vue/RegistrationButton.vue";
-import RegistrationForm from "@/_modules/authorization/vue/RegistrationForm.vue";
+import AuthForm from "@/__elements/authorization/vue/AuthForm.vue";
+import RegistrationButton from "@/__elements/authorization/vue/RegistrationButton.vue";
+import RegistrationForm from "@/__elements/authorization/vue/RegistrationForm.vue";
 
 const showRegForm = ref(false);
 

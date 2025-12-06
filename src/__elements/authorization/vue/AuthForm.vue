@@ -34,7 +34,7 @@ import {onMounted, ref} from "vue";
 import {user} from "@/__global/UserStore";
 import {useRouter} from "vue-router";
 import {useCookies} from "@vueuse/integrations/useCookies";
-import {authentication} from "@/_modules/authorization/ts";
+import {authentication} from "@/__elements/authorization/ts";
 
 const router = useRouter()
 const cookies = useCookies()

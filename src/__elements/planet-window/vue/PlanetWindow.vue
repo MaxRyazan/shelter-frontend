@@ -12,7 +12,7 @@
 </template>
 <script setup lang="ts">
 import DragModal from "@/components/modals/DragModal.vue";
-import {currentPlanet, isPlanetWindowOpen} from "@/__global/PlanetView";
+import {currentPlanet, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
 import SText from "@/components/common/SText.vue";
 </script>
 <style scoped>

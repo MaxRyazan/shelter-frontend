@@ -35,7 +35,7 @@ import AccentInput from "@/components/inputs/AccentInput.vue";
 import AccentButton from "@/components/buttons/AccentButton.vue";
 import {ref} from "vue";
 import {postApiUserCreate} from "@/_openapi/api/users/users";
-import {authentication} from "@/_modules/authorization/ts";
+import {authentication} from "@/__elements/authorization/ts";
 import {user} from "@/__global/UserStore";
 import {useRouter} from "vue-router";
 

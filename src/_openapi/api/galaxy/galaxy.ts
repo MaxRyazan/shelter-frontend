@@ -9,7 +9,7 @@ import type {
   Galaxy
 } from '../../models';
 
-import { useFetchMutator } from '../../../api/index';
+import { useFetchMutator } from '@/mutator/index';
 
 
 

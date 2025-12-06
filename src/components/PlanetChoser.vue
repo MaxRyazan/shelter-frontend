@@ -6,7 +6,7 @@
 </template>
 <script setup lang="ts">
 import PlanetsListIcon from "@/components/icons/PlanetsListIcon.vue";
-import {isPlanetChoserOpen} from "@/__global/PlanetView";
+import {isPlanetChoserOpen} from "@/__elements/planet-window/ts";
 </script>
 <style scoped>
 .planet__choser {

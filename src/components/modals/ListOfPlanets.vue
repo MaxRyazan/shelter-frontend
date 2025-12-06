@@ -13,7 +13,7 @@
 <script setup lang="ts">
 
 import DragModal from "@/components/modals/DragModal.vue";
-import {allPlanets, currentPlanet, isPlanetChoserOpen, isPlanetWindowOpen} from "@/__global/PlanetView";
+import {allPlanets, currentPlanet, isPlanetChoserOpen, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
 import SText from "@/components/common/SText.vue";
 import {GetPlanetResponseDto} from "@/_openapi/models";
 

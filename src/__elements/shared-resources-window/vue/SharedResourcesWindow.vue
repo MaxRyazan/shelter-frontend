@@ -39,9 +39,9 @@ import SharedGroup from "./SharedGroup.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import SText from "@/components/common/SText.vue";
 import {onUnmounted, ref} from "vue";
-import SharedMenu from "@/__global-views/shared-resources-window/SharedMenu.vue";
-import SharedTableHeader from "@/__global-views/shared-resources-window/SharedTableHeader.vue";
-import SharedSummary from "@/__global-views/shared-resources-window/SharedSummary.vue";
+import SharedMenu from "@/__elements/shared-resources-window/vue/SharedMenu.vue";
+import SharedTableHeader from "@/__elements/shared-resources-window/vue/SharedTableHeader.vue";
+import SharedSummary from "@/__elements/shared-resources-window/vue/SharedSummary.vue";
 import {useEventListener} from '@vueuse/core'
 
 

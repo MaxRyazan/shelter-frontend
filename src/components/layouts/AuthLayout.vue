@@ -2,7 +2,7 @@
     <index/>
 </template>
 <script setup lang="ts">
-import Index from "@/_modules/authorization/vue/Index.vue";
+import Index from "@/__elements/authorization/vue/Index.vue";
 </script>
 <style scoped>
 

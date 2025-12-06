@@ -11,7 +11,7 @@ import type {
   RefreshTokenResponse
 } from '../../models';
 
-import { useFetchMutator } from '../../../api/index';
+import { useFetchMutator } from '@/mutator/index';
 
 
 
