@@ -10,7 +10,7 @@
 
 
     --shadow: inset 0 0 2px 1px rgba(0, 206, 209, .6);
-    --divider: rgba(255, 255, 255, .2);
+    --divider: rgba(255, 255, 255, .6);
     --accent: rgba(30, 144, 255);
     --accent-light: rgba(30, 160, 255);
     --resources: rgba(205, 133, 63);
