@@ -28,7 +28,7 @@ const props = defineProps<{
 const el: any = useTemplateRef<HTMLElement>('el')
 const {width} = useWindowSize()
 const {style} = useDraggable(el, {
-    initialValue: props.initialPosition ?? {x: width.value > 600 ? 20 : 42, y: 60},
+    initialValue: props.initialPosition ?? {x: width.value > 600 ? 20 : 42, y:  width.value > 600 ?  60 : 10},
 })
 const cleanup = useEventListener(window, 'keydown', (e) => {
     if (e.code === 'Escape') {

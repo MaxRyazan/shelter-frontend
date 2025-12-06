@@ -1,5 +1,5 @@
 <template>
-    <drag-modal style="min-width: 400px"
+    <drag-modal class="shared-window"
                 @close="isSharedResourcesWindowOpen = false">
         <template #header>
             <s-text size="14px" semi-bold>Межпланетное хранилище</s-text>
@@ -108,5 +108,11 @@ const componentsMap = new Map<string, string>([
 
 .fade-leave-to, .fade-enter-from {
     opacity: 0;
+}
+.shared-window {
+    min-width: 360px;
+    @media screen and (max-width: 600px) {
+        width: 360px !important;
+    }
 }
 </style>

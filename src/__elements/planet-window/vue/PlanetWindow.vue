@@ -1,5 +1,6 @@
 <template>
-    <drag-modal @close="isPlanetWindowOpen = false">
+    <drag-modal class="planet-window"
+                @close="isPlanetWindowOpen = false">
         <template #header>
             <s-text :size="14" semi-bold>
                 Просмотр планеты
@@ -16,5 +17,11 @@ import {currentPlanet, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
 import SText from "@/components/common/SText.vue";
 </script>
 <style scoped>
-
+.planet-window {
+    width: 100%;
+    min-width: 360px;
+    @media screen and (max-width: 600px) {
+        width: 360px !important;
+    }
+}
 </style>
