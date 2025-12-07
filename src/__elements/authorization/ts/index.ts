@@ -13,6 +13,8 @@ export async function authentication(args: { email: string, password: string, sa
             if (args.saveMe) {
                 cookies.set("shelter-email", args.email)
             }
+            localStorage.setItem("shelter-token", JSON.stringify(response.accessToken));
+            localStorage.setItem("shelter-refresh-token", JSON.stringify(response.refreshToken));
             user.value = response.user
         } catch (e) {
         } finally {

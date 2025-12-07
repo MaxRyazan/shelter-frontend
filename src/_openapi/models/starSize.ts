@@ -10,9 +10,9 @@ export type StarSize = typeof StarSize[keyof typeof StarSize];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const StarSize = {
-  Tiny: 'Tiny',
-  Dwarf: 'Dwarf',
-  Normal: 'Normal',
-  Giant: 'Giant',
-  Supergiant: 'Supergiant',
+  Tiny: Tiny,
+  Dwarf: Dwarf,
+  Normal: Normal,
+  Giant: Giant,
+  Supergiant: Supergiant,
 } as const;

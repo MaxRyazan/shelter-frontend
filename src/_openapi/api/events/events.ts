@@ -4,7 +4,7 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
-import { useFetchMutator } from '@/mutator/index';
+import { useFetchMutator } from '../../../mutator/index';
 
 
 

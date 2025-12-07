@@ -21,5 +21,6 @@ export interface PlanetBuilding {
    */
   buildingType: string;
   efficiency: number;
+  maxEfficiency: number;
   count: number;
 }

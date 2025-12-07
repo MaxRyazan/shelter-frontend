@@ -12,7 +12,7 @@ import type {
   SharedResourcesResponseDto
 } from '../../models';
 
-import { useFetchMutator } from '@/mutator/index';
+import { useFetchMutator } from '../../../mutator/index';
 
 
 

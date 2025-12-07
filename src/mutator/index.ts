@@ -11,6 +11,7 @@ export const useFetchMutator = async <T>(config: {
         headers: {
             'Content-Type': 'application/json',
             ...headers,
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('shelter-token') ?? '{}')}`,
         },
         body: data ? JSON.stringify(data) : undefined,
     });

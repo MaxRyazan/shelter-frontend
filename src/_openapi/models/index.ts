@@ -8,6 +8,7 @@
 export * from './badRequestError';
 export * from './buildingActionType';
 export * from './buildingQueue';
+export * from './changeBuildingEfficiencyDto';
 export * from './citizensDto';
 export * from './createBuildingDto';
 export * from './createGalaxyDto';
@@ -32,6 +33,8 @@ export * from './playerResource';
 export * from './problemDetails';
 export * from './refreshTokenDto';
 export * from './refreshTokenResponse';
+export * from './removeFromPlanetStoreDto';
+export * from './removeFromQueueDto';
 export * from './removeFromShareDto';
 export * from './resourceItemDto';
 export * from './sharedResourcesResponseDto';

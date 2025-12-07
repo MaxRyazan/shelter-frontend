@@ -5,11 +5,14 @@
  * OpenAPI spec version: v1
  */
 import type {
+  ChangeBuildingEfficiencyDto,
   CreateBuildingDto,
-  GetPlanetResponseDto
+  GetPlanetResponseDto,
+  RemoveFromPlanetStoreDto,
+  RemoveFromQueueDto
 } from '../../models';
 
-import { useFetchMutator } from '@/mutator/index';
+import { useFetchMutator } from '../../../mutator/index';
 
 
 
@@ -37,5 +40,47 @@ export const postApiPlanetBuildingOperation = (
     },
       );
     }
+  /**
+ * @summary Изменение эффективности работы здания
+ */
+export const postApiPlanetChangeBuildingEfficiency = (
+    changeBuildingEfficiencyDto: ChangeBuildingEfficiencyDto,
+ ) => {
+      return useFetchMutator<GetPlanetResponseDto>(
+      {url: `/api/planet/change-building-efficiency`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: changeBuildingEfficiencyDto
+    },
+      );
+    }
+  /**
+ * @summary Удаление здания из очереди строительства
+ */
+export const postApiPlanetBuildingOperationRemoveFromQueue = (
+    removeFromQueueDto: RemoveFromQueueDto,
+ ) => {
+      return useFetchMutator<GetPlanetResponseDto>(
+      {url: `/api/planet/building-operation/remove-from-queue`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: removeFromQueueDto
+    },
+      );
+    }
+  /**
+ * @summary Удаление со склада планеты любой вещи
+ */
+export const postApiPlanetRemoveFromStorage = (
+    removeFromPlanetStoreDto: RemoveFromPlanetStoreDto,
+ ) => {
+      return useFetchMutator<GetPlanetResponseDto>(
+      {url: `/api/planet/remove-from-storage`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: removeFromPlanetStoreDto
+    },
+      );
+    }
   export type GetApiPlanetIdResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetId>>>
 export type PostApiPlanetBuildingOperationResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperation>>>
+export type PostApiPlanetChangeBuildingEfficiencyResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetChangeBuildingEfficiency>>>
+export type PostApiPlanetBuildingOperationRemoveFromQueueResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperationRemoveFromQueue>>>
+export type PostApiPlanetRemoveFromStorageResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetRemoveFromStorage>>>

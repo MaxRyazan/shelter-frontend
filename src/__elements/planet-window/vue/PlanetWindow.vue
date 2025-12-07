@@ -21,13 +21,25 @@ import SText from "@/components/common/SText.vue";
 import TopMenu from "@/__elements/planet-window/vue/TopMenu.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import {TopMenuType} from "@/__elements/planet-window/ts/types";
-import {type Component, shallowRef} from "vue";
+import {type Component, onMounted, shallowRef} from "vue";
+import {getApiPlanetId} from "@/_openapi/api/planet/planet";
+import {user} from "@/__stores/user-store";
 
 const activeTab = shallowRef<Component | undefined>()
 
 function viewTab(p: TopMenuType) {
     activeTab.value = p.component
 }
+
+onMounted(async () => {
+    try {
+        if (!user.value?.homePlanetId) return
+        const response = await getApiPlanetId(user.value.homePlanetId);
+        console.log(response)
+    } catch (e) {
+    } finally {
+    }
+})
 </script>
 <style scoped>
 .planet-window {

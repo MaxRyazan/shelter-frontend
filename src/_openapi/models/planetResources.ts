@@ -18,4 +18,5 @@ export interface PlanetResources {
   oil?: number;
   titanium?: number;
   magnesium?: number;
+  uranium?: number;
 }

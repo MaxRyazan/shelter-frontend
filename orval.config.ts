@@ -14,7 +14,7 @@ export default defineConfig({
             prettier: true,
             override: {
                 mutator: {
-                    path: './src/api/index.ts',
+                    path: './src/mutator/index.ts',
                     name: 'useFetchMutator'
                 }
             }

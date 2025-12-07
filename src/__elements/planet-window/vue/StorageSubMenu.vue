@@ -10,9 +10,13 @@
     </ul>
 </template>
 <script setup lang="ts">
-import {reactive, shallowRef} from "vue";
+import {reactive, shallowRef, watch} from "vue";
 import {SubTabs} from "@/__elements/planet-window/ts";
 import {TopSubMenuType} from "@/__elements/planet-window/ts/types";
+
+const emits = defineEmits<{
+    (e: 'show', p: Set<number>):void
+}>()
 
 const subList = shallowRef<TopSubMenuType[]>([
     {
@@ -33,14 +37,17 @@ const subList = shallowRef<TopSubMenuType[]>([
     }
 ])
 
-const checked = reactive(new Set());
+const checked = reactive(new Set<number>());
 
 function clickOn(item: TopSubMenuType) {
     if (checked.has(item.id)) {
         checked.delete(item.id)
     } else checked.add(item.id)
-    console.log(checked)
 }
+
+watch(checked, () => {
+    emits('show', checked)
+}, {deep: true, immediate: true})
 </script>
 <style scoped>
 .sub-menu {
