@@ -1,0 +1,104 @@
+<template>
+    <div class="top-menu">
+        <ul class="menu-list">
+            <li v-for="(item, index) in list" :key="index"
+                @click="currentActive = item"
+                :class="{'active-top-menu': currentActive === item}"
+                class="menu-list__item">
+                <s-text v-if="width > 600">{{ item.text }}</s-text>
+                <common-icon v-else :name="item.icon"/>
+            </li>
+        </ul>
+    </div>
+</template>
+<script setup lang="ts">
+import SText from "@/components/common/SText.vue";
+import CommonIcon from "@/components/icons/CommonIcon.vue";
+import {useWindowSize} from '@vueuse/core';
+import {shallowRef, watch} from "vue";
+import {Tabs} from "@/__elements/planet-window/ts";
+import PlanetWindowDashboard from "@/__elements/planet-window/vue/top-menu/PlanetWindowDashboard.vue";
+import PlanetWindowStorage from "@/__elements/planet-window/vue/top-menu/PlanetWindowStorage.vue";
+import PlanetWindowBuildings from "@/__elements/planet-window/vue/top-menu/PlanetWindowBuildings.vue";
+import PlanetWindowBuildingsQueue from "@/__elements/planet-window/vue/top-menu/PlanetWindowBuildingsQueue.vue";
+import PlanetWindowProductions from "@/__elements/planet-window/vue/top-menu/PlanetWindowProductions.vue";
+import PlanetWindowDefence from "@/__elements/planet-window/vue/top-menu/PlanetWindowDefence.vue";
+import {TopMenuType} from "@/__elements/planet-window/ts/types";
+
+const emits = defineEmits<{
+    (e: 'view-tab', p: TopMenuType): void
+}>()
+
+const {width} = useWindowSize()
+const list: TopMenuType[] = [
+    {
+        text: Tabs.view,
+        icon: 'view-icon.webp',
+        component: PlanetWindowDashboard
+    },
+    {
+        text: Tabs.storage,
+        icon: 'storage-icon.webp',
+        component: PlanetWindowStorage
+    },
+    {
+        text: Tabs.buildings,
+        icon: 'buildings-icon.webp',
+        component: PlanetWindowBuildings
+    },
+    {
+        text: Tabs.buildings_queue,
+        icon: 'buildings-queue-icon.webp',
+        component: PlanetWindowBuildingsQueue
+    },
+    {
+        text: Tabs.production,
+        icon: 'planet-icon.webp',
+        component: PlanetWindowProductions
+    },
+    {
+        text: Tabs.defence,
+        icon: 'planet-icon.webp',
+        component: PlanetWindowDefence
+    },
+]
+
+const currentActive = shallowRef<TopMenuType>(list[0])
+
+watch(currentActive, () => {
+    emits('view-tab', currentActive.value)
+}, {immediate: true})
+
+</script>
+<style scoped>
+.top-menu {
+    width: 100%;
+}
+
+.active-top-menu {
+    color: var(--accent);
+    @media screen and (max-width: 600px) {
+        outline-offset: 2px;
+        outline: 2px solid var(--prime-light);
+    }
+}
+
+.menu-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0;
+    padding: 0 4px;
+    list-style-type: none;
+}
+
+.menu-list__item {
+    cursor: pointer;
+    margin: 0;
+    font-family: IBM_Plex_Mono sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+</style>

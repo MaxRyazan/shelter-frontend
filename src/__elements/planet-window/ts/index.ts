@@ -20,3 +20,13 @@ export const currentPlanet = ref<GetPlanetResponseDto | undefined>();
  * Все планеты пользователя
  */
 export const allPlanets = ref<GetPlanetResponseDto[] | null>(null)
+
+
+export enum Tabs {
+    view = 'обзор',
+    storage = 'склад',
+    buildings = 'постройки',
+    buildings_queue = 'очередь строительства',
+    production = 'производства',
+    defence = 'оборона',
+}

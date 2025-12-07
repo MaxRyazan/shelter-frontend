@@ -8,20 +8,30 @@
                 </span>
             </s-text>
         </template>
-        <s-divider space="6"/>
-        <top-menu/>
+        <s-divider space="12"/>
+        <top-menu @view-tab="viewTab"/>
+        <s-divider space="12"/>
+        <component :is="activeTab"></component>
     </drag-modal>
 </template>
 <script setup lang="ts">
 import DragModal from "@/components/modals/DragModal.vue";
 import {currentPlanet, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
 import SText from "@/components/common/SText.vue";
-import TopMenu from "@/__elements/planet-window/vue/TopMenu.vue";
+import TopMenu from "@/__elements/planet-window/vue/top-menu/TopMenu.vue";
 import SDivider from "@/components/common/SDivider.vue";
+import {TopMenuType} from "@/__elements/planet-window/ts/types";
+import {type Component, shallowRef} from "vue";
+
+const activeTab = shallowRef<Component | undefined>()
+
+function viewTab(p: TopMenuType) {
+    activeTab.value = p.component
+}
 </script>
 <style scoped>
 .planet-window {
-    width: 100%;
+    width: 90%;
     min-width: 360px;
     @media screen and (max-width: 600px) {
         width: 360px !important;
