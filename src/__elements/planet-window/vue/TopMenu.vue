@@ -17,12 +17,12 @@ import CommonIcon from "@/components/icons/CommonIcon.vue";
 import {useWindowSize} from '@vueuse/core';
 import {shallowRef, watch} from "vue";
 import {Tabs} from "@/__elements/planet-window/ts";
-import PlanetWindowDashboard from "@/__elements/planet-window/vue/top-menu/PlanetWindowDashboard.vue";
-import PlanetWindowStorage from "@/__elements/planet-window/vue/top-menu/PlanetWindowStorage.vue";
-import PlanetWindowBuildings from "@/__elements/planet-window/vue/top-menu/PlanetWindowBuildings.vue";
-import PlanetWindowBuildingsQueue from "@/__elements/planet-window/vue/top-menu/PlanetWindowBuildingsQueue.vue";
-import PlanetWindowProductions from "@/__elements/planet-window/vue/top-menu/PlanetWindowProductions.vue";
-import PlanetWindowDefence from "@/__elements/planet-window/vue/top-menu/PlanetWindowDefence.vue";
+import PlanetWindowDashboard from "@/__elements/planet-window/vue/PlanetWindowDashboard.vue";
+import PlanetWindowStorage from "@/__elements/planet-window/vue/PlanetWindowStorage.vue";
+import PlanetWindowBuildings from "@/__elements/planet-window/vue/PlanetWindowBuildings.vue";
+import PlanetWindowBuildingsQueue from "@/__elements/planet-window/vue/PlanetWindowBuildingsQueue.vue";
+import PlanetWindowProductions from "@/__elements/planet-window/vue/PlanetWindowProductions.vue";
+import PlanetWindowDefence from "@/__elements/planet-window/vue/PlanetWindowDefence.vue";
 import {TopMenuType} from "@/__elements/planet-window/ts/types";
 
 const emits = defineEmits<{

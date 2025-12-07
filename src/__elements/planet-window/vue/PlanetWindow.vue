@@ -18,7 +18,7 @@
 import DragModal from "@/components/modals/DragModal.vue";
 import {currentPlanet, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
 import SText from "@/components/common/SText.vue";
-import TopMenu from "@/__elements/planet-window/vue/top-menu/TopMenu.vue";
+import TopMenu from "@/__elements/planet-window/vue/TopMenu.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import {TopMenuType} from "@/__elements/planet-window/ts/types";
 import {type Component, shallowRef} from "vue";
