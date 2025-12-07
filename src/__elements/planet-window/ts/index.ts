@@ -30,3 +30,10 @@ export enum Tabs {
     production = 'производства',
     defence = 'оборона',
 }
+
+export enum SubTabs {
+    resources = 'ресурсы',
+    materials = 'материалы',
+    metamaterials = 'метаматериалы',
+    components = 'компоненты',
+}
