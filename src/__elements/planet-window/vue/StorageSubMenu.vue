@@ -37,7 +37,7 @@ const subList = shallowRef<TopSubMenuType[]>([
     }
 ])
 
-const checked = reactive(new Set<number>());
+const checked = reactive(new Set<number>([0]));
 
 function clickOn(item: TopSubMenuType) {
     if (checked.has(item.id)) {
