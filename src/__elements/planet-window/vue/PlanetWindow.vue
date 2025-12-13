@@ -7,8 +7,12 @@
                     {{ currentPlanet?.name }}
                 </span>
             </s-text>
+            <div @click="getPlanetInfo"
+                 class="planet-window__refresh">
+                <redo-outlined style="font-weight: 700; font-size: 14px;"/>
+            </div>
         </template>
-        <s-divider style="margin: 10px 0 0"/>
+        <s-divider style="margin: 0"/>
         <top-menu @view-tab="viewTab"/>
         <s-divider style="margin: 0 0 10px"/>
         <div style="width: 100%; height: calc(100% - 80px)">
@@ -26,6 +30,7 @@ import {TopMenuType} from "@/__elements/planet-window/ts/types";
 import {type Component, onMounted, shallowRef} from "vue";
 import {getApiPlanetId} from "@/_openapi/api/planet/planet";
 import {user} from "@/__stores/user-store";
+import {RedoOutlined} from "@ant-design/icons-vue";
 
 const activeTab = shallowRef<Component | undefined>()
 
@@ -33,7 +38,7 @@ function viewTab(p: TopMenuType) {
     activeTab.value = p.component
 }
 
-onMounted(async () => {
+async function getPlanetInfo() {
     try {
         if (!user.value?.homePlanetId) return
         const response = await getApiPlanetId(user.value.homePlanetId);
@@ -41,6 +46,10 @@ onMounted(async () => {
     } catch (e) {
     } finally {
     }
+}
+
+onMounted(async () => {
+    await getPlanetInfo()
 })
 </script>
 <style scoped>
@@ -61,5 +70,16 @@ onMounted(async () => {
 
 :deep(.dragmodal__inner-header) {
     background: #242424 !important;
+}
+
+.planet-window__refresh {
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

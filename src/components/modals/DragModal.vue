@@ -61,7 +61,7 @@ onUnmounted(() => cleanup())
 
 .dragmodal__inner-header {
     background: var(--prime-back-reverse);
-    height: 30px;
+    height: 40px;
     flex-grow: 0;
     cursor: grab;
     display: flex;
@@ -77,7 +77,7 @@ onUnmounted(() => cleanup())
 
 .dragmodal__inner-cross-wrapper {
     width: 30px;
-    height: 30px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
