@@ -3,10 +3,13 @@
         <ul class="menu-list">
             <li v-for="(item, index) in list" :key="index"
                 @click="currentActive = item"
-                :class="{'active-top-menu': currentActive === item}"
                 class="menu-list__item">
-                <s-text v-if="width > 600">{{ item.text }}</s-text>
-                <common-icon v-else :name="item.icon"/>
+                <s-text
+                    :class="{'active-top-menu' : currentActive === item}"
+                    v-if="width > 600">
+                    {{ item.text }}
+                </s-text>
+                <common-icon :active="currentActive === item" v-else :name="item.icon"/>
             </li>
         </ul>
     </div>
@@ -79,10 +82,6 @@ watch(currentActive, () => {
 
 .active-top-menu {
     color: var(--accent);
-    @media screen and (max-width: 600px) {
-        outline-offset: 2px;
-        outline: 2px solid var(--prime-light);
-    }
 }
 
 .menu-list {
