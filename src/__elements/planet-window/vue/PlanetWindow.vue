@@ -55,6 +55,7 @@ onMounted(async () => {
     overflow: hidden;
     @media screen and (max-width: 600px) {
         width: 360px !important;
+        max-height: calc(100% - 40px);
     }
 }
 
