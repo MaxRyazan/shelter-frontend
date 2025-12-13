@@ -7,10 +7,14 @@
             <shared-resources-window v-if="isSharedResourcesWindowOpen"/>
         </transition>
         <transition name="base" mode="out-in">
-            <planet-window v-if="isPlanetWindowOpen"/>
+            <planet-window
+                :instance="1"
+                v-if="planetWindowsInstances.instanceOneOpen"/>
         </transition>
-        <transition name="base">
-            <list-of-planets v-if="isPlanetChoserOpen"/>
+        <transition name="base" mode="out-in">
+            <planet-window
+                :instance="2"
+                v-if="planetWindowsInstances.instanceTwoOpen"/>
         </transition>
     </div>
 </template>
@@ -19,13 +23,12 @@ import MainMenu from "@/components/MainMenu.vue";
 import TheContent from "@/components/TheContent.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
-import {allPlanets, currentPlanet, isPlanetChoserOpen, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
+import {allPlanets, currentPlanet, planetWindowsInstances} from "@/__elements/planet-window/ts";
 import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
 import {onMounted} from "vue";
 import {useApiLazy} from "@/composables/useApi";
 import {GetPlanetResponseDto} from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId, postApiUserCreate} from "@/_openapi/api/users/users";
-import ListOfPlanets from "@/components/modals/ListOfPlanets.vue";
 import {user} from "@/__stores/user-store";
 import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 import SharedResourcesWindow from "@/__elements/shared-resources-window/vue/SharedResourcesWindow.vue";

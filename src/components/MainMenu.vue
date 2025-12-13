@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import CommonIcon from "@/components/icons/CommonIcon.vue";
 import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
-import {isPlanetWindowOpen} from "@/__elements/planet-window/ts";
+import {planetWindowsInstances} from "@/__elements/planet-window/ts";
 
 
 function switchSharedResources() {
@@ -17,7 +17,19 @@ function switchSharedResources() {
 }
 
 function switchPlanetWindow() {
-    isPlanetWindowOpen.value = !isPlanetWindowOpen.value
+    if (planetWindowsInstances.value.instanceOneOpen) {
+        if (planetWindowsInstances.value.instanceTwoOpen) {
+            planetWindowsInstances.value.instanceOneOpen = false
+        } else {
+            planetWindowsInstances.value.instanceTwoOpen = true
+        }
+    } else {
+        if (planetWindowsInstances.value.instanceTwoOpen) {
+            planetWindowsInstances.value.instanceTwoOpen = false
+        } else {
+            planetWindowsInstances.value.instanceOneOpen = true
+        }
+    }
 }
 </script>
 <style scoped>

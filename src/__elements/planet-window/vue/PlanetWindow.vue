@@ -1,6 +1,6 @@
 <template>
     <drag-modal class="planet-window"
-                @close="isPlanetWindowOpen = false">
+                @close="closeInstance">
         <template #header>
             <s-text :size="14" semi-bold>
                 <span style="color: var(--accent-light)">
@@ -22,7 +22,7 @@
 </template>
 <script setup lang="ts">
 import DragModal from "@/components/modals/DragModal.vue";
-import {currentPlanet, isPlanetWindowOpen} from "@/__elements/planet-window/ts";
+import {currentPlanet, planetWindowsInstances} from "@/__elements/planet-window/ts";
 import SText from "@/components/common/SText.vue";
 import TopMenu from "@/__elements/planet-window/vue/TopMenu.vue";
 import SDivider from "@/components/common/SDivider.vue";
@@ -34,15 +34,29 @@ import {RedoOutlined} from "@ant-design/icons-vue";
 
 const activeTab = shallowRef<Component | undefined>()
 
+const props = defineProps<{
+    instance: 1 | 2
+}>()
+
 function viewTab(p: TopMenuType) {
     activeTab.value = p.component
+}
+
+function closeInstance() {
+    switch (props.instance) {
+        case 1:
+            planetWindowsInstances.value.instanceOneOpen = false;
+            break;
+        case 2:
+            planetWindowsInstances.value.instanceTwoOpen = false;
+            break;
+    }
 }
 
 async function getPlanetInfo() {
     try {
         if (!user.value?.homePlanetId) return
-        const response = await getApiPlanetId(user.value.homePlanetId);
-        console.log(response)
+        currentPlanet.value = await getApiPlanetId(user.value.homePlanetId)
     } catch (e) {
     } finally {
     }

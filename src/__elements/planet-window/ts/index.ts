@@ -2,14 +2,12 @@ import {ref} from "vue";
 import {GetPlanetResponseDto} from "@/_openapi/models";
 
 /**
- * Флаг открытия окна просмотра планеты
+ * Инстансы окон просмотра планет
  */
-export const isPlanetWindowOpen = ref(false);
-
-/**
- * Флаг открытия списка планет игрока
- */
-export const isPlanetChoserOpen = ref(false);
+export const planetWindowsInstances = ref({
+    instanceOneOpen: false,
+    instanceTwoOpen: false,
+})
 
 /**
  * Текущая планета для просмотра в окне просмотра планеты

@@ -1,7 +1,8 @@
 <template>
     <div class="dragmodal-wrapper"
+         @click.stop="bringToFront"
          ref="el"
-         :style="style"
+         :style="computedStyle"
          style="position: fixed">
         <div class="dragmodal__inner dragmodal__inner-header">
             <slot name="header"></slot>
@@ -15,9 +16,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import {useDraggable} from '@vueuse/core'
-import {onUnmounted, useTemplateRef} from 'vue'
-import {useEventListener, useWindowSize} from '@vueuse/core'
+import {useDraggable, useEventListener, useWindowSize} from '@vueuse/core'
+import {computed, onMounted, onUnmounted, ref, useTemplateRef} from 'vue'
+import {maxZIndex, modalsInstancesSet} from "@/components/modals/z-index-store";
 
 const emits = defineEmits<{
     (e: 'close'): void
@@ -25,6 +26,9 @@ const emits = defineEmits<{
 const props = defineProps<{
     initialPosition?: { x: number, y: number }
 }>()
+
+const currentInstanceIndex = ref()
+const currentZIndex = ref(100)
 const el: any = useTemplateRef<HTMLElement>('el')
 const {width} = useWindowSize()
 const {style} = useDraggable(el, {
@@ -35,7 +39,26 @@ const cleanup = useEventListener(window, 'keydown', (e) => {
         emits('close')
     }
 })
-onUnmounted(() => cleanup())
+
+const computedStyle = computed(() => style.value + `;z-index:${currentZIndex.value}`)
+
+function bringToFront() {
+    currentZIndex.value = maxZIndex.value++
+}
+
+onMounted(() => {
+    currentZIndex.value = maxZIndex.value++
+    currentInstanceIndex.value = maxZIndex.value
+    modalsInstancesSet.add(currentInstanceIndex.value)
+})
+
+onUnmounted(() => {
+    cleanup()
+    modalsInstancesSet.delete(currentInstanceIndex.value)
+    if (modalsInstancesSet.size === 0) {
+        maxZIndex.value = 100;
+    }
+})
 </script>
 <style scoped>
 .dragmodal-wrapper {
