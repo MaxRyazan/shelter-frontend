@@ -1,0 +1,13 @@
+.tabbed {
+    padding-left: 20px;
+}
+
+.flexbox {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.text-700 {
+    font-weight: 700;
+}

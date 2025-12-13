@@ -9,7 +9,7 @@ export function $rs(param: number, precision = 3): string {
             }
         } else {
             let delta = '1';
-            for (let i = 0; i < precision ; i++) {
+            for (let i = 0; i < precision; i++) {
                 delta += '0'
             }
             return (Math.round(param * +delta) / +delta).toString()
@@ -22,4 +22,12 @@ export function $rs(param: number, precision = 3): string {
         strArr[1] = test
     }
     return strArr[0] + '.' + strArr[1]
+}
+
+export function toNum(arg: any): number {
+    if (arg === null || arg === undefined || typeof arg === 'object') return 0;
+    if (typeof arg === 'boolean') return arg ? 1 : 0;
+    if (typeof arg === 'string' && !/^-?\d*\.?\d+$/.test(arg.trim())) return 0;
+    const num = Number(arg);
+    return isNaN(num) ? 0 : num;
 }

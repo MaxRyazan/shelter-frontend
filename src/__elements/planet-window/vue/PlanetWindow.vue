@@ -45,6 +45,7 @@ onMounted(async () => {
 .planet-window {
     width: 90%;
     min-width: 360px;
+    background: #222222 !important;
     @media screen and (max-width: 600px) {
         width: 360px !important;
     }
@@ -57,5 +58,6 @@ onMounted(async () => {
 :deep(.dragmodal__inner-header) {
     display: flex;
     padding-bottom: 0;
+    background: #242424 !important;
 }
 </style>

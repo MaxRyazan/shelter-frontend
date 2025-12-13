@@ -10,3 +10,13 @@ export type TopSubMenuType = {
     text: SubTabs,
     id: number,
 }
+
+export type PlanetInfoParam = {
+    name: string,
+    value: string | number | boolean | undefined | null,
+    type: 'string' | 'boolean' | 'number',
+    usePositiveColorIndication?: boolean,
+    useNegativeColorIndication?: boolean,
+    useGreenTriangle?: boolean
+    useRedTriangle?: boolean
+}
