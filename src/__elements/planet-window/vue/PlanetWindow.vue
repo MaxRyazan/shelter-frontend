@@ -44,6 +44,7 @@ onMounted(async () => {
 <style scoped>
 .planet-window {
     width: 90%;
+    max-width: 800px;
     min-width: 360px;
     background: #222222 !important;
     @media screen and (max-width: 600px) {

@@ -1,47 +1,37 @@
 <template>
     <div class="dashboard">
-        <div class="dashboard__planet-icon-block">
-            <div style="background-color: black; border-radius: 6px">
-                <img class="dashboard__image" src="/image/common/planet1.webp" alt="planet icon">
-            </div>
-            <div class="dashboard__image-info">
-                <dashboard-card
-                    v-for="item in params"
-                    :key="item.name"
-                    :item="item"/>
-            </div>
-        </div>
+        <dashboard-planet-icon-block :params="params"/>
         <s-divider/>
         <s-text class="text-700">Население</s-text>
-        <div class="dashboard__image-info tabbed">
+        <div class="dashboard__card-info tabbed">
             <dashboard-card
                 v-for="item in populationInfo"
                 :key="item.name"
                 :item="item"/>
         </div>
         <s-text class="text-700">Финансы</s-text>
-        <div class="dashboard__image-info tabbed">
+        <div class="dashboard__card-info tabbed">
             <dashboard-card
                 v-for="item in moneyInfo"
                 :key="item.name"
                 :item="item"/>
         </div>
         <s-text class="text-700">Энергия</s-text>
-        <div class="dashboard__image-info tabbed">
+        <div class="dashboard__card-info tabbed">
             <dashboard-card
                 v-for="item in energyInfo"
                 :key="item.name"
                 :item="item"/>
         </div>
         <s-text class="text-700">Провиант</s-text>
-        <div class="dashboard__image-info tabbed">
+        <div class="dashboard__card-info tabbed">
             <dashboard-card
                 v-for="item in foodInfo"
                 :key="item.name"
                 :item="item"/>
         </div>
         <s-text class="text-700">Склад</s-text>
-        <div class="dashboard__image-info tabbed">
+        <div class="dashboard__card-info tabbed">
             <dashboard-card
                 v-for="item in storageInfo"
                 :key="item.name"
@@ -57,6 +47,7 @@ import DashboardCard from "@/__elements/planet-window/vue/parts/DashboardCard.vu
 import {PlanetInfoParam} from "@/__elements/planet-window/ts/types";
 import {toNum} from "@/helpers";
 import SDivider from "@/components/common/SDivider.vue";
+import DashboardPlanetIconBlock from "@/__elements/planet-window/vue/parts/DashboardPlanetIconBlock.vue";
 
 const params = reactive<PlanetInfoParam[]>([
     {
@@ -201,18 +192,7 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     gap: 10px;
 }
 
-.dashboard__planet-icon-block {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.dashboard__image {
-    width: 150px;
-    height: 150px;
-}
-
-.dashboard__image-info {
+.dashboard__card-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
