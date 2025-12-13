@@ -7,7 +7,7 @@
 <script setup lang="ts">
 defineProps<{
     name: string
-    active: boolean
+    active?: boolean
 }>()
 </script>
 <style scoped>
