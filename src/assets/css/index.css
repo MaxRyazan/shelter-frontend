@@ -7,6 +7,16 @@
     margin: 0;
     box-sizing: border-box;
     list-style-type: none;
+    /*scrollbar-color: red #f1f1f1;*/
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--prime-light) !important;
+}
+
+/* Для Firefox */
+* {
+    scrollbar-color: var(--prime-light) transparent;
 }
 
 @font-face {

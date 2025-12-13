@@ -88,7 +88,7 @@ watch(currentActive, () => {
     justify-content: space-between;
     gap: 10px;
     margin: 0;
-    padding: 0 4px;
+    padding: 0 8px;
     list-style-type: none;
 }
 

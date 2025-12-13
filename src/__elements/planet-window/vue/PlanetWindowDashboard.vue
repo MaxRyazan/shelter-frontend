@@ -2,40 +2,42 @@
     <div class="dashboard">
         <dashboard-planet-icon-block :params="params"/>
         <s-divider/>
-        <s-text class="text-700">Население</s-text>
-        <div class="dashboard__card-info tabbed">
-            <dashboard-card
-                v-for="item in populationInfo"
-                :key="item.name"
-                :item="item"/>
-        </div>
-        <s-text class="text-700">Финансы</s-text>
-        <div class="dashboard__card-info tabbed">
-            <dashboard-card
-                v-for="item in moneyInfo"
-                :key="item.name"
-                :item="item"/>
-        </div>
-        <s-text class="text-700">Энергия</s-text>
-        <div class="dashboard__card-info tabbed">
-            <dashboard-card
-                v-for="item in energyInfo"
-                :key="item.name"
-                :item="item"/>
-        </div>
-        <s-text class="text-700">Провиант</s-text>
-        <div class="dashboard__card-info tabbed">
-            <dashboard-card
-                v-for="item in foodInfo"
-                :key="item.name"
-                :item="item"/>
-        </div>
-        <s-text class="text-700">Склад</s-text>
-        <div class="dashboard__card-info tabbed">
-            <dashboard-card
-                v-for="item in storageInfo"
-                :key="item.name"
-                :item="item"/>
+        <div class="flexbox dashboard__info-wrapper">
+            <s-text class="text-700">Население</s-text>
+            <div class="dashboard__card-info tabbed">
+                <dashboard-card
+                    v-for="item in populationInfo"
+                    :key="item.name"
+                    :item="item"/>
+            </div>
+            <s-text class="text-700">Финансы</s-text>
+            <div class="dashboard__card-info tabbed">
+                <dashboard-card
+                    v-for="item in moneyInfo"
+                    :key="item.name"
+                    :item="item"/>
+            </div>
+            <s-text class="text-700">Энергия</s-text>
+            <div class="dashboard__card-info tabbed">
+                <dashboard-card
+                    v-for="item in energyInfo"
+                    :key="item.name"
+                    :item="item"/>
+            </div>
+            <s-text class="text-700">Провиант</s-text>
+            <div class="dashboard__card-info tabbed">
+                <dashboard-card
+                    v-for="item in foodInfo"
+                    :key="item.name"
+                    :item="item"/>
+            </div>
+            <s-text class="text-700">Склад</s-text>
+            <div class="dashboard__card-info tabbed">
+                <dashboard-card
+                    v-for="item in storageInfo"
+                    :key="item.name"
+                    :item="item"/>
+            </div>
         </div>
     </div>
 </template>
@@ -190,12 +192,19 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 100%;
+    position: relative;
 }
 
 .dashboard__card-info {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.dashboard__info-wrapper {
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
+    padding: 0 16px 10px;
 }
 </style>

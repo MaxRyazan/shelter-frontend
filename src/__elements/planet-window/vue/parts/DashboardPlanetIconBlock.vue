@@ -24,6 +24,7 @@ defineProps<{
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    padding: 0 10px;
 }
 
 .dashboard__image {

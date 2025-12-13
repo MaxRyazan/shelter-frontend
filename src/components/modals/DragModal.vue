@@ -9,7 +9,7 @@
                 <div class="dragmodal__inner-cross">+</div>
             </div>
         </div>
-        <div class="dragmodal__inner">
+        <div class="dragmodal__inner dragmodal__inner-body">
             <slot></slot>
         </div>
     </div>
@@ -28,7 +28,7 @@ const props = defineProps<{
 const el: any = useTemplateRef<HTMLElement>('el')
 const {width} = useWindowSize()
 const {style} = useDraggable(el, {
-    initialValue: props.initialPosition ?? {x: width.value > 600 ? 20 : 42, y:  width.value > 600 ?  60 : 10},
+    initialValue: props.initialPosition ?? {x: width.value > 600 ? 20 : 42, y: width.value > 600 ? 60 : 10},
 })
 const cleanup = useEventListener(window, 'keydown', (e) => {
     if (e.code === 'Escape') {
@@ -53,8 +53,10 @@ onUnmounted(() => cleanup())
     font-size: 12px;
     user-select: none;
     cursor: default;
-    flex-grow: 1;
-    padding: 8px;
+}
+
+.dragmodal__inner-body {
+    height: calc(100% - 30px);
 }
 
 .dragmodal__inner-header {

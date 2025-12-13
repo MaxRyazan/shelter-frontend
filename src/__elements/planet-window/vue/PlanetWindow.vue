@@ -11,7 +11,9 @@
         <s-divider space="12"/>
         <top-menu @view-tab="viewTab"/>
         <s-divider space="12"/>
-        <component :is="activeTab"></component>
+        <div style="width: 100%; height: calc(100% - 80px)">
+            <component :is="activeTab"></component>
+        </div>
     </drag-modal>
 </template>
 <script setup lang="ts">
@@ -46,19 +48,17 @@ onMounted(async () => {
     width: 90%;
     max-width: 800px;
     min-width: 360px;
+    height: 100%;
+    max-height: calc(100% - 100px);
     background: #222222 !important;
+    position: relative;
+    overflow: hidden;
     @media screen and (max-width: 600px) {
         width: 360px !important;
     }
 }
 
-:deep(.dragmodal__inner) {
-    padding-top: 0;
-}
-
 :deep(.dragmodal__inner-header) {
-    display: flex;
-    padding-bottom: 0;
     background: #242424 !important;
 }
 </style>
