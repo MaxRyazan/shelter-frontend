@@ -8,9 +8,9 @@
                 </span>
             </s-text>
         </template>
-        <s-divider space="12"/>
+        <s-divider style="margin: 10px 0 0"/>
         <top-menu @view-tab="viewTab"/>
-        <s-divider space="12"/>
+        <s-divider style="margin: 0 0 10px"/>
         <div style="width: 100%; height: calc(100% - 80px)">
             <component :is="activeTab"></component>
         </div>

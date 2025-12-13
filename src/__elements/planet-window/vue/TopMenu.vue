@@ -73,6 +73,8 @@ watch(currentActive, () => {
 <style scoped>
 .top-menu {
     width: 100%;
+    padding: 10px 0;
+    background-color: black;
 }
 
 .active-top-menu {
