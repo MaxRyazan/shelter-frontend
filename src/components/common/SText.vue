@@ -4,7 +4,9 @@
               'title__bold': bold,
               'title__semi-bold' : semiBold,
               'title__regular' : regular,
-              'title__medium' : medium
+              'title__medium' : medium,
+              'title__positive' : positive,
+              'title__negative' : negative,
           }"
           :style="{fontSize: fontSize, color: accent ? 'var(--accent)' : color}">
         <slot/>
@@ -19,6 +21,8 @@ const props = defineProps<{
     regular?: boolean
     medium?: boolean
     accent?: boolean
+    positive?: boolean
+    negative?: boolean
     size?: number | string
     color?: string
 }>()
@@ -44,5 +48,13 @@ const fontSize = computed(() => typeof props.size === 'number' ? props.size + 'p
 
 .title__regular {
     font-weight: 400;
+}
+
+.title__positive {
+    color: var(--positive-color);
+}
+
+.title__negative {
+    color: var(--negative-color);
 }
 </style>

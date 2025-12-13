@@ -17,4 +17,7 @@
     --materials: rgba(70, 130, 180);
     --metamaterials: rgba(147, 112, 219);
     --components: rgba(34, 139, 34);
+
+    --negative-color: #FF6B6B;
+    --positive-color: #228B22;
 }
