@@ -51,7 +51,7 @@ onMounted(() => {
     height: 100%;
 }
 .storage-wrapper {
-    height: calc(100% - 50px);
+    max-height: calc(100% - 50px);
     overflow-y: auto;
     padding: 10px 10px 0;
     display: grid;
@@ -89,6 +89,5 @@ onMounted(() => {
 .components {
     grid-area: card4;
     width: 100%;
-    height: 100%;
 }
 </style>
