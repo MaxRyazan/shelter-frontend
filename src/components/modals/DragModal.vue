@@ -85,6 +85,7 @@ onUnmounted(() => {
 .dragmodal__inner-header {
     background: var(--prime-back-reverse);
     height: 40px;
+    min-height: 40px;
     flex-grow: 0;
     cursor: grab;
     display: flex;

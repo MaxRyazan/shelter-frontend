@@ -52,6 +52,12 @@ onMounted(() => {
     padding: 0 10px;
     display: grid;
     grid-template-columns: 1fr;
+    grid-gap: 16px;
+    grid-template-areas:
+        "card1"
+        "card2"
+        "card3"
+        "card4";
     @media (min-width: 800px) {
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
@@ -64,18 +70,22 @@ onMounted(() => {
 
 .resources {
     grid-area: card1;
+    width: 100%;
 }
 
 .materials {
     grid-area: card2;
+    width: 100%;
 }
 
 .metamaterials {
     grid-area: card3;
+    width: 100%;
 }
 
 .components {
     grid-area: card4;
+    width: 100%;
     height: 100%;
 }
 </style>

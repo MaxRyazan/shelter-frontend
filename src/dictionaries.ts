@@ -29,4 +29,7 @@ export const Dictionary = new Map<string, string>([
     ['ReinforcedTitanium', 'Армированный титан'],
     ['AmorphousMetal', 'Аморфный металл'],
     ['AluminumMagnesiumAlloy', 'Магналий'],
+
+    // компоненты
+    ['Computers', 'Компьютеры'],
 ])
