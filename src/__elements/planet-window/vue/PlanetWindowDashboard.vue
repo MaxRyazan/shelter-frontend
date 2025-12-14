@@ -3,45 +3,59 @@
         <dashboard-planet-icon-block/>
         <s-divider/>
         <div class="flexbox dashboard__info-wrapper">
-            <s-text class="text-700">Население</s-text>
-            <div class="dashboard__card-info tabbed">
-                <dashboard-card
-                    v-for="(item, idx) in populationInfo"
-                    :idx="idx"
-                    :key="item.name"
-                    :item="item"/>
+            <div class="dashboard__info-wrapper-sub">
+                <div class="dashboard__info-wrapper-sub-sub">
+                    <s-text class="text-700">Население</s-text>
+                    <div class="dashboard__card-info tabbed">
+                        <dashboard-card
+                            v-for="(item, idx) in populationInfo"
+                            :idx="idx"
+                            :key="item.name"
+                            :item="item"/>
+                    </div>
+                </div>
+                <div class="dashboard__info-wrapper-sub-sub">
+                    <s-text class="text-700">Финансы</s-text>
+                    <div class="dashboard__card-info tabbed">
+                        <dashboard-card
+                            :idx="idx"
+                            v-for="(item, idx) in moneyInfo"
+                            :key="item.name"
+                            :item="item"/>
+                    </div>
+                </div>
             </div>
-            <s-text class="text-700">Финансы</s-text>
-            <div class="dashboard__card-info tabbed">
-                <dashboard-card
-                    :idx="idx"
-                    v-for="(item, idx) in moneyInfo"
-                    :key="item.name"
-                    :item="item"/>
-            </div>
-            <s-text class="text-700">Энергия</s-text>
-            <div class="dashboard__card-info tabbed">
-                <dashboard-card
-                    :idx="idx"
-                    v-for="(item, idx) in energyInfo"
-                    :key="item.name"
-                    :item="item"/>
-            </div>
-            <s-text class="text-700">Провиант</s-text>
-            <div class="dashboard__card-info tabbed">
-                <dashboard-card
-                    :idx="idx"
-                    v-for="(item, idx) in foodInfo"
-                    :key="item.name"
-                    :item="item"/>
-            </div>
-            <s-text class="text-700">Склад</s-text>
-            <div class="dashboard__card-info tabbed">
-                <dashboard-card
-                    :idx="idx"
-                    v-for="(item, idx) in storageInfo"
-                    :key="item.name"
-                    :item="item"/>
+            <div class="dashboard__info-wrapper-sub">
+                <div class="dashboard__info-wrapper-sub-sub">
+                    <s-text class="text-700">Энергия</s-text>
+                    <div class="dashboard__card-info tabbed">
+                        <dashboard-card
+                            :idx="idx"
+                            v-for="(item, idx) in energyInfo"
+                            :key="item.name"
+                            :item="item"/>
+                    </div>
+                </div>
+                <div class="dashboard__info-wrapper-sub-sub">
+                    <s-text class="text-700">Провиант</s-text>
+                    <div class="dashboard__card-info tabbed">
+                        <dashboard-card
+                            :idx="idx"
+                            v-for="(item, idx) in foodInfo"
+                            :key="item.name"
+                            :item="item"/>
+                    </div>
+                </div>
+                <div class="dashboard__info-wrapper-sub-sub">
+                    <s-text class="text-700">Склад</s-text>
+                    <div class="dashboard__card-info tabbed">
+                        <dashboard-card
+                            :idx="idx"
+                            v-for="(item, idx) in storageInfo"
+                            :key="item.name"
+                            :item="item"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -184,5 +198,31 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     overflow-y: auto;
     height: 100%;
     padding: 0 10px 10px;
+    @media screen and (min-width: 800px) {
+        flex-direction: row;
+    }
+}
+
+.dashboard__info-wrapper-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    @media screen and (min-width: 800px) {
+        width: 46%;
+        justify-content: space-between;
+    }
+}
+
+.dashboard__info-wrapper-sub-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tabbed {
+    padding-left: 10px;
+    @media screen and (min-width: 800px) {
+        padding-left: 0;
+    }
 }
 </style>

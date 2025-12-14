@@ -35,7 +35,7 @@ const params = reactive<PlanetInfoParam[]>([
     },
     {
         name: "Средняя температура",
-        value: currentPlanet.value?.averageTemperature,
+        value: `${currentPlanet.value?.averageTemperature}°`,
         type: 'string'
     },
     {

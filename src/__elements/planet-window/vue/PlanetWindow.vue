@@ -71,7 +71,6 @@ onMounted(async () => {
     width: 90%;
     max-width: 800px;
     min-width: 360px;
-    height: 100%;
     max-height: calc(100% - 100px);
     background: #222222 !important;
     position: relative;
