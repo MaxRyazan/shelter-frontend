@@ -1,5 +1,9 @@
 <template>
-    <div class="flexbox">
+    <div class="flexbox"
+         :class="{
+            'dashboard__card-even' : typeof idx === 'number' && idx % 2 === 0,
+            'dashboard__card-odd' : typeof idx === 'number' && idx % 2 !== 0,
+        }">
         <s-text class="text-700">
             {{ item.name }}
         </s-text>
@@ -26,9 +30,18 @@ import RedTriangle from "@/components/icons/RedTriangle.vue";
 
 const props = defineProps<{
     item: PlanetInfoParam
+    idx?: number
 }>()
 
 </script>
 <style scoped>
+.dashboard__card-even {
+    background: #303030 !important;
+    border-radius: 4px;
+    padding: 4px;
+}
 
+.dashboard__card-odd {
+    padding: 4px;
+}
 </style>

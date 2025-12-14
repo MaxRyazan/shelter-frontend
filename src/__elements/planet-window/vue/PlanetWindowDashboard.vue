@@ -6,35 +6,40 @@
             <s-text class="text-700">Население</s-text>
             <div class="dashboard__card-info tabbed">
                 <dashboard-card
-                    v-for="item in populationInfo"
+                    v-for="(item, idx) in populationInfo"
+                    :idx="idx"
                     :key="item.name"
                     :item="item"/>
             </div>
             <s-text class="text-700">Финансы</s-text>
             <div class="dashboard__card-info tabbed">
                 <dashboard-card
-                    v-for="item in moneyInfo"
+                    :idx="idx"
+                    v-for="(item, idx) in moneyInfo"
                     :key="item.name"
                     :item="item"/>
             </div>
             <s-text class="text-700">Энергия</s-text>
             <div class="dashboard__card-info tabbed">
                 <dashboard-card
-                    v-for="item in energyInfo"
+                    :idx="idx"
+                    v-for="(item, idx) in energyInfo"
                     :key="item.name"
                     :item="item"/>
             </div>
             <s-text class="text-700">Провиант</s-text>
             <div class="dashboard__card-info tabbed">
                 <dashboard-card
-                    v-for="item in foodInfo"
+                    :idx="idx"
+                    v-for="(item, idx) in foodInfo"
                     :key="item.name"
                     :item="item"/>
             </div>
             <s-text class="text-700">Склад</s-text>
             <div class="dashboard__card-info tabbed">
                 <dashboard-card
-                    v-for="item in storageInfo"
+                    :idx="idx"
+                    v-for="(item, idx) in storageInfo"
                     :key="item.name"
                     :item="item"/>
             </div>
@@ -199,12 +204,12 @@ const storageInfo = reactive<PlanetInfoParam[]>([
 .dashboard__card-info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0;
 }
 .dashboard__info-wrapper {
     flex-direction: column;
     overflow-y: auto;
     height: 100%;
-    padding: 0 16px 10px;
+    padding: 0 10px 10px;
 }
 </style>
