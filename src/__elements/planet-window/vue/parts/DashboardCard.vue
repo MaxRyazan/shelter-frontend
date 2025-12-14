@@ -1,5 +1,6 @@
 <template>
     <div class="flexbox"
+         style="align-items: start"
          :class="{
             'dashboard__card-even' : typeof idx === 'number' && idx % 2 === 0,
             'dashboard__card-odd' : typeof idx === 'number' && idx % 2 !== 0,

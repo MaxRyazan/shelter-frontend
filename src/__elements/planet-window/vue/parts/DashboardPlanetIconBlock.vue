@@ -14,10 +14,41 @@
 <script setup lang="ts">
 import DashboardCard from "@/__elements/planet-window/vue/parts/DashboardCard.vue";
 import {PlanetInfoParam} from "@/__elements/planet-window/ts/types";
+import {reactive} from "vue";
+import {currentPlanet} from "@/__elements/planet-window/ts";
 
-defineProps<{
-    params: PlanetInfoParam[]
-}>()
+const params = reactive<PlanetInfoParam[]>([
+    {
+        name: "Название",
+        value: currentPlanet.value?.name,
+        type: 'string'
+    },
+    {
+        name: "Атмосфера",
+        value: currentPlanet.value?.hasAtmosphere ? 'есть' : 'нет',
+        type: 'boolean'
+    },
+    {
+        name: "Магнитное поле",
+        value: currentPlanet.value?.hasMagneticField ? 'есть' : 'нет',
+        type: 'boolean'
+    },
+    {
+        name: "Средняя температура",
+        value: currentPlanet.value?.averageTemperature,
+        type: 'string'
+    },
+    {
+        name: "Доступная площадь застройки",
+        value: `${currentPlanet.value?.freeSquare}/${currentPlanet.value?.square}`,
+        type: 'string'
+    },
+    {
+        name: "Гравитационная постоянная",
+        value: `${currentPlanet.value?.gravityPower}`,
+        type: 'number'
+    },
+])
 </script>
 <style scoped>
 .dashboard__planet-icon-block {

@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <dashboard-planet-icon-block :params="params"/>
+        <dashboard-planet-icon-block/>
         <s-divider/>
         <div class="flexbox dashboard__info-wrapper">
             <s-text class="text-700">Население</s-text>
@@ -55,34 +55,6 @@ import {PlanetInfoParam} from "@/__elements/planet-window/ts/types";
 import {toNum} from "@/helpers";
 import SDivider from "@/components/common/SDivider.vue";
 import DashboardPlanetIconBlock from "@/__elements/planet-window/vue/parts/DashboardPlanetIconBlock.vue";
-
-const params = reactive<PlanetInfoParam[]>([
-    {
-        name: "Название",
-        value: currentPlanet.value?.name,
-        type: 'string'
-    },
-    {
-        name: "Атмосфера",
-        value: currentPlanet.value?.hasAtmosphere ? 'есть' : 'нет',
-        type: 'boolean'
-    },
-    {
-        name: "Магнитное поле",
-        value: currentPlanet.value?.hasMagneticField ? 'есть' : 'нет',
-        type: 'boolean'
-    },
-    {
-        name: "Средняя температура",
-        value: currentPlanet.value?.averageTemperature,
-        type: 'string'
-    },
-    {
-        name: "Доступная площадь застройки",
-        value: `${currentPlanet.value?.freeSquare}/${currentPlanet.value?.square}`,
-        type: 'string'
-    },
-])
 
 const populationInfo = reactive<PlanetInfoParam[]>([
     {
@@ -206,6 +178,7 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     flex-direction: column;
     gap: 0;
 }
+
 .dashboard__info-wrapper {
     flex-direction: column;
     overflow-y: auto;
