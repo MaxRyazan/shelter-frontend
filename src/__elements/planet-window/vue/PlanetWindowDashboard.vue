@@ -185,7 +185,7 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     gap: 10px;
     height: 100%;
     position: relative;
-    margin-top: 10px;
+    padding-top: 10px;
 }
 
 .dashboard__card-info {

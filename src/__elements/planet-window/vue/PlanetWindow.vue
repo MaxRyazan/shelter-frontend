@@ -71,10 +71,13 @@ onMounted(async () => {
     width: 90%;
     max-width: 800px;
     min-width: 360px;
-    max-height: calc(100% - 100px);
     background: #222222 !important;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: calc(100vh - 100px);
     @media screen and (max-width: 600px) {
         width: 360px !important;
         max-height: calc(100% - 40px);
@@ -98,6 +101,6 @@ onMounted(async () => {
 
 .dynamic-component-wrapper {
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 40px);
 }
 </style>

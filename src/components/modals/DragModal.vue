@@ -70,6 +70,8 @@ onUnmounted(() => {
     cursor: grab;
     display: flex;
     flex-direction: column;
+    max-height: 90vh;
+    overflow: hidden;
 }
 
 .dragmodal__inner {
@@ -79,7 +81,8 @@ onUnmounted(() => {
 }
 
 .dragmodal__inner-body {
-    height: calc(100% - 30px);
+    flex: 1;
+    min-height: 0;
 }
 
 .dragmodal__inner-header {

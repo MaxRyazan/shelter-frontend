@@ -47,12 +47,15 @@ onMounted(() => {
 })
 </script>
 <style scoped>
+.storage {
+    height: 100%;
+}
 .storage-wrapper {
-    margin-top: 10px;
-    padding: 0 10px;
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    padding: 10px 10px 0;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 16px;
     grid-template-areas:
         "card1"
         "card2"
