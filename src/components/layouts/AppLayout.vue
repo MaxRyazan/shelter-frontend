@@ -28,7 +28,7 @@ import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
 import {onMounted} from "vue";
 import {useApiLazy} from "@/composables/useApi";
 import {GetPlanetResponseDto} from "@/_openapi/models";
-import {getApiUserGetPlanetsUserId, postApiUserCreate} from "@/_openapi/api/users/users";
+import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
 import {user} from "@/__stores/user-store";
 import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 import SharedResourcesWindow from "@/__elements/shared-resources-window/vue/SharedResourcesWindow.vue";
@@ -40,6 +40,7 @@ const router = useRouter()
 
 function sse() {
     const userId = user.value?.id;
+    if (!userId) return
     const resourceSSE = new EventSource(`http://localhost:5083/api/sse/${userId}`);
 
     resourceSSE.onopen = function () {
@@ -58,30 +59,31 @@ function sse() {
     });
 }
 
-async function registration() {
+async function registrationOrAuthorization() {
     // TODO УДАЛИТЬ !
-    const nickName = `login_${Math.random()}`;
-    const email = `email_${Math.random()}`;
-    const password = `password_${Math.random()}`;
+
+    // const nickName = `TestUser`;
+    const email = `test@testuser.com`;
+    const password = `testpassword`;
     try {
-        const response = await postApiUserCreate({
-            nickName,
-            email,
-            password
-        });
-        if (response) {
+        // const response = await postApiUserCreate({
+        //     nickName,
+        //     email,
+        //     password
+        // });
+        // if (response) {
             await authentication({email, password})
             if (user.value?.id) {
                 await router.push('/')
             }
-        }
+        // }
     } catch (e) {
     } finally {
     }
 }
 
 onMounted(async () => {
-    await registration()
+    await registrationOrAuthorization()
     allPlanets.value = await execute(getApiUserGetPlanetsUserId, user.value?.id)
     if (allPlanets.value?.length) {
         currentPlanet.value = allPlanets.value?.find(planet => planet.isHomePlanet)
