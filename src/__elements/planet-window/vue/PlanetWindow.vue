@@ -14,8 +14,8 @@
         </template>
         <s-divider style="margin: 0"/>
         <top-menu @view-tab="viewTab"/>
-        <s-divider style="margin: 0 0 10px"/>
-        <div style="width: 100%; height: calc(100% - 80px)">
+        <s-divider style="margin: 0"/>
+        <div class="dynamic-component-wrapper">
             <component :is="activeTab"></component>
         </div>
     </drag-modal>
@@ -94,5 +94,10 @@ onMounted(async () => {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dynamic-component-wrapper {
+    width: 100%;
+    height: calc(100% - 80px);
 }
 </style>

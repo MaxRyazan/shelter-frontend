@@ -57,6 +57,7 @@ watch(checked, () => {
     font-family: IBM_Plex_Mono sans-serif;
     font-weight: 600;
     font-size: 14px;
+    padding: 10px 8px;
 }
 
 .sub-menu__item {

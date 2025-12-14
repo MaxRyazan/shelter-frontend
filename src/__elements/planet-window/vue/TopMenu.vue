@@ -1,18 +1,16 @@
 <template>
-    <div class="top-menu">
-        <ul class="menu-list">
-            <li v-for="(item, index) in list" :key="index"
-                @click="currentActive = item"
-                class="menu-list__item">
-                <s-text
-                    :class="{'active-top-menu' : currentActive === item}"
-                    v-if="width > 600">
-                    {{ item.text }}
-                </s-text>
-                <common-icon :active="currentActive === item" v-else :name="item.icon"/>
-            </li>
-        </ul>
-    </div>
+    <ul class="menu-list">
+        <li v-for="(item, index) in list" :key="index"
+            @click="currentActive = item"
+            class="menu-list__item">
+            <s-text
+                :class="{'active-top-menu' : currentActive === item}"
+                v-if="width > 600">
+                {{ item.text }}
+            </s-text>
+            <common-icon :active="currentActive === item" v-else :name="item.icon"/>
+        </li>
+    </ul>
 </template>
 <script setup lang="ts">
 import SText from "@/components/common/SText.vue";
@@ -74,12 +72,6 @@ watch(currentActive, () => {
 
 </script>
 <style scoped>
-.top-menu {
-    width: 100%;
-    padding: 10px 0;
-    background-color: black;
-}
-
 .active-top-menu {
     color: var(--accent);
 }
@@ -89,8 +81,10 @@ watch(currentActive, () => {
     justify-content: space-between;
     gap: 10px;
     margin: 0;
-    padding: 0 8px;
     list-style-type: none;
+    width: 100%;
+    padding: 10px 8px;
+    background-color: black;
 }
 
 .menu-list__item {
