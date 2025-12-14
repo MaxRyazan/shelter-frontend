@@ -1,0 +1,13 @@
+<template>
+    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="7.07109" y1="21.2132" x2="21.2132" y2="7.07109" stroke="#FF6B6B" stroke-width="2"/>
+        <line x1="7.07112" y1="7.07108" x2="21.2133" y2="21.2132" stroke="#FF6B6B" stroke-width="2"/>
+    </svg>
+
+</template>
+<script setup lang="ts">
+
+</script>
+<style scoped>
+
+</style>

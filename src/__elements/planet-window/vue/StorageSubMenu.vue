@@ -58,6 +58,7 @@ watch(checked, () => {
     font-weight: 600;
     font-size: 14px;
     padding: 10px 8px;
+    background-color: #181818;
 }
 
 .sub-menu__item {

@@ -7,3 +7,19 @@
 .text-700 {
     font-weight: 700;
 }
+
+.resource-color {
+    color: var(--resources);
+}
+
+.material-color {
+    color: var(--materials);
+}
+
+.metamaterial-color {
+    color: var(--metamaterials);
+}
+
+.component-color {
+    color: var(--components);
+}
