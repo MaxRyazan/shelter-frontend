@@ -9,16 +9,19 @@
                 class="resources"
                 v-if="menuSet.has(StorageTypes.resources) && storage?.resources?.length"/>
             <storage-block
+                :idx-starts-from="toNum(storage?.resources?.length)"
                 :type="StorageTypes.materials"
                 :list="storage?.materials"
                 class="materials"
                 v-if="menuSet.has(StorageTypes.materials) && storage?.materials?.length"/>
             <storage-block
+                :idx-starts-from="toNum(storage?.resources?.length) + toNum(storage?.materials?.length)"
                 :type="StorageTypes.metamaterials"
                 :list="storage?.metaMaterials"
                 class="metamaterials"
                 v-if="menuSet.has(StorageTypes.metamaterials) && storage?.metaMaterials?.length"/>
             <storage-block
+                :idx-starts-from="toNum(storage?.resources?.length) + toNum(storage?.materials?.length) + toNum(storage?.metaMaterials?.length)"
                 :type="StorageTypes.components"
                 :list="storage?.components"
                 class="components"
@@ -34,6 +37,7 @@ import {currentPlanet} from "@/__elements/planet-window/ts";
 import type {PlanetStorageDto} from "@/_openapi/models";
 import {StorageTypes} from "@/__elements/planet-window/ts/enums";
 import SDivider from "@/components/common/SDivider.vue";
+import {toNum} from "@/helpers";
 
 const storage = ref<PlanetStorageDto | undefined>()
 let menuSet = ref(new Set())
@@ -68,6 +72,7 @@ onMounted(() => {
           "card2 card4"
           "card3 card4";
         align-items: start;
+        grid-gap: 20px;
     }
 }
 

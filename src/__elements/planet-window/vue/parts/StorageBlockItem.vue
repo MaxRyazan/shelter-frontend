@@ -1,5 +1,9 @@
 <template>
-    <div class="storage-item">
+    <div :class="{
+            'even-line' : idx % 2 === 0,
+            'odd-line' : idx % 2 !== 0,
+         }"
+         class="storage-item">
         <div :class="{
                 'resource-color' : type === StorageTypes.resources,
                 'material-color' : type === StorageTypes.materials,
@@ -25,6 +29,7 @@ import {Dictionary} from "@/dictionaries";
 defineProps<{
     item: StorageItemDto
     type: StorageTypes
+    idx: number
 }>()
 </script>
 <style scoped>
@@ -62,6 +67,7 @@ defineProps<{
     padding: 0 4px;
     font-size: 12px;
     font-weight: 600;
+
     &:focus {
         border: 1px solid var(--accent-light)
     }

@@ -2,8 +2,8 @@
     <div class="flexbox"
          style="align-items: start"
          :class="{
-            'dashboard__card-even' : typeof idx === 'number' && idx % 2 === 0,
-            'dashboard__card-odd' : typeof idx === 'number' && idx % 2 !== 0,
+            'even-line' : typeof idx === 'number' && idx % 2 === 0,
+            'odd-line' : typeof idx === 'number' && idx % 2 !== 0,
         }">
         <s-text class="text-700">
             {{ item.name }}
@@ -36,13 +36,5 @@ const props = defineProps<{
 
 </script>
 <style scoped>
-.dashboard__card-even {
-    background: #303030 !important;
-    border-radius: 4px;
-    padding: 4px;
-}
 
-.dashboard__card-odd {
-    padding: 4px;
-}
 </style>

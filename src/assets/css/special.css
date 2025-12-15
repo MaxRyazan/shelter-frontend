@@ -23,3 +23,13 @@
 .component-color {
     color: var(--components);
 }
+
+.even-line {
+    background: #303030 !important;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.odd-line {
+    padding: 4px;
+}
