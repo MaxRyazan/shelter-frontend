@@ -54,7 +54,7 @@ function blurInput(e: KeyboardEvent) {
 async function remove() {
     if (!inputValue.value || inputValue.value > props.value.Amount) return
     try {
-        const body = {userId: user.value.id, resourceName: props.name, countToRemove: inputValue.value};
+        const body = {userId: user.value?.id, resourceName: props.name, countToRemove: inputValue.value};
         const {error} = await useFetch('http://localhost:5083/api/user/remove-shared-item', {
             method: 'POST', body: JSON.stringify(body),
             headers: {

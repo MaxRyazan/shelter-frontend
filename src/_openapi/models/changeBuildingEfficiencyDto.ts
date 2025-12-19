@@ -5,9 +5,9 @@
  * OpenAPI spec version: v1
  */
 
-export interface StorageItemDto {
+export interface ChangeBuildingEfficiencyDto {
+  planetId?: number;
   /** @nullable */
-  type: string | null;
-  amount: number;
-  volume: number;
+  buildingType: string | null;
+  efficiency: number;
 }

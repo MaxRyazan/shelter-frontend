@@ -5,9 +5,9 @@
  * OpenAPI spec version: v1
  */
 
-export interface StorageItemDto {
+export interface RemoveFromPlanetStoreDto {
+  planetId: number;
   /** @nullable */
-  type: string | null;
-  amount: number;
-  volume: number;
+  gameItemType: string | null;
+  amount?: number;
 }

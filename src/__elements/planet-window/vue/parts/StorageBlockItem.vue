@@ -14,7 +14,7 @@
         </div>
         <div class="storage-item__info">
             <div class="storage-item__amount">{{ item.amount }}</div>
-            <div class="storage-item__volume">1212.121</div>
+            <div class="storage-item__volume">{{item.volume}}</div>
             <input class="storage-item__input" type="number">
             <red-cross class="storage-item__remove-icon"/>
         </div>

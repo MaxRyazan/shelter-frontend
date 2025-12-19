@@ -207,10 +207,9 @@ const storageInfo = reactive<PlanetInfoParam[]>([
 .dashboard__info-wrapper-sub {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     @media screen and (min-width: 800px) {
         width: 46%;
-        justify-content: space-between;
     }
 }
 

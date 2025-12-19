@@ -5,9 +5,9 @@
  * OpenAPI spec version: v1
  */
 
-export interface StorageItemDto {
+export interface RemoveFromQueueDto {
+  planetId?: number;
   /** @nullable */
-  type: string | null;
+  buildingType: string | null;
   amount: number;
-  volume: number;
 }
