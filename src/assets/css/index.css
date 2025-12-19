@@ -10,6 +10,29 @@
     /*scrollbar-color: red #f1f1f1;*/
 }
 
+html {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    touch-action: none; /* Отключает жесты */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    overscroll-behavior-y: none;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+
+
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
