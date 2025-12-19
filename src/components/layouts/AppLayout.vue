@@ -72,10 +72,10 @@ async function registrationOrAuthorization() {
         //     password
         // });
         // if (response) {
-            await authentication({email, password})
-            if (user.value?.id) {
-                await router.push('/')
-            }
+        await authentication({email, password})
+        if (user.value?.id) {
+            await router.push('/')
+        }
         // }
     } catch (e) {
     } finally {
@@ -83,7 +83,10 @@ async function registrationOrAuthorization() {
 }
 
 onMounted(async () => {
-    await registrationOrAuthorization()
+    if (import.meta.env.DEV) {
+        console.log('Режим разработки');
+        await registrationOrAuthorization()
+    }
     allPlanets.value = await execute(getApiUserGetPlanetsUserId, user.value?.id)
     if (allPlanets.value?.length) {
         currentPlanet.value = allPlanets.value?.find(planet => planet.isHomePlanet)
