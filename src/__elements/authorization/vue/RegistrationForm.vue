@@ -74,6 +74,7 @@ async function registration() {
             }
         }
     } catch (e) {
+        console.log(e)
     } finally {
     }
 }
