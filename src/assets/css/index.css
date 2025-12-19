@@ -12,10 +12,10 @@
 
 html {
     overflow: hidden;
-    position: fixed;
     width: 100%;
     height: 100%;
-    touch-action: none; /* Отключает жесты */
+    /* УБИРАЕМ position: fixed отсюда! */
+    background: var(--prime-back); /* Добавляем фон и для html */
 }
 
 body {
@@ -24,11 +24,19 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    position: fixed;
+    position: fixed; /* Оставляем только здесь */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overscroll-behavior-y: none;
     -ms-touch-action: none;
     touch-action: none;
+    background-image: var(--prime-back); /* Дублируем для надёжности */
+    font-family: 'PT Mono', monospace;
 }
+
+/* Остальной CSS без изменений... */
 
 
 
@@ -82,11 +90,6 @@ input[type="number"]::-webkit-inner-spin-button {
     src: url("../fonts/IBMPlexSansSemiBold.woff") format("woff");
     font-weight: 700;
     font-style: normal;
-}
-
-body {
-    background-image: var(--prime-back);
-    font-family: 'PT Mono', monospace;
 }
 
 #app {
