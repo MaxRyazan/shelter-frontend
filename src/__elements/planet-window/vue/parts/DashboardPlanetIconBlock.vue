@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard__planet-icon-block">
-        <div style="background-color: black; border-radius: 6px">
+        <div style="background-color: #0d1117; border-radius: 6px">
             <img class="dashboard__image" src="/image/common/planet1.webp" alt="planet icon">
         </div>
         <div class="dashboard__image-info">

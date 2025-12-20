@@ -1,10 +1,9 @@
 <template>
     <div class="dragmodal-wrapper"
          @click.stop="bringToFront"
-         ref="el"
          :style="computedStyle"
          style="position: fixed">
-        <div class="dragmodal__inner dragmodal__inner-header">
+        <div ref="el" class="dragmodal__inner dragmodal__inner-header">
             <slot name="header"></slot>
             <div @click="emits('close')" class="dragmodal__inner-cross-wrapper">
                 <div class="dragmodal__inner-cross">+</div>

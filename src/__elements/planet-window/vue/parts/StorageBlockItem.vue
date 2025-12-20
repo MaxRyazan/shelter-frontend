@@ -1,9 +1,5 @@
 <template>
-    <div :class="{
-            'even-line' : idx % 2 === 0,
-            'odd-line' : idx % 2 !== 0,
-         }"
-         class="storage-item">
+    <div class="storage-item">
         <div :class="{
                 'resource-color' : type === StorageTypes.resources,
                 'material-color' : type === StorageTypes.materials,
@@ -13,8 +9,8 @@
              class="storage-item__name">{{ Dictionary.get(item.type!) }}
         </div>
         <div class="storage-item__info">
-            <div class="storage-item__amount">{{ item.amount }}</div>
-            <div class="storage-item__volume">{{item.volume}}</div>
+            <div class="storage-item__amount">{{ $rs(item.amount, 3) }}</div>
+            <div class="storage-item__volume">{{ $rs(item.volume, 3) }}</div>
             <input class="storage-item__input" type="number">
             <red-cross class="storage-item__remove-icon"/>
         </div>
@@ -25,6 +21,7 @@ import type {StorageItemDto} from "@/_openapi/models";
 import {StorageTypes} from "@/__elements/planet-window/ts/enums";
 import RedCross from "@/components/icons/RedCross.vue";
 import {Dictionary} from "@/dictionaries";
+import {$rs} from "@/helpers";
 
 defineProps<{
     item: StorageItemDto
@@ -81,5 +78,12 @@ defineProps<{
 
 .storage-item__amount {
     font-weight: 600;
+    width: 70px;
+    text-align: end;
+}
+
+.storage-item__volume {
+    width: 70px;
+    text-align: end;
 }
 </style>

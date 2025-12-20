@@ -1,10 +1,6 @@
 <template>
     <div class="flexbox"
-         style="align-items: start"
-         :class="{
-            'even-line' : typeof idx === 'number' && idx % 2 === 0,
-            'odd-line' : typeof idx === 'number' && idx % 2 !== 0,
-        }">
+         style="align-items: start">
         <s-text class="text-700">
             {{ item.name }}
         </s-text>
@@ -36,5 +32,4 @@ const props = defineProps<{
 
 </script>
 <style scoped>
-
 </style>

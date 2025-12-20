@@ -4,7 +4,8 @@
             @click="currentActive = item"
             class="menu-list__item">
             <s-text
-                :class="{'active-top-menu' : currentActive === item}"
+                style="opacity: .3"
+                :class="{'active-menu-item' : currentActive === item}"
                 v-if="width > 600">
                 {{ item.text }}
             </s-text>
@@ -72,10 +73,6 @@ watch(currentActive, () => {
 
 </script>
 <style scoped>
-.active-top-menu {
-    color: var(--accent);
-}
-
 .menu-list {
     display: flex;
     justify-content: space-between;
@@ -84,7 +81,7 @@ watch(currentActive, () => {
     list-style-type: none;
     width: 100%;
     padding: 10px 8px;
-    background-color: black;
+    background-color: #0d1117;
 }
 
 .menu-list__item {

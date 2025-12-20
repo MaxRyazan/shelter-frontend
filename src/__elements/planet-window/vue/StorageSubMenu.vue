@@ -1,7 +1,7 @@
 <template>
     <ul class="sub-menu">
         <li v-for="item in subList"
-            :class="{active: checked.has(item.id)}"
+            :class="{'active-menu-item': checked.has(item.id)}"
             @click="clickOn(item)"
             :key="item.id"
             class="sub-menu__item">
@@ -58,14 +58,12 @@ watch(checked, () => {
     font-weight: 600;
     font-size: 14px;
     padding: 10px 8px;
-    background-color: #181818;
+    background-color: #0d1117;
 }
 
 .sub-menu__item {
     cursor: pointer;
+    opacity: .3;
 }
 
-.active {
-    color: var(--accent-light) !important;
-}
 </style>

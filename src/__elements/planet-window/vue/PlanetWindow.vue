@@ -3,7 +3,7 @@
                 @close="closeInstance">
         <template #header>
             <s-text :size="14" semi-bold>
-                <span style="color: var(--accent-light)">
+                <span style="color: white">
                     {{ currentPlanet?.name }}
                 </span>
             </s-text>
@@ -71,7 +71,7 @@ onMounted(async () => {
     width: 90%;
     max-width: 800px;
     min-width: 360px;
-    background: #222222 !important;
+    background: #0d1117 !important;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -85,7 +85,7 @@ onMounted(async () => {
 }
 
 :deep(.dragmodal__inner-header) {
-    background: #242424 !important;
+    background: rgb(42, 49, 60) !important;
 }
 
 .planet-window__refresh {

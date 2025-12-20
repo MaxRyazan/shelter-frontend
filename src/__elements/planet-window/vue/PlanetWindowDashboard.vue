@@ -183,7 +183,7 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 100%;
+    height: calc(100% - 10px);
     position: relative;
     padding-top: 10px;
 }
@@ -197,8 +197,9 @@ const storageInfo = reactive<PlanetInfoParam[]>([
 .dashboard__info-wrapper {
     flex-direction: column;
     overflow-y: auto;
+    gap: 10px;
     height: 100%;
-    padding: 0 10px 10px;
+    padding: 0 14px 10px;
     @media screen and (min-width: 800px) {
         flex-direction: row;
     }
@@ -207,7 +208,7 @@ const storageInfo = reactive<PlanetInfoParam[]>([
 .dashboard__info-wrapper-sub {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     @media screen and (min-width: 800px) {
         width: 46%;
     }
@@ -217,6 +218,9 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border: 1px solid var(--prime-light03);
+    padding: 10px;
+    border-radius: 4px;
 }
 
 .tabbed {
