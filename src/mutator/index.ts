@@ -17,7 +17,7 @@ export const useFetchMutator = async <T>(config: {
     });
 
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response}`);
     }
 
     return await response.json() as T;
