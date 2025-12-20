@@ -82,12 +82,14 @@ watch(currentActive, () => {
     width: 100%;
     padding: 10px 8px;
     background-color: #0d1117;
+    touch-action: pan-x pan-y;
+    -webkit-touch-callout: none;
 }
 
 .menu-list__item {
     cursor: pointer;
     margin: 0;
-    font-family: IBM_Plex_Mono sans-serif;
+    font-family: IBM_Plex_Mono monospace;
     font-size: 14px;
     font-weight: 700;
     display: flex;
