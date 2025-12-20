@@ -85,7 +85,7 @@ onMounted(async () => {
 }
 
 :deep(.dragmodal__inner-header) {
-    background: rgb(42, 49, 60) !important;
+    background: #0d1117 !important;
 }
 
 .planet-window__refresh {
