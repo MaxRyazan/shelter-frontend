@@ -1,31 +1,37 @@
 <template>
     <div class="storage">
-        <storage-sub-menu @show="(p: Set<number>) => menuSet = p"/>
-        <s-divider style="margin: 0"/>
-        <div class="storage-wrapper">
-            <storage-block
-                :type="StorageTypes.resources"
-                :list="storage?.resources"
-                class="resources"
-                v-if="menuSet.has(StorageTypes.resources) && storage?.resources?.length"/>
-            <storage-block
-                :idx-starts-from="toNum(storage?.resources?.length)"
-                :type="StorageTypes.materials"
-                :list="storage?.materials"
-                class="materials"
-                v-if="menuSet.has(StorageTypes.materials) && storage?.materials?.length"/>
-            <storage-block
-                :idx-starts-from="toNum(storage?.resources?.length) + toNum(storage?.materials?.length)"
-                :type="StorageTypes.metamaterials"
-                :list="storage?.metaMaterials"
-                class="metamaterials"
-                v-if="menuSet.has(StorageTypes.metamaterials) && storage?.metaMaterials?.length"/>
-            <storage-block
-                :idx-starts-from="toNum(storage?.resources?.length) + toNum(storage?.materials?.length) + toNum(storage?.metaMaterials?.length)"
-                :type="StorageTypes.components"
-                :list="storage?.components"
-                class="components"
-                v-if="menuSet.has(StorageTypes.components) && storage?.components?.length"/>
+        <div class="storage__block" style="overflow-y: auto">
+            <storage-sub-menu @show="(p: Set<number>) => menuSet = p"/>
+            <s-divider style="margin: 0"/>
+            <div class="storage-wrapper">
+                <storage-block
+                    :type="StorageTypes.resources"
+                    :list="storage?.resources"
+                    class="resources"
+                    v-if="menuSet.has(StorageTypes.resources) && storage?.resources?.length"/>
+                <storage-block
+                    :idx-starts-from="toNum(storage?.resources?.length)"
+                    :type="StorageTypes.materials"
+                    :list="storage?.materials"
+                    class="materials"
+                    v-if="menuSet.has(StorageTypes.materials) && storage?.materials?.length"/>
+                <storage-block
+                    :idx-starts-from="toNum(storage?.resources?.length) + toNum(storage?.materials?.length)"
+                    :type="StorageTypes.metamaterials"
+                    :list="storage?.metaMaterials"
+                    class="metamaterials"
+                    v-if="menuSet.has(StorageTypes.metamaterials) && storage?.metaMaterials?.length"/>
+                <storage-block
+                    :idx-starts-from="toNum(storage?.resources?.length) + toNum(storage?.materials?.length) + toNum(storage?.metaMaterials?.length)"
+                    :type="StorageTypes.components"
+                    :list="storage?.components"
+                    class="components"
+                    v-if="menuSet.has(StorageTypes.components) && storage?.components?.length"/>
+            </div>
+        </div>
+        <div class="storage__block">
+            <s-divider style="margin: 0"/>
+            <planet-window-dashboard-short style="height: 120px;"/>
         </div>
     </div>
 </template>
@@ -38,6 +44,7 @@ import type {PlanetStorageDto} from "@/_openapi/models";
 import {StorageTypes} from "@/__elements/planet-window/ts/enums";
 import SDivider from "@/components/common/SDivider.vue";
 import {toNum} from "@/helpers";
+import PlanetWindowDashboardShort from "@/__elements/planet-window/vue/PlanetWindowDashboardShort.vue";
 
 const storage = ref<PlanetStorageDto | undefined>()
 let menuSet = ref(new Set())
@@ -53,11 +60,15 @@ onMounted(() => {
 <style scoped>
 .storage {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
 .storage-wrapper {
-    max-height: calc(100% - 50px);
+    flex-grow: 1;
     overflow-y: auto;
-    padding: 10px 10px 0;
+    padding: 10px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -94,5 +105,10 @@ onMounted(() => {
 .components {
     grid-area: card4;
     width: 100%;
+}
+.storage__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 </style>

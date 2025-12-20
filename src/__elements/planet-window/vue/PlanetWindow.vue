@@ -105,6 +105,6 @@ onMounted(async () => {
 
 .dynamic-component-wrapper {
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - 50px);
 }
 </style>
