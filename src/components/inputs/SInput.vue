@@ -11,6 +11,10 @@
                 paddingRight: rewritedType || props.type === 'password' ? '30px' : '8px',
                 paddingLeft: slots.prefix ? '36px' : '8px'
             }"
+            :class="{
+                'input-accent' : accent,
+                'input-white' : white,
+            }"
             class="accent-input"
             :type="rewritedType ?? props.type"
         />
@@ -41,10 +45,13 @@ const props = withDefaults(defineProps<{
     modelValue: ModelValue
     type?: 'text' | 'number' | 'password' | 'checkbox',
     w?: string,
-    title?: string
+    title?: string,
+    accent?: boolean,
+    white?: boolean,
 }>(), {
     type: 'text',
-    w: '100%'
+    w: '100%',
+    accent: true
 })
 
 const model = computed({
@@ -89,12 +96,9 @@ function rewriteType() {
     height: 100%;
     font-size: 16px;
     background-color: transparent;
-    border: 2px solid var(--accent-light);
     padding-right: 8px;
     padding-left: 8px;
-    caret-color: var(--accent-light);
     position: relative;
-    color: var(--prime-light);
 
     &:focus {
         box-shadow: var(--shadow);
@@ -135,5 +139,16 @@ input[type="checkbox"] {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+}
+.input-accent {
+    border: 1px solid var(--accent-light);
+    caret-color: var(--accent-light);
+    color: var(--prime-light);
+
+}
+.input-white {
+    border: 1px solid var(--prime-light);
+    caret-color: var(--prime-light);
+    color: var(--prime-light);
 }
 </style>

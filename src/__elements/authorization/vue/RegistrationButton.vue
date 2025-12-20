@@ -22,6 +22,7 @@
     width: 30px;
     border-radius: 0 12px 12px 0;
     cursor: pointer;
+    animation: pulse 2s infinite;
 }
 
 .registration-title {
@@ -29,5 +30,14 @@
     user-select: none;
     font-weight: 600;
     font-family: IBM_Plex_Mono, sans-serif;
+}
+
+@keyframes pulse {
+    0% {
+       opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
 }
 </style>

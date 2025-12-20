@@ -1,38 +1,38 @@
 <template>
     <div class="reg-form">
         <close-outlined @click="emits('close')" class="close-icon"/>
-        <accent-input v-model="reg.email">
+        <s-input white v-model="reg.email">
             <template #prefix>
                 <mail-outlined class="input-icon"/>
             </template>
-        </accent-input>
-        <accent-input v-model="reg.login">
+        </s-input>
+        <s-input white v-model="reg.login">
             <template #prefix>
                 <user-outlined class="input-icon"/>
             </template>
-        </accent-input>
-        <accent-input v-model="reg.password"
+        </s-input>
+        <s-input white v-model="reg.password"
                       type="password">
             <template #prefix>
                 <key-outlined class="input-icon"/>
             </template>
-        </accent-input>
-        <accent-input v-model="reg.confirmPassword"
+        </s-input>
+        <s-input white v-model="reg.confirmPassword"
                       type="password">
             <template #prefix>
                 <key-outlined class="input-icon"/>
             </template>
-        </accent-input>
-        <accent-button @click="registration"
+        </s-input>
+        <s-button white @click="registration"
                        class="reg-button">
             Регистрация
-        </accent-button>
+        </s-button>
     </div>
 </template>
 <script setup lang="ts">
 import {CloseOutlined, KeyOutlined, MailOutlined, UserOutlined} from "@ant-design/icons-vue";
-import AccentInput from "@/components/inputs/AccentInput.vue";
-import AccentButton from "@/components/buttons/AccentButton.vue";
+import SInput from "@/components/inputs/SInput.vue";
+import SButton from "@/components/buttons/SButton.vue";
 import {ref} from "vue";
 import {postApiUserCreate} from "@/_openapi/api/users/users";
 import {authentication} from "@/__elements/authorization/ts";

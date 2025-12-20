@@ -1,34 +1,34 @@
 <template>
     <div class="auth-form-wrapper">
-        <accent-input v-model="auth.email">
+        <s-input white v-model="auth.email">
             <template #prefix>
                 <mail-outlined class="input-icon"/>
             </template>
-        </accent-input>
-        <accent-input v-model="auth.password"
+        </s-input>
+        <s-input white v-model="auth.password"
                       type="password">
             <template #prefix>
                 <key-outlined class="input-icon"/>
             </template>
-        </accent-input>
+        </s-input>
         <div class="button-block">
             <div class="agree-wrapper">
-                <accent-input class="checkbox"
+                <s-input class="checkbox"
                               v-model="auth.saveMe"
                               type="checkbox">
-                </accent-input>
+                </s-input>
                 <s-text color="var(--prime-light)">Запомнить меня?</s-text>
             </div>
-            <accent-button @click="authenticate"
+            <s-button white @click="authenticate"
                            class="auth-button">Войти
-            </accent-button>
+            </s-button>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import AccentInput from "@/components/inputs/AccentInput.vue";
+import SInput from "@/components/inputs/SInput.vue";
 import {KeyOutlined, MailOutlined} from "@ant-design/icons-vue";
-import AccentButton from "@/components/buttons/AccentButton.vue";
+import SButton from "@/components/buttons/SButton.vue";
 import SText from "@/components/common/SText.vue";
 import {onMounted, ref} from "vue";
 import {user} from "@/__stores/user-store";
