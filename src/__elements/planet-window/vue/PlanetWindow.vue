@@ -16,7 +16,7 @@
         <top-menu @view-tab="viewTab"/>
         <s-divider style="margin: 0"/>
         <div class="dynamic-component-wrapper">
-            <component :is="activeTab"></component>
+            <component v-if="canShow" :is="activeTab"></component>
         </div>
     </drag-modal>
 </template>
@@ -27,7 +27,7 @@ import SText from "@/components/common/SText.vue";
 import TopMenu from "@/__elements/planet-window/vue/TopMenu.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import {TopMenuType} from "@/__elements/planet-window/ts/types";
-import {type Component, onMounted, shallowRef} from "vue";
+import {type Component, onMounted, ref, shallowRef} from "vue";
 import {getApiPlanetId} from "@/_openapi/api/planet/planet";
 import {user} from "@/__stores/user-store";
 import {RedoOutlined} from "@ant-design/icons-vue";
@@ -37,6 +37,8 @@ const activeTab = shallowRef<Component | undefined>()
 const props = defineProps<{
     instance: 1 | 2
 }>()
+
+const canShow = ref(false)
 
 function viewTab(p: TopMenuType) {
     activeTab.value = p.component
@@ -54,11 +56,13 @@ function closeInstance() {
 }
 
 async function getPlanetInfo() {
+    canShow.value = false
     try {
         if (!user.value?.homePlanetId) return
         currentPlanet.value = await getApiPlanetId(user.value.homePlanetId)
     } catch (e) {
     } finally {
+        canShow.value = true
     }
 }
 
