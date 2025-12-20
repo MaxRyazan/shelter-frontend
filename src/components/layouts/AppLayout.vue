@@ -25,7 +25,7 @@ import TheFooter from "@/components/TheFooter.vue";
 import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import {allPlanets, currentPlanet, planetWindowsInstances} from "@/__elements/planet-window/ts";
 import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 import {useApiLazy} from "@/composables/useApi";
 import {GetPlanetResponseDto} from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
@@ -37,11 +37,13 @@ import {useRouter} from "vue-router";
 
 const {execute} = useApiLazy<GetPlanetResponseDto[]>();
 const router = useRouter()
+const url = ref('')
 
 function sse() {
     const userId = user.value?.id;
     if (!userId) return
-    const resourceSSE = new EventSource(`http://localhost:5083/api/sse/${userId}`);
+
+    const resourceSSE = new EventSource(url.value);
 
     resourceSSE.onopen = function () {
         console.log('SSE подключение успешно для пользователя с айди=', userId);
@@ -86,6 +88,9 @@ onMounted(async () => {
     if (import.meta.env.DEV) {
         console.log('Режим разработки');
         await registrationOrAuthorization()
+        url.value = `http://localhost:5083/api/sse/${user.value?.id}`
+    } else  {
+        url.value = `/api/sse/${user.value?.id}`
     }
     allPlanets.value = await execute(getApiUserGetPlanetsUserId, user.value?.id)
     if (allPlanets.value?.length) {
