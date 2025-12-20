@@ -33,7 +33,7 @@ defineProps<{
 .storage-item {
     display: flex;
     justify-content: space-between;
-    font-family: IBM_Plex_Mono sans-serif;
+    font-family: IBM_Plex_Mono, monospace;
     font-weight: 400;
 }
 
@@ -42,6 +42,8 @@ defineProps<{
     display: flex;
     align-items: center;
     font-weight: 600;
+    font-family: IBM_Plex_Mono, monospace;
+
 }
 
 .storage-item__info {

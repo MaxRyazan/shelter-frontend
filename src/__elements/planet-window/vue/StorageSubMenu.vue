@@ -54,7 +54,7 @@ watch(checked, () => {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    font-family: IBM_Plex_Mono sans-serif;
+    font-family: IBM_Plex_Mono, monospace;
     font-weight: 600;
     font-size: 14px;
     padding: 10px 8px;
