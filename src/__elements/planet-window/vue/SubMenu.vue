@@ -1,6 +1,6 @@
 <template>
     <ul class="sub-menu">
-        <li v-for="item in subList"
+        <li v-for="item in list"
             :class="{'active-menu-item': checked.has(item.id)}"
             @click="clickOn(item)"
             :key="item.id"
@@ -10,32 +10,16 @@
     </ul>
 </template>
 <script setup lang="ts">
-import {reactive, shallowRef, watch} from "vue";
-import {SubTabs} from "@/__elements/planet-window/ts";
+import {reactive, watch} from "vue";
 import {TopSubMenuType} from "@/__elements/planet-window/ts/types";
 
 const emits = defineEmits<{
-    (e: 'show', p: Set<number>):void
+    (e: 'show', p: Set<number>): void
 }>()
 
-const subList = shallowRef<TopSubMenuType[]>([
-    {
-        id: 0,
-        text: SubTabs.resources,
-    },
-    {
-        id: 1,
-        text: SubTabs.materials,
-    },
-    {
-        id: 2,
-        text: SubTabs.metamaterials,
-    },
-    {
-        id: 3,
-        text: SubTabs.components,
-    }
-])
+defineProps<{
+    list: TopSubMenuType[]
+}>()
 
 const checked = reactive(new Set<number>([0]));
 
@@ -64,6 +48,7 @@ watch(checked, () => {
 .sub-menu__item {
     cursor: pointer;
     opacity: .3;
+    user-select: none;
 }
 
 </style>

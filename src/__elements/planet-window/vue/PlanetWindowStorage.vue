@@ -1,7 +1,8 @@
 <template>
     <div class="storage">
         <div class="storage__block" style="overflow-y: auto">
-            <storage-sub-menu @show="(p: Set<number>) => menuSet = p"/>
+            <sub-menu :list="list"
+                              @show="(p: Set<number>) => menuSet = p"/>
             <s-divider style="margin: 0"/>
             <div class="storage-wrapper">
                 <storage-block
@@ -36,15 +37,16 @@
     </div>
 </template>
 <script setup lang="ts">
-import StorageSubMenu from "@/__elements/planet-window/vue/StorageSubMenu.vue";
-import {onMounted, ref, watch} from "vue";
+import SubMenu from "@/__elements/planet-window/vue/SubMenu.vue";
+import {onMounted, ref, shallowRef, watch} from "vue";
 import StorageBlock from "@/__elements/planet-window/vue/parts/StorageBlock.vue";
-import {currentPlanet} from "@/__elements/planet-window/ts";
+import {currentPlanet, SubTabsStorage} from "@/__elements/planet-window/ts";
 import type {PlanetStorageDto} from "@/_openapi/models";
 import {StorageTypes} from "@/__elements/planet-window/ts/enums";
 import SDivider from "@/components/common/SDivider.vue";
 import {toNum} from "@/helpers";
 import PlanetWindowDashboardShort from "@/__elements/planet-window/vue/PlanetWindowDashboardShort.vue";
+import {TopSubMenuType} from "@/__elements/planet-window/ts/types";
 
 const storage = ref<PlanetStorageDto | undefined>()
 let menuSet = ref(new Set())
@@ -52,6 +54,25 @@ let menuSet = ref(new Set())
 watch(currentPlanet, () => {
     storage.value = currentPlanet.value?.storage
 }, {deep: true, immediate: true})
+
+const list = shallowRef<TopSubMenuType[]>([
+    {
+        id: 0,
+        text: SubTabsStorage.resources,
+    },
+    {
+        id: 1,
+        text: SubTabsStorage.materials,
+    },
+    {
+        id: 2,
+        text: SubTabsStorage.metamaterials,
+    },
+    {
+        id: 3,
+        text: SubTabsStorage.components,
+    }
+])
 
 onMounted(() => {
     storage.value = currentPlanet.value?.storage

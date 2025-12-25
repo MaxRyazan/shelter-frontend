@@ -29,9 +29,20 @@ export enum Tabs {
     defence = 'оборона',
 }
 
-export enum SubTabs {
+export enum SubTabsStorage {
     resources = 'ресурсы',
     materials = 'материалы',
     metamaterials = 'метаматериалы',
     components = 'компоненты',
+}
+
+export enum SubTabsBuildings {
+    common = 'общие',
+    special = 'специальные',
+    defence = 'оборона',
+    energy = 'энергетика',
+    mines = 'шахты',
+    factories = 'фабрики',
+    complexes = 'комплексы',
+    food = 'провизия',
 }

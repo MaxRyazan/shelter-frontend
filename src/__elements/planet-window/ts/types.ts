@@ -1,4 +1,4 @@
-import {SubTabs, Tabs} from "@/__elements/planet-window/ts/index";
+import {Tabs} from "@/__elements/planet-window/ts/index";
 import {Component} from "vue";
 
 export type TopMenuType = {
@@ -7,8 +7,8 @@ export type TopMenuType = {
     component: Component
 }
 export type TopSubMenuType = {
-    text: SubTabs,
     id: number,
+    text: Record<number, string>,
 }
 
 export type PlanetInfoParam = {
