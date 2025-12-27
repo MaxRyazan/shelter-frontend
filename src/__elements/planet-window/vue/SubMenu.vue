@@ -38,6 +38,7 @@ watch(checked, () => {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    flex-wrap: wrap;
     font-family: IBM_Plex_Mono, monospace;
     font-weight: 600;
     font-size: 14px;

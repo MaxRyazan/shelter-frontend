@@ -3,9 +3,6 @@
         <sub-menu style="flex-grow: 1"
                   :list="firstRow"
                   @show="changeSet1"/>
-        <sub-menu style="flex-grow: 1"
-                  :list="secondRow"
-                  @show="changeSet2"/>
     </div>
 </template>
 <script setup lang="ts">
@@ -26,13 +23,7 @@ function changeSet1(p: Set<number>) {
     menuSet1.value = p
 }
 
-function changeSet2(p: Set<number>) {
-    menuSet2.value = p
-}
-
 watch([menuSet1, menuSet2], () => {
-    console.log('menuSet1', menuSet1.value)
-    console.log('menuSet2', menuSet2.value)
     emits('show', new Set([...menuSet1.value, ...menuSet2.value]))
 }, {deep: true})
 
@@ -49,8 +40,6 @@ const firstRow = shallowRef<TopSubMenuType[]>([
         id: 2,
         text: SubTabsBuildings.energy,
     },
-])
-const secondRow = shallowRef([
     {
         id: 3,
         text: SubTabsBuildings.mines,
