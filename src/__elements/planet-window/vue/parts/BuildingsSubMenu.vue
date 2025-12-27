@@ -16,15 +16,14 @@ const emits = defineEmits<{
 }>()
 
 let menuSet1 = ref(new Set<number>())
-let menuSet2 = ref(new Set<number>())
 
 
 function changeSet1(p: Set<number>) {
     menuSet1.value = p
 }
 
-watch([menuSet1, menuSet2], () => {
-    emits('show', new Set([...menuSet1.value, ...menuSet2.value]))
+watch(menuSet1, () => {
+    emits('show', menuSet1.value)
 }, {deep: true})
 
 const firstRow = shallowRef<TopSubMenuType[]>([
