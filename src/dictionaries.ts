@@ -32,4 +32,45 @@ export const Dictionary = new Map<string, string>([
 
     // компоненты
     ['Computers', 'Компьютеры'],
+
+    // планетарные здания
+    ['TransportNetwork', 'Транспортная сеть'],
+    ['Storage', 'Склад'],
+    ['CentralHall', 'Мэрия'],
+    ['FoodFarm', 'Ферма'],
+    ['House', 'Жилой дом'],
+    ['EnergyStation', 'Электростанция'],
+    ['NuclearPlant', 'Атомная электростанция'],
+    ['FusionPlant', 'Термоядерная электростанция'],
+    ['PlasmaStation', 'Плазменная станция'],
+    ['DarkMatterPlant', 'Антиматериальная энергостанция'],
+    ['QuantumPlant', 'Квантовая электростанция'],
+
+    ['IronMine', 'Железный рудник'],
+    ['ClayMine', 'Глиняный карьер'],
+    ['LimestoneMine', 'Известняковый карьер'],
+    ['CoalMine', 'Угольная шахта'],
+    ['BoronMine', 'Боровый рудник'],
+    ['CopperMine', 'Медный рудник'],
+    ['NickelMine', 'Никелевый рудник'],
+    ['MolybdenumMine', 'Молибденовый рудник'],
+    ['VanadiumMine', 'Ванадиевый рудник'],
+    ['OilMine', 'Нефтяная скважина'],
+    ['TitaniumMine', 'Титановый рудник'],
+    ['MagnesiumMine', 'Магниевый рудник'],
+    ['UraniumMine', 'Урановый рудник'],
+
+    ['ConcreteFactory', 'Бетонный завод'],
+    ['SteelFactory', 'Сталелитейный завод'],
+    ['PolymersFactory', 'Завод полимеров'],
+    ['TitanFactory', 'Титановый завод'],
+    ['AluminumFactory', 'Алюминиевый завод'],
+
+    ['ElectronicsIndustrial', 'Завод электроники'],
+
+    ['ArmoredSteelComplex', 'Комплекс броневой стали'],
+    ['ChemicalComplex', 'Комплекс хим. элементов'],
+    ['ReinforcedTitaniumComplex', 'Комплекс армированного титана'],
+    ['AmorphousMetalComplex', 'Комплекс аморфного металла'],
+    ['LightAlloyComplex', 'Комплекс магналия']
 ])

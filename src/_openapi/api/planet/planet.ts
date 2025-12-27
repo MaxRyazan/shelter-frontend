@@ -7,6 +7,7 @@
 import type {
   ChangeBuildingEfficiencyDto,
   CreateBuildingDto,
+  GameBuildingsResponseDto,
   GetPlanetResponseDto,
   RemoveFromPlanetStoreDto,
   RemoveFromQueueDto
@@ -79,8 +80,20 @@ export const postApiPlanetRemoveFromStorage = (
     },
       );
     }
+  /**
+ * @summary Получение всех возможных зданий для постройки на планете
+ */
+export const getApiPlanetGetAllBuildingsInfo = (
+    
+ ) => {
+      return useFetchMutator<GameBuildingsResponseDto>(
+      {url: `/api/planet/get-all-buildings-info`, method: 'GET'
+    },
+      );
+    }
   export type GetApiPlanetIdResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetId>>>
 export type PostApiPlanetBuildingOperationResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperation>>>
 export type PostApiPlanetChangeBuildingEfficiencyResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetChangeBuildingEfficiency>>>
 export type PostApiPlanetBuildingOperationRemoveFromQueueResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperationRemoveFromQueue>>>
 export type PostApiPlanetRemoveFromStorageResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetRemoveFromStorage>>>
+export type GetApiPlanetGetAllBuildingsInfoResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetGetAllBuildingsInfo>>>

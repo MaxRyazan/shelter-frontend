@@ -1,17 +1,40 @@
 <template>
     <div class="buildings-sub-menu">
-        <sub-menu style="flex-grow: 1" :list="firstRow" @show="(p: Set<number>) => menuSet = p"/>
-        <sub-menu style="flex-grow: 1" :list="secondRow" @show="(p: Set<number>) => menuSet = p"/>
+        <sub-menu style="flex-grow: 1"
+                  :list="firstRow"
+                  @show="changeSet1"/>
+        <sub-menu style="flex-grow: 1"
+                  :list="secondRow"
+                  @show="changeSet2"/>
     </div>
 </template>
 <script setup lang="ts">
 import SubMenu from "@/__elements/planet-window/vue/SubMenu.vue";
-import {ref, shallowRef} from "vue";
+import {ref, shallowRef, watch} from "vue";
 import {SubTabsBuildings} from "@/__elements/planet-window/ts";
 import {TopSubMenuType} from "@/__elements/planet-window/ts/types";
 
+const emits = defineEmits<{
+    (e: 'show', p: Set<number>): void
+}>()
 
-let menuSet = ref(new Set())
+let menuSet1 = ref(new Set<number>())
+let menuSet2 = ref(new Set<number>())
+
+
+function changeSet1(p: Set<number>) {
+    menuSet1.value = p
+}
+
+function changeSet2(p: Set<number>) {
+    menuSet2.value = p
+}
+
+watch([menuSet1, menuSet2], () => {
+    console.log('menuSet1', menuSet1.value)
+    console.log('menuSet2', menuSet2.value)
+    emits('show', new Set([...menuSet1.value, ...menuSet2.value]))
+}, {deep: true})
 
 const firstRow = shallowRef<TopSubMenuType[]>([
     {
@@ -20,7 +43,7 @@ const firstRow = shallowRef<TopSubMenuType[]>([
     },
     {
         id: 1,
-        text: SubTabsBuildings.defence,
+        text: SubTabsBuildings.food,
     },
     {
         id: 2,
@@ -42,7 +65,7 @@ const secondRow = shallowRef([
     },
     {
         id: 6,
-        text: SubTabsBuildings.food,
+        text: SubTabsBuildings.industrial,
     },
 ])
 </script>

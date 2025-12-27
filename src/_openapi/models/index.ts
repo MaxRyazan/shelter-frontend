@@ -19,6 +19,8 @@ export * from './electricityDto';
 export * from './foodDto';
 export * from './galaxy';
 export * from './galaxyForm';
+export * from './gameBuildings';
+export * from './gameBuildingsResponseDto';
 export * from './getPlanetResponseDto';
 export * from './loginUserRequestDto';
 export * from './loginUserResponseDto';

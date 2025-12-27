@@ -17,11 +17,11 @@ const emits = defineEmits<{
     (e: 'show', p: Set<number>): void
 }>()
 
-defineProps<{
+const props = defineProps<{
     list: TopSubMenuType[]
 }>()
 
-const checked = reactive(new Set<number>([0]));
+const checked = reactive(new Set<number>(props.list.some(a => a.id === 0 ) ? [0] : null));
 
 function clickOn(item: TopSubMenuType) {
     if (checked.has(item.id)) {

@@ -37,12 +37,11 @@ export enum SubTabsStorage {
 }
 
 export enum SubTabsBuildings {
-    common = 'общие',
-    special = 'специальные',
-    defence = 'оборона',
-    energy = 'энергетика',
     mines = 'шахты',
     factories = 'фабрики',
     complexes = 'комплексы',
+    industrial = 'заводы',
+    common = 'общие',
     food = 'провизия',
+    energy = 'энергетика',
 }

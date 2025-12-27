@@ -34,4 +34,13 @@ export const postApiGalaxy = (
     },
       );
     }
+  export const getApiGalaxyGetAllGalaxies = (
+    
+ ) => {
+      return useFetchMutator<void>(
+      {url: `/api/galaxy/get-all-galaxies`, method: 'GET'
+    },
+      );
+    }
   export type PostApiGalaxyResult = NonNullable<Awaited<ReturnType<typeof postApiGalaxy>>>
+export type GetApiGalaxyGetAllGalaxiesResult = NonNullable<Awaited<ReturnType<typeof getApiGalaxyGetAllGalaxies>>>

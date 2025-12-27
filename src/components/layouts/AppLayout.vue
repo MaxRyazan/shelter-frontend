@@ -27,15 +27,18 @@ import {allPlanets, currentPlanet, planetWindowsInstances} from "@/__elements/pl
 import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
 import {onMounted, ref} from "vue";
 import {useApiLazy} from "@/composables/useApi";
-import {GetPlanetResponseDto} from "@/_openapi/models";
+import {type GameBuildingsResponseDto, GetPlanetResponseDto} from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
 import {user} from "@/__stores/user-store";
 import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 import SharedResourcesWindow from "@/__elements/shared-resources-window/vue/SharedResourcesWindow.vue";
 import {authentication} from "@/__elements/authorization/ts";
 import {useRouter} from "vue-router";
+import {_GameBuildings} from "@/__global";
+import {getApiPlanetGetAllBuildingsInfo} from "@/_openapi/api/planet/planet";
 
-const {execute} = useApiLazy<GetPlanetResponseDto[]>();
+const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
+const {execute: fetchGameBuildings} = useApiLazy<GameBuildingsResponseDto>();
 const router = useRouter()
 const url = ref('')
 
@@ -89,10 +92,16 @@ onMounted(async () => {
         console.log('Режим разработки');
         await registrationOrAuthorization()
         url.value = `http://localhost:5083/api/sse/${user.value?.id}`
-    } else  {
+    } else {
         url.value = `/api/sse/${user.value?.id}`
     }
-    allPlanets.value = await execute(getApiUserGetPlanetsUserId, user.value?.id)
+    const response = await fetchGameBuildings(getApiPlanetGetAllBuildingsInfo)
+    if (response) {
+        _GameBuildings.value = response;
+    } else {
+        console.error('Cannot fetch game buildings')
+    }
+    allPlanets.value = await fetchPlanetById(getApiUserGetPlanetsUserId, user.value?.id)
     if (allPlanets.value?.length) {
         currentPlanet.value = allPlanets.value?.find(planet => planet.isHomePlanet)
     }
