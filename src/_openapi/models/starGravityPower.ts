@@ -10,9 +10,9 @@ export type StarGravityPower = typeof StarGravityPower[keyof typeof StarGravityP
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const StarGravityPower = {
-  VeryWeak: VeryWeak,
-  Weak: Weak,
-  Medium: Medium,
-  Strong: Strong,
-  VeryStrong: VeryStrong,
+  VeryWeak: 'VeryWeak',
+  Weak: 'Weak',
+  Medium: 'Medium',
+  Strong: 'Strong',
+  VeryStrong: 'VeryStrong',
 } as const;
