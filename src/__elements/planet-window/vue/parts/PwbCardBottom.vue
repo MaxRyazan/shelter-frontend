@@ -41,7 +41,9 @@ async function handleOperation(action: 'construct' | 'demolish') {
         actionType: action,
         count: 1
     })
-    console.log('response', response)
+    if(response) {
+        currentPlanet.value = response;
+    }
 }
 </script>
 <style scoped>

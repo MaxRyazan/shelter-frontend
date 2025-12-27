@@ -1,27 +1,23 @@
 export function $rs(param: number, precision = 3): string {
     let strParam = param.toString();
-    let strArr = strParam.split(".")
+    let strArr = strParam.split(".");
+
     if (strArr.length === 2) {
-        const delta = precision - +(strArr[1]?.length ?? 0)
+        const delta = precision - (strArr[1]?.length ?? 0);
+
         if (delta > 0) {
             for (let i = 0; i < delta; i++) {
-                strArr[1] += '0'
+                strArr[1] += '0';
             }
+            return Number(strArr[0] + '.' + strArr[1]).toFixed(precision);
         } else {
-            let delta = '1';
-            for (let i = 0; i < precision; i++) {
-                delta += '0'
-            }
-            return (Math.round(param * +delta) / +delta).toString()
+            const multiplier = Math.pow(10, precision);
+            const rounded = Math.round(param * multiplier) / multiplier;
+            return rounded.toFixed(precision);
         }
     } else {
-        let test = ''
-        for (let i = 0; i < precision; i++) {
-            test += '0'
-        }
-        strArr[1] = test
+        return param.toFixed(precision);
     }
-    return strArr[0] + '.' + strArr[1]
 }
 
 export function toNum(arg: any): number {

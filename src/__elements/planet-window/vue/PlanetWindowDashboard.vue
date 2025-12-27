@@ -66,36 +66,36 @@ import {currentPlanet} from "../ts";
 import {reactive} from "vue";
 import DashboardCard from "@/__elements/planet-window/vue/parts/DashboardCard.vue";
 import {PlanetInfoParam} from "@/__elements/planet-window/ts/types";
-import {toNum} from "@/helpers";
+import {$rs, toNum} from "@/helpers";
 import SDivider from "@/components/common/SDivider.vue";
 import DashboardPlanetIconBlock from "@/__elements/planet-window/vue/parts/DashboardPlanetIconBlock.vue";
 
 const populationInfo = reactive<PlanetInfoParam[]>([
     {
         name: "рождаемость",
-        value: toNum(currentPlanet.value?.citizens?.birthRate),
+        value: $rs(toNum(currentPlanet.value?.citizens?.birthRate), 3),
         type: 'number',
         useGreenTriangle: toNum(currentPlanet.value?.citizens?.birthRate) > 0,
         useRedTriangle: toNum(currentPlanet.value?.citizens?.birthRate) < 0
     },
     {
         name: "максимальный лимит",
-        value: toNum(currentPlanet.value?.citizens?.maxCitizens),
+        value: $rs(toNum(currentPlanet.value?.citizens?.maxCitizens), 3),
         type: 'number'
     },
     {
         name: "текущее количество",
-        value: toNum(currentPlanet.value?.citizens?.currentCitizens),
+        value: $rs(toNum(currentPlanet.value?.citizens?.currentCitizens), 3),
         type: 'number'
     },
     {
         name: "потребность в населении",
-        value: toNum(currentPlanet.value?.citizens?.consuming),
+        value: $rs(toNum(currentPlanet.value?.citizens?.consuming), 3),
         type: 'number'
     },
     {
         name: "баланс населения",
-        value: toNum(currentPlanet.value?.citizens?.balance),
+        value: $rs(toNum(currentPlanet.value?.citizens?.balance), 3),
         type: 'number',
         usePositiveColorIndication: toNum(currentPlanet.value?.citizens?.balance) > 0,
         useNegativeColorIndication: toNum(currentPlanet.value?.citizens?.balance) < 0,
@@ -104,17 +104,17 @@ const populationInfo = reactive<PlanetInfoParam[]>([
 const moneyInfo = reactive<PlanetInfoParam[]>([
     {
         name: "поступление кредитов",
-        value: toNum(currentPlanet.value?.taxes?.incoming),
+        value: $rs(toNum(currentPlanet.value?.taxes?.incoming), 3),
         type: 'number'
     },
     {
         name: "расход кредитов",
-        value: toNum(currentPlanet.value?.taxes?.consuming),
+        value: $rs(toNum(currentPlanet.value?.taxes?.consuming), 3),
         type: 'number'
     },
     {
         name: "баланс кредитов",
-        value: toNum(currentPlanet.value?.taxes?.balance),
+        value: $rs(toNum(currentPlanet.value?.taxes?.balance), 3),
         type: 'number',
         usePositiveColorIndication: toNum(currentPlanet.value?.taxes?.balance) > 0,
         useNegativeColorIndication: toNum(currentPlanet.value?.taxes?.balance) < 0,
@@ -123,17 +123,17 @@ const moneyInfo = reactive<PlanetInfoParam[]>([
 const energyInfo = reactive<PlanetInfoParam[]>([
     {
         name: "генерация энергии",
-        value: toNum(currentPlanet.value?.electricity?.incoming),
+        value: $rs(toNum(currentPlanet.value?.electricity?.incoming), 3),
         type: 'number'
     },
     {
         name: "расход энергии",
-        value: toNum(currentPlanet.value?.electricity?.consuming),
+        value: $rs(toNum(currentPlanet.value?.electricity?.consuming), 3),
         type: 'number'
     },
     {
         name: "баланс энергии",
-        value: toNum(currentPlanet.value?.electricity?.balance),
+        value: $rs(toNum(currentPlanet.value?.electricity?.balance), 3),
         type: 'number',
         usePositiveColorIndication: toNum(currentPlanet.value?.electricity?.balance) > 0,
         useNegativeColorIndication: toNum(currentPlanet.value?.electricity?.balance) < 0,
@@ -142,17 +142,17 @@ const energyInfo = reactive<PlanetInfoParam[]>([
 const foodInfo = reactive<PlanetInfoParam[]>([
     {
         name: "производство продовольствия",
-        value: toNum(currentPlanet.value?.food?.incoming),
+        value: $rs(toNum(currentPlanet.value?.food?.incoming), 3),
         type: 'number'
     },
     {
         name: "потребление продовольствия",
-        value: toNum(currentPlanet.value?.food?.consuming),
+        value: $rs(toNum(currentPlanet.value?.food?.consuming), 3),
         type: 'number'
     },
     {
         name: "баланс продовольствия",
-        value: toNum(currentPlanet.value?.food?.balance),
+        value: $rs(toNum(currentPlanet.value?.food?.balance), 3),
         type: 'number',
         usePositiveColorIndication: toNum(currentPlanet.value?.food?.balance) > 0,
         useNegativeColorIndication: toNum(currentPlanet.value?.food?.balance) < 0,
@@ -162,17 +162,17 @@ const foodInfo = reactive<PlanetInfoParam[]>([
 const storageInfo = reactive<PlanetInfoParam[]>([
     {
         name: "вместимость склада",
-        value: toNum(currentPlanet.value?.storage?.capacity?.maxCapacity),
+        value: $rs(toNum(currentPlanet.value?.storage?.capacity?.maxCapacity), 3),
         type: 'number'
     },
     {
         name: "текущее заполнение",
-        value: toNum(currentPlanet.value?.storage?.capacity?.currentFill),
+        value: $rs(toNum(currentPlanet.value?.storage?.capacity?.currentFill), 3),
         type: 'number'
     },
     {
         name: "процент заполнения",
-        value: toNum(currentPlanet.value?.storage?.capacity?.storageUsagePercent),
+        value: $rs(toNum(currentPlanet.value?.storage?.capacity?.storageUsagePercent), 3),
         type: 'number',
         useNegativeColorIndication: toNum(currentPlanet.value?.storage?.capacity?.storageUsagePercent) >= 100,
     },

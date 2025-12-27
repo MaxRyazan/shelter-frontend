@@ -59,8 +59,11 @@ function sse() {
     });
 
     resourceSSE.addEventListener('buildingQueueUpdate', (event) => {
-        const buildingQueue = JSON.parse(event.data);
-        console.log(buildingQueue);
+        const response = JSON.parse(event.data);
+        if (response) {
+            currentPlanet.value = response;
+            console.log('buildingQueue event ', response);
+        }
     });
 }
 
