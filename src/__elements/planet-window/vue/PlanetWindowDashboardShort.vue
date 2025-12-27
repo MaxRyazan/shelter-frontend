@@ -4,13 +4,11 @@
             <s-text class="dashboard-short__item-line">
                 склад
             </s-text>
-            <s-text class="dashboard-short__item-line">{{
-                    $rs(toNum(currentPlanet?.storage?.capacity?.currentFill), 3)
-                }}
+            <s-text class="dashboard-short__item-line">
+                {{ $rs(currentPlanet?.storage?.capacity?.currentFill, 3) }}
             </s-text>
-            <s-text class="dashboard-short__item-line">{{
-                    $rs(toNum(currentPlanet?.storage?.capacity?.maxCapacity), 3)
-                }}
+            <s-text class="dashboard-short__item-line">
+                {{ $rs(currentPlanet?.storage?.capacity?.maxCapacity, 3) }}
             </s-text>
             <s-text
                 :positive="storageCapacityBalance > 0"
@@ -23,8 +21,8 @@
             <s-text class="dashboard-short__item-line">
                 энергия
             </s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(energy?.incoming), 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(energy?.incoming), 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(energy?.incoming, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(energy?.incoming, 3) }}</s-text>
             <s-text
                 :positive="toNum(energy?.balance) > 0"
                 :negative="toNum(energy?.balance) < 0"
@@ -36,8 +34,8 @@
             <s-text class="dashboard-short__item-line">
                 кредиты
             </s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(taxes?.incoming), 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(taxes?.incoming), 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(taxes?.incoming, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(taxes?.incoming, 3) }}</s-text>
             <s-text
                 :positive="toNum(taxes?.balance) > 0"
                 :negative="toNum(taxes?.balance) < 0"
@@ -49,8 +47,8 @@
             <s-text class="dashboard-short__item-line">
                 провиант
             </s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(food?.incoming), 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(food?.incoming), 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(food?.incoming, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(food?.incoming, 3) }}</s-text>
             <s-text
                 :positive="toNum(food?.balance) > 0"
                 :negative="toNum(food?.balance) < 0"
@@ -70,8 +68,8 @@
                     class="dashboard-short__icon"
                     v-if="toNum(people?.birthRate) > 0"/>
             </s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(people?.currentCitizens), 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(toNum(people?.consuming), 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(people?.currentCitizens, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(people?.consuming, 3) }}</s-text>
             <s-text
                 :positive="(toNum(people?.currentCitizens) - toNum(people?.consuming)) > 0"
                 :negative="toNum(people?.balance) < 0"

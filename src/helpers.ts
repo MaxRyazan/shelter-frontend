@@ -1,4 +1,5 @@
-export function $rs(param: number, precision = 3): string {
+export function $rs(param: number | string | undefined, precision = 3): string {
+    if (!param) return toNum(param).toFixed(precision)
     let strParam = param.toString();
     let strArr = strParam.split(".");
 
@@ -12,11 +13,11 @@ export function $rs(param: number, precision = 3): string {
             return Number(strArr[0] + '.' + strArr[1]).toFixed(precision);
         } else {
             const multiplier = Math.pow(10, precision);
-            const rounded = Math.round(param * multiplier) / multiplier;
+            const rounded = Math.round(toNum(param) * multiplier) / multiplier;
             return rounded.toFixed(precision);
         }
     } else {
-        return param.toFixed(precision);
+        return toNum(param).toFixed(precision);
     }
 }
 
