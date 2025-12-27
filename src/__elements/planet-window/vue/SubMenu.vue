@@ -28,7 +28,6 @@ function clickOn(item: TopSubMenuType) {
     if (checked.value.has(item.id)) {
         checked.value.delete(item.id)
     } else checked.value.add(item.id)
-    console.log(checked)
     emits('show', checked.value)
     localStorage.setItem(`shelter-pw-submenu-${props.keyPostfix}`, JSON.stringify(Array.from(checked.value)))
 }
