@@ -5,11 +5,13 @@
         <div :class="{'not-full-width': !!planetBuilding}" class="pwb-card__bottom-buttons">
             <s-button class="card-button"
                       @click="handleOperation('construct')"
+                      :shadow="!planetBuilding"
                       white>
                 Построить
             </s-button>
             <s-button class="card-button"
                       @click="handleOperation('demolish')"
+                      :shadow="!planetBuilding"
                       white>
                 Сломать
             </s-button>

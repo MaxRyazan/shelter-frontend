@@ -3,6 +3,7 @@
         :class="{
                 'button-accent' : accent,
                 'button-white' : white,
+                'button-shadow': shadow,
             }"
         @keydown.enter="emits('click')"
         @click="emits('click')"
@@ -18,8 +19,10 @@ const emits = defineEmits<{
 withDefaults(defineProps<{
     accent?: boolean,
     white?: boolean,
+    shadow?: boolean,
 }>(), {
-    accent: true
+    accent: true,
+    shadow: false
 })
 
 </script>
@@ -46,12 +49,14 @@ withDefaults(defineProps<{
     &:hover {
         color: var(--accent-light);
         border-color: var(--accent-light);
+        opacity: 1;
     }
 
     &:active {
         box-shadow: 0 0 0 1px var(--accent);
     }
 }
+
 .button-white {
     border-color: var(--prime-light);
     color: var(--prime-light);
@@ -59,10 +64,15 @@ withDefaults(defineProps<{
     &:hover {
         color: var(--accent-light);
         border-color: var(--accent-light);
+        opacity: 1;
     }
 
     &:active {
         box-shadow: 0 0 0 1px var(--accent);
     }
+}
+
+.button-shadow {
+    opacity: .3;
 }
 </style>
