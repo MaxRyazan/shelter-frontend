@@ -9,33 +9,49 @@
             <div class="pwb-card__top-info">
                 <info-block>{{ planetBuilding.count }} шт.</info-block>
                 <info-block>{{ dayjs(planetBuilding.nextProductionTime).format('HH:mm') }}</info-block>
-                <info-block>{{ planetBuilding.efficiency * 100 }}%</info-block>
+                <s-dropdown @click="changeEfficiency">
+                    {{ planetBuilding.maxEfficiency * 100 }}%
+                </s-dropdown>
             </div>
             <div class="pwb-card__top-image">
                 <img src="/image/buildings/LimestoneMine.png"
                      :alt="building.buildingType">
             </div>
         </div>
-        <div style="padding-top: 6px;" v-else>
+        <div style="padding-top: 6px; display: flex; justify-content: end" v-else>
             <img src="/image/buildings/LimestoneMine.png"
                  :alt="building.buildingType">
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import {GameBuildings} from "@/_openapi/models";
+import {GameBuildings, GetPlanetResponseDto} from "@/_openapi/models";
 import {Dictionary} from "@/dictionaries";
 import {currentPlanet} from "@/__elements/planet-window/ts";
 import {computed} from "vue";
 import InfoBlock from "@/components/common/InfoBlock.vue";
 import dayjs from "dayjs";
+import SDropdown from "@/components/inputs/SDropdown.vue";
+import {useApiLazy} from "@/composables/useApi";
+import {postApiPlanetChangeBuildingEfficiency} from "@/_openapi/api/planet/planet";
 
 const props = defineProps<{
     building: GameBuildings
 }>()
-
+const {execute} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
+
+async function changeEfficiency(arg: string | number) {
+    const response = await execute(postApiPlanetChangeBuildingEfficiency, {
+        planetId: currentPlanet.value?.id,
+        buildingType: props.building.buildingType,
+        efficiency: arg.toString().replace('%', '')
+    })
+    if (response) {
+        currentPlanet.value = response
+    }
+}
 </script>
 <style scoped>
 .pwb-card__top-wrapper {

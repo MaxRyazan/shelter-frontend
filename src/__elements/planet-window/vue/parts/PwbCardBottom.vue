@@ -1,20 +1,30 @@
 <template>
     <div :style="{gap: !!planetBuilding ? '10px' : '0'}"
          class="pwb-card__bottom-wrapper">
-        <div class="pwb-card__bottom-manager"></div>
-        <div :class="{'not-full-width': !!planetBuilding}" class="pwb-card__bottom-buttons">
-            <s-button class="card-button"
-                      @click="handleOperation('construct')"
-                      :shadow="!planetBuilding"
-                      white>
-                Построить
-            </s-button>
-            <s-button class="card-button"
-                      @click="handleOperation('demolish')"
-                      :shadow="!planetBuilding"
-                      white>
-                Сломать
-            </s-button>
+        <div class="pwb-card__bottom-buttons">
+            <div class="pwb-card__bottom-button-wrapper">
+                <s-input
+                    white
+                    style="margin: 0; width: 60px"
+                    v-model="constructCount"/>
+                <s-button class="card-button"
+                          @click="handleOperation('construct')"
+                          white>
+                    Построить
+                </s-button>
+            </div>
+            <div class="pwb-card__bottom-button-wrapper">
+                <s-input shadow
+                         white
+                         style="margin: 0; width: 60px"
+                         v-model="demolishCount"/>
+                <s-button class="card-button"
+                          @click="handleOperation('demolish')"
+                          :shadow="!planetBuilding"
+                          white>
+                    Сломать
+                </s-button>
+            </div>
         </div>
     </div>
 </template>
@@ -24,7 +34,8 @@ import {useApiLazy} from "@/composables/useApi";
 import {GameBuildings, GetPlanetResponseDto} from "@/_openapi/models";
 import {postApiPlanetBuildingOperation} from "@/_openapi/api/planet/planet";
 import {currentPlanet} from "@/__elements/planet-window/ts";
-import {computed} from "vue";
+import {computed, ref} from "vue";
+import SInput from "@/components/inputs/SInput.vue";
 
 const props = defineProps<{
     building: GameBuildings
@@ -33,15 +44,17 @@ const props = defineProps<{
 const {execute} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
+const constructCount = ref(1)
+const demolishCount = ref()
 
 async function handleOperation(action: 'construct' | 'demolish') {
     const response = await execute(postApiPlanetBuildingOperation, {
         planetId: currentPlanet.value?.id,
         buildingType: props.building.buildingType,
         actionType: action,
-        count: 1
+        count: action === 'construct' ? constructCount.value : demolishCount.value,
     })
-    if(response) {
+    if (response) {
         currentPlanet.value = response;
     }
 }
@@ -62,7 +75,19 @@ async function handleOperation(action: 'construct' | 'demolish') {
     width: 100%
 }
 
-.not-full-width {
-    width: 65%;
+.pwb-card__bottom-button-wrapper {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+}
+
+:deep(.accent-input) {
+    text-align: center;
+    font-family: IBM_Plex_Mono, monospace;
+    font-size: 14px !important;
+}
+
+.card-button {
+    flex-grow: 1;
 }
 </style>

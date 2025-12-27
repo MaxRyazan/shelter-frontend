@@ -1,5 +1,6 @@
 <template>
-    <div class="input-wrapper">
+    <div :class="{'input-shadow': shadow}"
+         class="input-wrapper">
         <div class="title" v-if="title">
             <span class="title-text">{{ title }}</span>
         </div>
@@ -48,10 +49,12 @@ const props = withDefaults(defineProps<{
     title?: string,
     accent?: boolean,
     white?: boolean,
+    shadow?: boolean,
 }>(), {
     type: 'text',
     w: '100%',
-    accent: true
+    accent: true,
+    shadow: false
 })
 
 const model = computed({
@@ -140,15 +143,21 @@ input[type="checkbox"] {
         transform: translate(-50%, -50%);
     }
 }
+
 .input-accent {
     border: 1px solid var(--accent-light);
     caret-color: var(--accent-light);
     color: var(--prime-light);
 
 }
+
 .input-white {
     border: 1px solid var(--prime-light);
     caret-color: var(--prime-light);
     color: var(--prime-light);
+}
+
+.input-shadow {
+    opacity: .3;
 }
 </style>
