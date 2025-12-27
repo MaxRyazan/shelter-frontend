@@ -63,6 +63,13 @@ async function changeEfficiency(arg: string | number) {
     font-family: IBM_Plex_Mono, monospace;
     font-weight: bolder;
     opacity: .3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 94%;
+    max-width: 94%;
+    display: block;
+    margin: 0 auto;
 }
 
 .title-exist {

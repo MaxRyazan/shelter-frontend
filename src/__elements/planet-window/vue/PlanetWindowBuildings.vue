@@ -2,7 +2,8 @@
     <div class="buildings-wrapper">
         <buildings-sub-menu @show="changeBuildingsVisibilitySet"/>
         <s-divider/>
-        <div class="buildings-list">
+        <div style="flex-grow: 1; overflow: auto">
+            <div class="buildings-list">
             <!-- Common -->
             <template v-if="menuSet.has(0)">
                 <planet-window-building-card
@@ -59,6 +60,9 @@
                     :building="building"/>
             </template>
         </div>
+        </div>
+        <s-divider/>
+        <planet-window-dashboard-short />
     </div>
 </template>
 <script setup lang="ts">
@@ -67,6 +71,7 @@ import SDivider from "@/components/common/SDivider.vue";
 import PlanetWindowBuildingCard from "@/__elements/planet-window/vue/PlanetWindowBuildingCard.vue";
 import {_GameBuildings} from "@/__global";
 import {ref} from "vue";
+import PlanetWindowDashboardShort from "@/__elements/planet-window/vue/PlanetWindowDashboardShort.vue";
 
 const menuSet = ref<Set<number>>(new Set())
 
@@ -84,8 +89,7 @@ function changeBuildingsVisibilitySet(p: Set<number>) {
 .buildings-list {
     display: grid;
     gap: 10px;
-    padding: 10px 12px 0 8px;
-    overflow: auto;
+    padding: 10px 12px 10px 8px;
 
     /* 1. Мобильные: 2 колонки (по умолчанию для мобильных) */
     grid-template-columns: repeat(2, 1fr);
