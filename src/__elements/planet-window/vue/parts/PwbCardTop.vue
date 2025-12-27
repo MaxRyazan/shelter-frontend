@@ -7,8 +7,9 @@
         <div v-if="!!planetBuilding"
              class="pwb-card__top-content">
             <div class="pwb-card__top-info">
-                <div class="pwb-card__top-info-count">{{ planetBuilding.count }}</div>
-                <div class="pwb-card__top-info-percent">{{ planetBuilding.efficiency * 100 }}%</div>
+                <info-block>{{ planetBuilding.count }} шт.</info-block>
+                <info-block>{{ dayjs(planetBuilding.nextProductionTime).format('HH:mm') }}</info-block>
+                <info-block>{{ planetBuilding.efficiency * 100 }}%</info-block>
             </div>
             <div class="pwb-card__top-image">
                 <img src="/image/buildings/LimestoneMine.png"
@@ -26,6 +27,8 @@ import {GameBuildings} from "@/_openapi/models";
 import {Dictionary} from "@/dictionaries";
 import {currentPlanet} from "@/__elements/planet-window/ts";
 import {computed} from "vue";
+import InfoBlock from "@/components/common/InfoBlock.vue";
+import dayjs from "dayjs";
 
 const props = defineProps<{
     building: GameBuildings
@@ -59,6 +62,7 @@ const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(build
 }
 
 .pwb-card__top-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
