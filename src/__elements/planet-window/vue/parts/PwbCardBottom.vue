@@ -4,6 +4,7 @@
         <div class="pwb-card__bottom-buttons">
             <div class="pwb-card__bottom-button-wrapper">
                 <s-input
+                    type="number"
                     white
                     style="margin: 0; width: 60px"
                     v-model="constructCount"/>
@@ -14,7 +15,8 @@
                 </s-button>
             </div>
             <div class="pwb-card__bottom-button-wrapper">
-                <s-input shadow
+                <s-input :shadow="!planetBuilding"
+                         type="number"
                          white
                          style="margin: 0; width: 60px"
                          v-model="demolishCount"/>
@@ -48,7 +50,9 @@ const constructCount = ref(1)
 const demolishCount = ref()
 
 async function handleOperation(action: 'construct' | 'demolish') {
+    if (!planetBuilding.value) return
     if (!props.building && action === 'demolish') return
+    if (planetBuilding.value && (planetBuilding.value.count < demolishCount.value) && action === 'demolish') return
     const response = await execute(postApiPlanetBuildingOperation, {
         planetId: currentPlanet.value?.id,
         buildingType: props.building.buildingType,
