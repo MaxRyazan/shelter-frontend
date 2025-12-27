@@ -1,13 +1,14 @@
 <template>
     <div class="pwb-card__top-wrapper">
-        <div class="pwb-card__top-title">
+        <div :class="{'title-exist' : !!planetBuilding}"
+             class="pwb-card__top-title">
             {{ Dictionary.get(building.buildingType) }}
         </div>
         <div v-if="!!planetBuilding"
              class="pwb-card__top-content">
             <div class="pwb-card__top-info">
-                <div class="pwb-card__top-info-count">{{planetBuilding.count}}</div>
-                <div class="pwb-card__top-info-percent">{{planetBuilding.efficiency * 100}}%</div>
+                <div class="pwb-card__top-info-count">{{ planetBuilding.count }}</div>
+                <div class="pwb-card__top-info-percent">{{ planetBuilding.efficiency * 100 }}%</div>
             </div>
             <div class="pwb-card__top-image">
                 <img src="/image/buildings/LimestoneMine.png"
@@ -42,6 +43,11 @@ const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(build
     text-align: center;
     font-family: IBM_Plex_Mono, monospace;
     font-weight: bolder;
+    opacity: .3;
+}
+
+.title-exist {
+    opacity: 1;
 }
 
 .pwb-card__top-content {
@@ -57,6 +63,7 @@ const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(build
     flex-direction: column;
     justify-content: space-between;
 }
+
 .pwb-card__top-image {
     width: 92px;
     height: 80px;
