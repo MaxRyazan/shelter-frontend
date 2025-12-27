@@ -58,7 +58,6 @@
                     :key="building.buildingType"
                     :building="building"/>
             </template>
-
         </div>
     </div>
 </template>
@@ -72,7 +71,6 @@ import {ref} from "vue";
 const menuSet = ref<Set<number>>(new Set())
 
 function changeBuildingsVisibilitySet(p: Set<number>) {
-    console.log('emits show ', p)
     menuSet.value = p
 }
 </script>
@@ -80,12 +78,26 @@ function changeBuildingsVisibilitySet(p: Set<number>) {
 .buildings-wrapper {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .buildings-list {
-    display: flex;
+    display: grid;
     gap: 10px;
-    flex-wrap: wrap;
-    justify-content: start;
+    padding: 10px 12px 0 8px;
+    overflow: auto;
+
+    /* 1. Мобильные: 2 колонки (по умолчанию для мобильных) */
+    grid-template-columns: repeat(2, 1fr);
+
+    /* 2. Планшеты: 3 колонки при 601px и больше */
+    @media screen and (min-width: 601px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* 3. Десктоп: 4 колонки при 841px и больше */
+    @media screen and (min-width: 841px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 </style>
