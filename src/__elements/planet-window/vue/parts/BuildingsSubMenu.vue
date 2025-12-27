@@ -1,6 +1,7 @@
 <template>
     <div class="buildings-sub-menu">
         <sub-menu style="flex-grow: 1"
+                  key-postfix="buildings"
                   :list="firstRow"
                   @show="changeSet1"/>
     </div>

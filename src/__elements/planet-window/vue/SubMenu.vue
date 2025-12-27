@@ -10,7 +10,7 @@
     </ul>
 </template>
 <script setup lang="ts">
-import {reactive, watch} from "vue";
+import {onBeforeMount, ref} from "vue";
 import {TopSubMenuType} from "@/__elements/planet-window/ts/types";
 
 const emits = defineEmits<{
@@ -19,19 +19,27 @@ const emits = defineEmits<{
 
 const props = defineProps<{
     list: TopSubMenuType[]
+    keyPostfix: string
 }>()
 
-const checked = reactive(new Set<number>(props.list.some(a => a.id === 0 ) ? [0] : null));
+let checked = ref(new Set<number>(props.list.some(a => a.id === 0) ? [0] : null));
 
 function clickOn(item: TopSubMenuType) {
-    if (checked.has(item.id)) {
-        checked.delete(item.id)
-    } else checked.add(item.id)
+    if (checked.value.has(item.id)) {
+        checked.value.delete(item.id)
+    } else checked.value.add(item.id)
+    console.log(checked)
+    emits('show', checked.value)
+    localStorage.setItem(`shelter-pw-submenu-${props.keyPostfix}`, JSON.stringify(Array.from(checked.value)))
 }
 
-watch(checked, () => {
-    emits('show', checked)
-}, {deep: true, immediate: true})
+onBeforeMount(() => {
+    const storage = localStorage.getItem(`shelter-pw-submenu-${props.keyPostfix}`);
+    if (storage) {
+        checked.value = new Set(JSON.parse(storage));
+        emits('show', checked.value)
+    }
+})
 </script>
 <style scoped>
 .sub-menu {

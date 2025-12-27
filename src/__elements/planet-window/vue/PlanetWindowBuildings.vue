@@ -92,7 +92,7 @@ function changeBuildingsVisibilitySet(p: Set<number>) {
     padding: 10px 12px 10px 8px;
 
     /* 1. Мобильные: 2 колонки (по умолчанию для мобильных) */
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 49%);
 
     /* 2. Планшеты: 3 колонки при 601px и больше */
     @media screen and (min-width: 601px) {

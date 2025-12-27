@@ -1,8 +1,9 @@
 <template>
     <div class="storage">
         <div class="storage__block" style="overflow-y: auto">
-            <sub-menu :list="list"
-                              @show="(p: Set<number>) => menuSet = p"/>
+            <sub-menu key-postfix="storage"
+                      :list="list"
+                      @show="(p: Set<number>) => menuSet = p"/>
             <s-divider style="margin: 0"/>
             <div class="storage-wrapper">
                 <storage-block
@@ -127,6 +128,7 @@ onMounted(() => {
     grid-area: card4;
     width: 100%;
 }
+
 .storage__block {
     display: flex;
     flex-direction: column;
