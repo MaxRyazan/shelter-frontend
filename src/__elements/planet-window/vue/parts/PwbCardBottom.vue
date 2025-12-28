@@ -50,9 +50,10 @@ const constructCount = ref(1)
 const demolishCount = ref()
 
 async function handleOperation(action: 'construct' | 'demolish') {
-    if (!planetBuilding.value) return
-    if (!props.building && action === 'demolish') return
-    if (planetBuilding.value && (planetBuilding.value.count < demolishCount.value) && action === 'demolish') return
+    if (action === 'demolish') {
+        if (!planetBuilding.value || !props.building) return
+        if (planetBuilding.value.count < demolishCount.value) return
+    }
     const response = await execute(postApiPlanetBuildingOperation, {
         planetId: currentPlanet.value?.id,
         buildingType: props.building.buildingType,
