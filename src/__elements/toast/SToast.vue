@@ -1,28 +1,31 @@
 <template>
-    <Transition name="toast">
-        <div
-            v-if="Toast.toast.value.message"
-            :class="['toast', `toast--${Toast.toast.value.type}`]"
-            @click="Toast.hide()">
-            <div class="toast__icon">
-                <CheckCircleOutlined v-if="Toast.toast.value.type === 'success'"/>
-                <CloseCircleOutlined v-if="Toast.toast.value.type === 'error'"/>
-                <ExclamationCircleOutlined v-if="Toast.toast.value.type === 'warning'"/>
-                <InfoCircleOutlined v-if="Toast.toast.value.type === 'info'"/>
-            </div>
+    <div class="toast-container">
+        <TransitionGroup name="toast">
+            <div
+                v-for="toast in Toast.toasts.value"
+                :key="toast.id"
+                :class="['toast', `toast--${toast.type}`]"
+                @click="Toast.hide(toast.id)">
+                <div class="toast__icon">
+                    <CheckCircleOutlined v-if="toast.type === 'success'"/>
+                    <CloseCircleOutlined v-if="toast.type === 'error'"/>
+                    <ExclamationCircleOutlined v-if="toast.type === 'warning'"/>
+                    <InfoCircleOutlined v-if="toast.type === 'info'"/>
+                </div>
 
-            <div class="toast__message">
-                {{ Toast.toast.value.message }}
-            </div>
+                <div class="toast__message">
+                    {{ toast.message }}
+                </div>
 
-            <button
-                class="toast__close"
-                @click.stop="Toast.hide()"
-                aria-label="Закрыть">
-                <CloseOutlined/>
-            </button>
-        </div>
-    </Transition>
+                <button
+                    class="toast__close"
+                    @click.stop="Toast.hide(toast.id)"
+                    aria-label="Закрыть">
+                    <CloseOutlined/>
+                </button>
+            </div>
+        </TransitionGroup>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -33,16 +36,24 @@ import {
     InfoCircleOutlined,
     CloseOutlined
 } from '@ant-design/icons-vue'
-import {Toast} from "@/__elements/toast/SToast";
+import { Toast } from "@/__elements/toast/SToast";
 </script>
+
 <style scoped>
-.toast {
+/* Контейнер для всех тостов */
+.toast-container {
     position: fixed;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 20px;
     z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
 
+.toast {
+    position: relative;
     max-height: 120px;
     overflow-y: auto;
     min-width: 300px;
@@ -56,9 +67,9 @@ import {Toast} from "@/__elements/toast/SToast";
     display: flex;
     align-items: start;
     gap: 12px;
-
     cursor: pointer;
     user-select: none;
+    pointer-events: auto;
 
     background: #191919;
     border: 1px solid var(--prime-light);
@@ -131,26 +142,51 @@ import {Toast} from "@/__elements/toast/SToast";
 
 .toast-enter-from {
     opacity: 0;
-    transform: translateX(-50%) translateY(-20px);
+    transform: translateX(30px);
 }
 
 .toast-leave-to {
     opacity: 0;
-    transform: translateX(-50%) translateY(-20px);
+    transform: translateX(30px);
+}
+.toast-move,
+.toast-enter-active,
+.toast-leave-active {
+    transition: all 0.3s ease;
+}
+
+.toast-enter-from {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.toast-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.toast-leave-active {
+    position: absolute;
+    right: 0;
+    left: 0;
 }
 
 @media (max-width: 640px) {
-    .toast {
+    .toast-container {
         left: 16px;
         right: 16px;
+        top: 16px;
+    }
+
+    .toast {
         min-width: auto;
         max-width: none;
-        transform: none;
+        width: 100%;
     }
 
     .toast-enter-from,
     .toast-leave-to {
-        transform: translateY(-20px);
+        transform: translateX(30px);
     }
 }
 
