@@ -10,4 +10,5 @@ export interface RemoveFromQueueDto {
   /** @nullable */
   buildingType: string | null;
   amount: number;
+  createdAt?: string;
 }

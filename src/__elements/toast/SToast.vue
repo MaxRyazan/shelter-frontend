@@ -58,7 +58,7 @@ import { Toast } from "@/__elements/toast/SToast";
     overflow-y: auto;
     min-width: 300px;
     max-width: 480px;
-    padding: 16px 20px;
+    padding: 4px 8px;
     border-radius: 8px;
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3),
     0 3px 6px -4px rgba(0, 0, 0, 0.25),

@@ -22,7 +22,7 @@
                 энергия
             </s-text>
             <s-text class="dashboard-short__item-line">{{ $rs(energy?.incoming, 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(energy?.incoming, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(energy?.consuming, 3) }}</s-text>
             <s-text
                 :positive="toNum(energy?.balance) > 0"
                 :negative="toNum(energy?.balance) < 0"
@@ -35,7 +35,7 @@
                 кредиты
             </s-text>
             <s-text class="dashboard-short__item-line">{{ $rs(taxes?.incoming, 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(taxes?.incoming, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(taxes?.consuming, 3) }}</s-text>
             <s-text
                 :positive="toNum(taxes?.balance) > 0"
                 :negative="toNum(taxes?.balance) < 0"
@@ -48,7 +48,7 @@
                 провиант
             </s-text>
             <s-text class="dashboard-short__item-line">{{ $rs(food?.incoming, 3) }}</s-text>
-            <s-text class="dashboard-short__item-line">{{ $rs(food?.incoming, 3) }}</s-text>
+            <s-text class="dashboard-short__item-line">{{ $rs(food?.consuming, 3) }}</s-text>
             <s-text
                 :positive="toNum(food?.balance) > 0"
                 :negative="toNum(food?.balance) < 0"

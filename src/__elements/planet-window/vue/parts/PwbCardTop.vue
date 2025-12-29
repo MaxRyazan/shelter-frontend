@@ -34,11 +34,12 @@ import dayjs from "dayjs";
 import SDropdown from "@/components/inputs/SDropdown.vue";
 import {useApiLazy} from "@/composables/useApi";
 import {postApiPlanetChangeBuildingEfficiency} from "@/_openapi/api/planet/planet";
+import {Toast} from "@/__elements/toast/SToast";
 
 const props = defineProps<{
     building: GameBuildings
 }>()
-const {execute} = useApiLazy<GetPlanetResponseDto>();
+const {execute, error} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
 
@@ -50,6 +51,9 @@ async function changeEfficiency(arg: string | number) {
     })
     if (response) {
         currentPlanet.value = response
+        Toast.success(`Эффективность ${Dictionary.get(props.building.buildingType)} ${arg}`)
+    } else {
+        Toast.info(error.value?.detail)
     }
 }
 </script>
