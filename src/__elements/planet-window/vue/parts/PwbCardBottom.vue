@@ -38,12 +38,14 @@ import {postApiPlanetBuildingOperation} from "@/_openapi/api/planet/planet";
 import {currentPlanet} from "@/__elements/planet-window/ts";
 import {computed, ref} from "vue";
 import SInput from "@/components/inputs/SInput.vue";
+import {Toast} from "@/classes/SToast";
+import {Dictionary} from "@/dictionaries";
 
 const props = defineProps<{
     building: GameBuildings
 }>()
 
-const {execute} = useApiLazy<GetPlanetResponseDto>();
+const {execute, error} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
 const constructCount = ref(1)
@@ -52,18 +54,30 @@ const demolishCount = ref()
 async function handleOperation(action: 'construct' | 'demolish') {
     if (action === 'demolish') {
         if (!planetBuilding.value || !props.building) return
-        if (planetBuilding.value.count < demolishCount.value) return
+        if (!demolishCount.value) {
+            Toast.info('Сколько ломать?')
+            return
+        }
+        if (planetBuilding.value.count < demolishCount.value) {
+
+        }
     }
+    const count = action === 'construct' ? constructCount.value : demolishCount.value;
+    const message = `${action === 'demolish' ? 'Ломаем' : 'Строим'} ${count} ${Dictionary.get(props.building.buildingType)}`
     const response = await execute(postApiPlanetBuildingOperation, {
         planetId: currentPlanet.value?.id,
         buildingType: props.building.buildingType,
         actionType: action,
-        count: action === 'construct' ? constructCount.value : demolishCount.value,
+        count: count
     })
     if (response) {
         currentPlanet.value = response;
+        Toast.success(message)
+    } else {
+        Toast.info(error.value?.detail)
     }
 }
+
 </script>
 <style scoped>
 .pwb-card__bottom-wrapper {

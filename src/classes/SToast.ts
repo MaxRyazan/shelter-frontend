@@ -15,19 +15,19 @@ export class Toast {
 
     private static timer: ReturnType<typeof setTimeout> | null = null
 
-    static success(message: string, durationMs: number = 3000) {
+    static success(message: string | null | undefined, durationMs: number = 3000) {
         Toast.show(message, 'success', durationMs)
     }
 
-    static error(message: string, durationMs: number = 3000) {
+    static error(message: string | null | undefined, durationMs: number = 3000) {
         Toast.show(message, 'error', durationMs)
     }
 
-    static warning(message: string, durationMs: number = 3000) {
+    static warning(message: string | null | undefined, durationMs: number = 3000) {
         Toast.show(message, 'warning', durationMs)
     }
 
-    static info(message: string, durationMs: number = 3000) {
+    static info(message: string | null | undefined, durationMs: number = 3000) {
         Toast.show(message, 'info', durationMs)
     }
 
@@ -39,7 +39,7 @@ export class Toast {
         Toast.toast.value.message = undefined
     }
 
-    private static show(message: string, type: ToastType, durationMs: number) {
+    private static show(message: string | null | undefined, type: ToastType, durationMs: number) {
         // Очищаем предыдущий таймер
         if (Toast.timer) {
             clearTimeout(Toast.timer)
@@ -49,7 +49,7 @@ export class Toast {
         // Показываем новый тост
         Toast.toast.value = {
             type: type,
-            message: message,
+            message: message ?? 'Ошибка...',
         }
 
         // Устанавливаем таймер закрытия
