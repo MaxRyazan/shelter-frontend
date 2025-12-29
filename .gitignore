@@ -36,6 +36,7 @@ node_modules/.vite/
 
 # node
 node_modules/
+node_modules/.vite/deps
 # Но добавьте также:
 **/node_modules/*
 node_modules/**/*
