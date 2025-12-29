@@ -38,7 +38,7 @@ import {postApiPlanetBuildingOperation} from "@/_openapi/api/planet/planet";
 import {currentPlanet} from "@/__elements/planet-window/ts";
 import {computed, ref} from "vue";
 import SInput from "@/components/inputs/SInput.vue";
-import {Toast} from "@/classes/SToast";
+import {Toast} from "@/__elements/toast/SToast";
 import {Dictionary} from "@/dictionaries";
 
 const props = defineProps<{

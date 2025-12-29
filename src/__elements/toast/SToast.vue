@@ -33,7 +33,7 @@ import {
     InfoCircleOutlined,
     CloseOutlined
 } from '@ant-design/icons-vue'
-import {Toast} from "@/classes/SToast";
+import {Toast} from "@/__elements/toast/SToast";
 </script>
 <style scoped>
 .toast {
