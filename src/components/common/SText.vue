@@ -7,6 +7,8 @@
               'title__medium' : medium,
               'title__positive' : positive,
               'title__negative' : negative,
+              'text-shadow' : shadow,
+              'text-ellipsis': ellipsis,
           }"
           :style="{fontSize: fontSize, color: accent ? 'var(--accent)' : color}">
         <slot/>
@@ -25,6 +27,8 @@ const props = defineProps<{
     negative?: boolean
     size?: number | string
     color?: string
+    shadow?: boolean
+    ellipsis?: boolean
 }>()
 
 const fontSize = computed(() => typeof props.size === 'number' ? props.size + 'px' : props.size)
@@ -56,5 +60,15 @@ const fontSize = computed(() => typeof props.size === 'number' ? props.size + 'p
 
 .title__negative {
     color: var(--negative-color);
+}
+
+.text-shadow {
+    opacity: .3;
+}
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>

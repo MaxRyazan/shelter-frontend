@@ -40,6 +40,7 @@ import {computed, ref} from "vue";
 import SInput from "@/components/inputs/SInput.vue";
 import {Toast} from "@/__elements/toast/SToast";
 import {Dictionary} from "@/dictionaries";
+import {createSessionLog, SessionLogActions} from "@/__elements/session-logs/session-logs";
 
 const props = defineProps<{
     building: GameBuildings
@@ -58,12 +59,9 @@ async function handleOperation(action: 'construct' | 'demolish') {
             Toast.info('Сколько ломать?')
             return
         }
-        if (planetBuilding.value.count < demolishCount.value) {
-
-        }
     }
     const count = action === 'construct' ? constructCount.value : demolishCount.value;
-    const message = `${action === 'demolish' ? 'Ломаем' : 'Строим'} ${count} ${Dictionary.get(props.building.buildingType)}`
+    const message = `${action === 'demolish' ? 'ломаем' : 'строим'} ${count} ${Dictionary.get(props.building.buildingType)}`
     const response = await execute(postApiPlanetBuildingOperation, {
         planetId: currentPlanet.value?.id,
         buildingType: props.building.buildingType,
@@ -72,7 +70,8 @@ async function handleOperation(action: 'construct' | 'demolish') {
     })
     if (response) {
         currentPlanet.value = response;
-        Toast.success(message)
+        // Toast.success(message)
+        createSessionLog(SessionLogActions.CONSTRUCTION, message)
     } else {
         Toast.info(error.value?.detail)
     }
