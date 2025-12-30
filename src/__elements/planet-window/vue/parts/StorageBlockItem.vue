@@ -46,6 +46,10 @@ const count = ref()
 const {execute, error} = useApiLazy<GetPlanetResponseDto>()
 
 async function removeItem() {
+    if(!count.value) {
+        Toast.info(`Сколько удалять ${Dictionary.get(props.item.type!)} ?`)
+        return
+    }
     const response = await execute(postApiPlanetRemoveFromStorage, {
         planetId: currentPlanet.value?.id,
         gameItemType: props.item.type,
