@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'input-shadow': shadow}"
+    <div :class="{'input-shadow': shadow, 'input-no-margin' : noMargin}"
          class="input-wrapper">
         <div class="title" v-if="title">
             <span class="title-text">{{ title }}</span>
@@ -10,7 +10,9 @@
             :style="{
                 width: props.w,
                 paddingRight: rewritedType || props.type === 'password' ? '30px' : '8px',
-                paddingLeft: slots.prefix ? '36px' : '8px'
+                paddingLeft: slots.prefix ? '36px' : '8px',
+                textAlign: props.textAlign,
+                fontSize: props.font,
             }"
             :class="{
                 'input-accent' : accent,
@@ -50,11 +52,17 @@ const props = withDefaults(defineProps<{
     accent?: boolean,
     white?: boolean,
     shadow?: boolean,
+    textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end',
+    noMargin?: boolean,
+    font?: string,
 }>(), {
     type: 'text',
     w: '100%',
     accent: true,
-    shadow: false
+    shadow: false,
+    textAlign: 'left',
+    noMargin: false,
+    font: '14px'
 })
 
 const model = computed({
@@ -159,5 +167,8 @@ input[type="checkbox"] {
 
 .input-shadow {
     opacity: .3;
+}
+.input-no-margin {
+    margin: 0;
 }
 </style>

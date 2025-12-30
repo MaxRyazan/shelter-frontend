@@ -11,23 +11,53 @@
         <div class="storage-item__info">
             <div class="storage-item__amount">{{ $rs(item.amount, 3) }}</div>
             <div class="storage-item__volume">{{ $rs(item.volume, 3) }}</div>
-            <input class="storage-item__input" type="number">
-            <red-cross class="storage-item__remove-icon"/>
+            <s-input class="storage-item__input"
+                     white
+                     font="12px"
+                     no-margin
+                     text-align="center"
+                     v-model="count"/>
+            <red-cross
+                @click="removeItem"
+                class="storage-item__remove-icon"/>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import type {StorageItemDto} from "@/_openapi/models";
+import type {GetPlanetResponseDto, StorageItemDto} from "@/_openapi/models";
 import {StorageTypes} from "@/__elements/planet-window/ts/enums";
 import RedCross from "@/components/icons/RedCross.vue";
 import {Dictionary} from "@/dictionaries";
 import {$rs} from "@/helpers";
+import {useApiLazy} from "@/composables/useApi";
+import {postApiPlanetRemoveFromStorage} from "@/_openapi/api/planet/planet";
+import {currentPlanet} from "@/__elements/planet-window/ts";
+import SInput from "@/components/inputs/SInput.vue";
+import {ref} from "vue";
+import {Toast} from "@/__elements/toast/SToast";
 
-defineProps<{
+const props = defineProps<{
     item: StorageItemDto
     type: StorageTypes
     idx: number
 }>()
+
+const count = ref()
+const {execute, error} = useApiLazy<GetPlanetResponseDto>()
+
+async function removeItem() {
+    const response = await execute(postApiPlanetRemoveFromStorage, {
+        planetId: currentPlanet.value?.id,
+        gameItemType: props.item.type,
+        amount: count.value
+    })
+    if (response) {
+        currentPlanet.value = response
+        Toast.success(`Удалено:  ${count.value} ${Dictionary.get(props.item.type!)}`)
+    } else if (error.value) {
+        Toast.error(error.value.detail)
+    }
+}
 </script>
 <style scoped>
 .storage-item {
@@ -54,22 +84,8 @@ defineProps<{
 }
 
 .storage-item__input {
-    background-color: transparent;
-    border: 1px solid var(--prime-light);
-    border-radius: 4px;
     width: 60px;
     height: 18px;
-    outline: none;
-    caret-color: var(--prime-light);
-    text-align: center;
-    color: var(--prime-light);
-    padding: 0 4px;
-    font-size: 12px;
-    font-weight: 600;
-
-    &:focus {
-        border: 1px solid var(--accent-light)
-    }
 }
 
 .storage-item__remove-icon {
