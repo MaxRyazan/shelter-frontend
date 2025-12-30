@@ -56,7 +56,7 @@ import { Toast } from "@/__elements/toast/SToast";
     position: relative;
     max-height: 120px;
     overflow-y: auto;
-    min-width: 300px;
+    min-width: 200px;
     max-width: 480px;
     padding: 4px 8px;
     border-radius: 8px;
@@ -105,8 +105,9 @@ import { Toast } from "@/__elements/toast/SToast";
     flex-grow: 1;
     font-size: 14px;
     line-height: 1.5715;
-    font-weight: 500;
     color: var(--prime-light);
+    font-family: IBM_Plex_Mono, monospace;
+    max-width: fit-content;
 }
 
 .toast__close {
