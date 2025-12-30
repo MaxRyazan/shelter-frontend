@@ -3,8 +3,8 @@
         <div style="flex-grow: 1; overflow: auto">
             <div class="buildings-queue-list">
                 <building-queue-card
-                    v-for="(item, idx) in currentPlanet?.buildingQueue"
-                    :key="idx + '-' + item.id + '-' + item.createdAt"
+                    v-for="(item, idx) in queue"
+                    :key="idx + '-' + dayjs(item.createdAt).valueOf()"
                     :item="item"
                     :data-item-id="item.id"/>
             </div>
@@ -18,6 +18,16 @@ import {currentPlanet} from "../ts";
 import PlanetWindowDashboardShort from "@/__elements/planet-window/vue/PlanetWindowDashboardShort.vue";
 import SDivider from "@/components/common/SDivider.vue";
 import BuildingQueueCard from "@/__elements/planet-window/vue/BuildingQueueCard.vue";
+import {computed} from "vue";
+import dayjs from "dayjs";
+
+const queue = computed(() => {
+    if (currentPlanet.value?.buildingQueue?.length) {
+        return currentPlanet.value?.buildingQueue.toSorted((a, b) => {
+            return dayjs(a.createdAt).valueOf() - dayjs(b.createdAt).valueOf();
+        })
+    } else return []
+})
 </script>
 <style scoped>
 .buildings-queue-wrapper {

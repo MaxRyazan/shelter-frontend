@@ -174,15 +174,10 @@ import { Toast } from "@/__elements/toast/SToast";
 
 @media (max-width: 640px) {
     .toast-container {
-        left: 16px;
-        right: 16px;
+        right: 10px;
         top: 16px;
-    }
-
-    .toast {
-        min-width: auto;
-        max-width: none;
-        width: 100%;
+        max-width: 320px;
+        min-width: fit-content;
     }
 
     .toast-enter-from,
@@ -193,8 +188,9 @@ import { Toast } from "@/__elements/toast/SToast";
 
 @media (max-width: 480px) {
     .toast {
-        padding: 12px 16px;
         gap: 8px;
+        max-width: 280px;
+        min-width: fit-content;
     }
 
     .toast__icon {
