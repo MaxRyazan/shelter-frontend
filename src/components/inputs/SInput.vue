@@ -12,7 +12,7 @@
                 paddingRight: rewritedType || props.type === 'password' ? '30px' : '8px',
                 paddingLeft: slots.prefix ? '36px' : '8px',
                 textAlign: props.textAlign,
-                fontSize: props.font,
+                fontSize: props.font
             }"
             :class="{
                 'input-accent' : accent,

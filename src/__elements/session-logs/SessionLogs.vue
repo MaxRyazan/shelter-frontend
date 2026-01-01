@@ -5,6 +5,11 @@
         <div class="session-logs__last">
             <session-log-single :log="lastLog"/>
         </div>
+        <div class="session-logs__dropdown">
+            <session-log-single v-for="(log, idx) in _SessionLogs.slice(1, 10)"
+                                :key="idx + '' + log.count"
+                                :log="log"/>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -13,9 +18,11 @@ import {computed, ref} from "vue";
 import SessionLogSingle from "@/__elements/session-logs/SessionLogSingle.vue";
 
 const searchString = ref('')
-const lastLog = computed(() =>
-    Array.from(_SessionLogs.value.values()).at(-1)
-);
+const lastLog = computed(() => {
+    if (_SessionLogs.value.length) {
+        return _SessionLogs.value[0]
+    }
+});
 
 function handleClick() {
     searchString.value = ''

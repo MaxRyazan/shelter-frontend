@@ -9,6 +9,7 @@ import type { BuildingActionType } from './buildingActionType';
 export interface CreateBuildingDto {
   /** ID планеты */
   planetId: number;
+  userId: number;
   /**
    * Тип здания (Storage, Factory, Mine)
    * @minLength 0

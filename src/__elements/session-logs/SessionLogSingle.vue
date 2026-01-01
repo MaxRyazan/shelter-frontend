@@ -1,21 +1,23 @@
 <template>
     <div class="session-log">
-        <s-text :shadow="shadow">{{ log?.createdAt.format('DD.MM HH:mm:ss') }}</s-text>
-        <s-text :shadow="shadow">{{ log?.planetName }}</s-text>
-        <s-text ellipsis
-                :shadow="shadow">
-            {{ log?.text }}
+        <s-text @click="viewPlanet(log.planetName)"
+                :shadow="shadow">[ {{ dayjs().format('HH:mm') }} ] : {{ log.text }}
         </s-text>
     </div>
 </template>
 <script setup lang="ts">
 import SText from "@/components/common/SText.vue";
 import {SessionLog} from "@/__elements/session-logs/session-logs";
+import dayjs from "dayjs";
 
 defineProps<{
     log: SessionLog,
     shadow?: boolean
 }>()
+
+function viewPlanet(planetName: string) {
+    console.log(planetName);
+}
 </script>
 <style scoped>
 .session-log {
@@ -25,6 +27,7 @@ defineProps<{
     flex-wrap: nowrap;
     padding: 6px 12px;
     cursor: pointer !important;
+
     & * {
         font-family: IBM_Plex_Mono, monospace;
         font-size: 12px;

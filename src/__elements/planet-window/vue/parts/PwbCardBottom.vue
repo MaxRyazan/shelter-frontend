@@ -41,6 +41,7 @@ import SInput from "@/components/inputs/SInput.vue";
 import {Toast} from "@/__elements/toast/SToast";
 import {Dictionary} from "@/dictionaries";
 import {v4} from "uuid";
+import {user} from "@/__stores/user-store";
 
 const props = defineProps<{
     building: GameBuildings
@@ -64,6 +65,7 @@ async function handleOperation(action: 'construct' | 'demolish') {
     const message = `${action === 'demolish' ? 'ломаем' : 'строим'} ${count} ${Dictionary.get(props.building.buildingType)}`
     const response = await execute(postApiPlanetBuildingOperation, {
         planetId: currentPlanet.value?.id,
+        userId: user.value?.id,
         buildingType: props.building.buildingType,
         actionType: action,
         count: count,

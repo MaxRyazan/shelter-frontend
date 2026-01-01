@@ -36,6 +36,7 @@ import {authentication} from "@/__elements/authorization/ts";
 import {useRouter} from "vue-router";
 import {_GameBuildings} from "@/__global";
 import {getApiPlanetGetAllBuildingsInfo} from "@/_openapi/api/planet/planet";
+import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 
 const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
 const {execute: fetchGameBuildings} = useApiLazy<GameBuildingsResponseDto>();
@@ -63,6 +64,12 @@ function sse() {
         if (response) {
             currentPlanet.value = response;
         }
+    });
+
+    resourceSSE.addEventListener('notifications_build_service', (event) => {
+        const response = JSON.parse(event.data);
+        console.log(response);
+        _SessionLogs.value.unshift(response);
     });
 }
 

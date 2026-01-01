@@ -8,6 +8,7 @@ import type { BuildingActionType } from './buildingActionType';
 
 export interface BuildingQueue {
   id?: number;
+  userId: number;
   /**
    * @minLength 1
    * @maxLength 100
