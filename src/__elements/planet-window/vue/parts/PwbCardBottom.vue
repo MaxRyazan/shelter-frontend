@@ -40,7 +40,7 @@ import {computed, ref} from "vue";
 import SInput from "@/components/inputs/SInput.vue";
 import {Toast} from "@/__elements/toast/SToast";
 import {Dictionary} from "@/dictionaries";
-import {createSessionLog, SessionLogActions} from "@/__elements/session-logs/session-logs";
+import {v4} from "uuid";
 
 const props = defineProps<{
     building: GameBuildings
@@ -66,12 +66,12 @@ async function handleOperation(action: 'construct' | 'demolish') {
         planetId: currentPlanet.value?.id,
         buildingType: props.building.buildingType,
         actionType: action,
-        count: count
+        count: count,
+        operationId: v4()
     })
     if (response) {
         currentPlanet.value = response;
-        // Toast.success(message)
-        createSessionLog(SessionLogActions.CONSTRUCTION, message)
+        Toast.success(message)
     } else {
         Toast.info(error.value?.detail)
     }

@@ -33,7 +33,8 @@ async function removeFromQueue() {
         planetId: currentPlanet.value?.id,
         buildingType: props.item.buildingType,
         amount: props.item.count,
-        createdAt: props.item.createdAt
+        createdAt: props.item.createdAt,
+        operationId: props.item.operationId,
     })
     if (response) {
         currentPlanet.value = response;

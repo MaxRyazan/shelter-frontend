@@ -62,7 +62,6 @@ function sse() {
         const response = JSON.parse(event.data);
         if (response) {
             currentPlanet.value = response;
-            console.log('buildingQueue event ', response);
         }
     });
 }

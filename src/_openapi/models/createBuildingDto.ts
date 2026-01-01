@@ -21,5 +21,10 @@ export interface CreateBuildingDto {
    * @minimum 1
    * @maximum 1000
    */
-  count?: number;
+  count: number;
+  /**
+   * Идентификатор операции
+   * @minLength 1
+   */
+  operationId: string;
 }

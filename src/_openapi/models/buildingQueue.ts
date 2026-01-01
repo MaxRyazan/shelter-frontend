@@ -17,4 +17,9 @@ export interface BuildingQueue {
   count: number;
   readonly createdAt: string;
   readyAt: string;
+  /**
+   * @minLength 1
+   * @maxLength 100
+   */
+  operationId: string;
 }

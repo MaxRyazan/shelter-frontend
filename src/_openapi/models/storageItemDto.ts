@@ -6,8 +6,8 @@
  */
 
 export interface StorageItemDto {
-  /** @nullable */
-  type: string | null;
+  /** @minLength 1 */
+  type: string;
   amount: number;
   volume: number;
 }

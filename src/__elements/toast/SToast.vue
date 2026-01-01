@@ -6,15 +6,17 @@
                 :key="toast.id"
                 :class="['toast', `toast--${toast.type}`]"
                 @click="Toast.hide(toast.id)">
-                <div class="toast__icon">
-                    <CheckCircleOutlined v-if="toast.type === 'success'"/>
-                    <CloseCircleOutlined v-if="toast.type === 'error'"/>
-                    <ExclamationCircleOutlined v-if="toast.type === 'warning'"/>
-                    <InfoCircleOutlined v-if="toast.type === 'info'"/>
-                </div>
+                <div class="toast-content">
+                    <div class="toast__icon">
+                        <CheckCircleOutlined v-if="toast.type === 'success'"/>
+                        <CloseCircleOutlined v-if="toast.type === 'error'"/>
+                        <ExclamationCircleOutlined v-if="toast.type === 'warning'"/>
+                        <InfoCircleOutlined v-if="toast.type === 'info'"/>
+                    </div>
 
-                <div class="toast__message">
-                    {{ toast.message }}
+                    <div class="toast__message">
+                        {{ toast.message }}
+                    </div>
                 </div>
 
                 <button
@@ -63,16 +65,20 @@ import { Toast } from "@/__elements/toast/SToast";
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3),
     0 3px 6px -4px rgba(0, 0, 0, 0.25),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
-
+    justify-content: space-between;
     display: flex;
     align-items: start;
     gap: 12px;
     cursor: pointer;
     user-select: none;
     pointer-events: auto;
-
     background: #191919;
     border: 1px solid var(--prime-light);
+}
+.toast-content {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
 }
 
 .toast__icon {

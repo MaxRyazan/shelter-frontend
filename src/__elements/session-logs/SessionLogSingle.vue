@@ -14,7 +14,7 @@ import {SessionLog} from "@/__elements/session-logs/session-logs";
 
 defineProps<{
     log: SessionLog,
-    shadow: boolean
+    shadow?: boolean
 }>()
 </script>
 <style scoped>

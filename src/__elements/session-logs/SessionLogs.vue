@@ -1,22 +1,9 @@
 <template>
     <div v-if="lastLog"
          @click="handleClick"
-         :class="{'logs-shadow': !isOpen, 'no-border-bottom': isOpen}"
          class="session-logs">
         <div class="session-logs__last">
-            <session-log-single :shadow="!isOpen"
-                                :log="lastLog"/>
-        </div>
-        <div v-if="isOpen"
-             class="session-logs__dropdown">
-            <s-input @click.prevent.stop
-                     white
-                     v-model="searchString"/>
-            <session-log-single
-                :shadow="!isOpen"
-                v-for="[key, value] in _SessionLogs"
-                :key="key"
-                :log="value"/>
+            <session-log-single :log="lastLog"/>
         </div>
     </div>
 </template>
@@ -24,9 +11,7 @@
 import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import {computed, ref} from "vue";
 import SessionLogSingle from "@/__elements/session-logs/SessionLogSingle.vue";
-import SInput from "@/components/inputs/SInput.vue";
 
-const isOpen = ref(false);
 const searchString = ref('')
 const lastLog = computed(() =>
     Array.from(_SessionLogs.value.values()).at(-1)
@@ -34,8 +19,8 @@ const lastLog = computed(() =>
 
 function handleClick() {
     searchString.value = ''
-    isOpen.value = !isOpen.value
 }
+
 </script>
 <style scoped>
 .session-logs {
