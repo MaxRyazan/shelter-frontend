@@ -1,6 +1,7 @@
 <template>
     <div class="session-log">
-        <s-text @click="viewPlanet(log.planetName)"
+        <s-text class="text-ellipsis"
+                @click="viewPlanet(log.planetName)"
                 :shadow="shadow">[ {{ dayjs().format('HH:mm') }} ] : {{ log.text }}
         </s-text>
     </div>
@@ -27,6 +28,7 @@ function viewPlanet(planetName: string) {
     flex-wrap: nowrap;
     padding: 6px 12px;
     cursor: pointer !important;
+    width: 100%;
 
     & * {
         font-family: IBM_Plex_Mono, monospace;

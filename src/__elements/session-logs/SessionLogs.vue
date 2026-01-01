@@ -1,12 +1,15 @@
 <template>
     <div v-if="lastLog"
          @click="handleClick"
+         :class="{'no-border-bottom' : isOpen}"
          class="session-logs">
-        <div class="session-logs__last">
+        <div @click="isOpen = !isOpen"
+             class="session-logs__last">
             <session-log-single :log="lastLog"/>
         </div>
-        <div class="session-logs__dropdown">
-            <session-log-single v-for="(log, idx) in _SessionLogs.slice(1, 10)"
+        <div v-if="isOpen"
+             class="session-logs__dropdown">
+            <session-log-single v-for="(log, idx) in _SessionLogs.slice(1, 50)"
                                 :key="idx + '' + log.count"
                                 :log="log"/>
         </div>
@@ -17,6 +20,7 @@ import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import {computed, ref} from "vue";
 import SessionLogSingle from "@/__elements/session-logs/SessionLogSingle.vue";
 
+const isOpen = ref(false);
 const searchString = ref('')
 const lastLog = computed(() => {
     if (_SessionLogs.value.length) {
@@ -40,6 +44,11 @@ function handleClick() {
     margin-right: 20px;
     position: relative;
     border: 1px solid var(--prime-light);
+    max-width: 500px;
+}
+
+.no-border-bottom {
+    border-bottom: 1px solid transparent;
 }
 
 .session-logs__last {
@@ -63,6 +72,8 @@ function handleClick() {
     border-right: 1px solid var(--prime-light);
     border-bottom: 1px solid var(--prime-light);
     left: -1px;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .logs-shadow {
