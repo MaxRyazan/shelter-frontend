@@ -91,9 +91,22 @@ export const getApiPlanetGetAllBuildingsInfo = (
     },
       );
     }
+  /**
+ * @summary Получение планеты по айди пользователя и названию планеты
+ */
+export const getApiPlanetByNameUserIdPlanetName = (
+    userId: number,
+    planetName: string,
+ ) => {
+      return useFetchMutator<GetPlanetResponseDto>(
+      {url: `/api/planet/by-name/${userId}/${planetName}`, method: 'GET'
+    },
+      );
+    }
   export type GetApiPlanetIdResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetId>>>
 export type PostApiPlanetBuildingOperationResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperation>>>
 export type PostApiPlanetChangeBuildingEfficiencyResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetChangeBuildingEfficiency>>>
 export type PostApiPlanetBuildingOperationRemoveFromQueueResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperationRemoveFromQueue>>>
 export type PostApiPlanetRemoveFromStorageResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetRemoveFromStorage>>>
 export type GetApiPlanetGetAllBuildingsInfoResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetGetAllBuildingsInfo>>>
+export type GetApiPlanetByNameUserIdPlanetNameResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetByNameUserIdPlanetName>>>

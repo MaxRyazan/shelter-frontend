@@ -1,24 +1,30 @@
 <template>
     <div v-if="lastLog"
          @click="handleClick"
+         v-on-click-outside="clickOutside"
          :class="{'no-border-bottom' : isOpen}"
          class="session-logs">
-        <div @click="isOpen = !isOpen"
+        <div @click="handleOpen"
              class="session-logs__last">
             <session-log-single :log="lastLog"/>
         </div>
-        <div v-if="isOpen"
-             class="session-logs__dropdown">
-            <session-log-single v-for="(log, idx) in _SessionLogs.slice(1, 50)"
-                                :key="idx + '' + log.count"
-                                :log="log"/>
-        </div>
+        <transition name="list">
+            <div v-if="isOpen"
+                 class="session-logs__dropdown">
+                <session-log-single v-for="(log, idx) in _SessionLogs.slice(1, 50)"
+                                    :title="log.text.replaceAll('|', '')"
+                                    :key="idx + '' + log.count"
+                                    :log="log"/>
+            </div>
+        </transition>
     </div>
 </template>
 <script setup lang="ts">
 import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import {computed, ref} from "vue";
 import SessionLogSingle from "@/__elements/session-logs/SessionLogSingle.vue";
+import {vOnClickOutside} from '@vueuse/components'
+import {_globalSettings} from "@/__global/settings";
 
 const isOpen = ref(false);
 const searchString = ref('')
@@ -30,6 +36,17 @@ const lastLog = computed(() => {
 
 function handleClick() {
     searchString.value = ''
+}
+
+function handleOpen() {
+    if (_SessionLogs.value.length <= 1) return
+    isOpen.value = true
+}
+
+function clickOutside() {
+    if (_globalSettings._closeSessionLogsOnClickOutside) {
+        isOpen.value = false
+    }
 }
 
 </script>
@@ -49,6 +66,7 @@ function handleClick() {
 
 .no-border-bottom {
     border-bottom: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
 }
 
 .session-logs__last {
@@ -74,14 +92,16 @@ function handleClick() {
     left: -1px;
     max-height: 500px;
     overflow-y: auto;
+    border-radius: 0 0 4px 4px;
+    background: #191919;
 }
 
-.logs-shadow {
-    border: 1px solid var(--prime-light03)
+.list-enter-from, .list-leave-to {
+    opacity: 0;
 }
 
-.no-border-bottom {
-    border-bottom: 1px solid transparent !important;
-    border-radius: 4px 4px 0 0 !important;
+.list-enter-active, .list-leave-active {
+    transition: opacity 0.2s;
 }
+
 </style>

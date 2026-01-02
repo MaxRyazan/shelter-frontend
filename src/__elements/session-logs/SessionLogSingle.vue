@@ -1,23 +1,50 @@
 <template>
     <div class="session-log">
-        <s-text class="text-ellipsis"
-                @click="viewPlanet(log.planetName)"
-                :shadow="shadow">[ {{ dayjs().format('HH:mm') }} ] : {{ log.text }}
-        </s-text>
+        <s-text>[ {{ dayjs().format('HH:mm') }} ]</s-text>
+        <s-text>{{ prefix }}</s-text>
+        <s-text @click="viewPlanet(log.planetName)" class="log-planet-title">{{ planetName }}</s-text>
+        <s-text class="text-ellipsis">{{ postfix }}</s-text>
     </div>
 </template>
 <script setup lang="ts">
 import SText from "@/components/common/SText.vue";
 import {SessionLog} from "@/__elements/session-logs/session-logs";
 import dayjs from "dayjs";
+import {computed, ref} from "vue";
+import {useApiLazy} from "@/composables/useApi";
+import type {GetPlanetResponseDto} from "@/_openapi/models";
+import {getApiPlanetByNameUserIdPlanetName} from "@/_openapi/api/planet/planet";
+import {user} from "@/__stores/user-store";
+import {currentPlanet} from "@/__elements/planet-window/ts";
+import {switchPlanetWindow} from "@/__elements/planet-window/ts/functions";
 
-defineProps<{
+const props = defineProps<{
     log: SessionLog,
     shadow?: boolean
 }>()
 
-function viewPlanet(planetName: string) {
-    console.log(planetName);
+const {execute, error} = useApiLazy<GetPlanetResponseDto>()
+
+const prefix = ref('')
+const postfix = ref('')
+
+const planetName = computed(() => {
+    const arr = props.log.text.split('|')
+    if (arr.length === 3) {
+        prefix.value = arr[0]
+        postfix.value = arr[2]
+        return arr[1]
+    }
+})
+
+async function viewPlanet(planetName: string) {
+    const response = await execute(getApiPlanetByNameUserIdPlanetName, user.value?.id, planetName);
+    if (response) {
+        currentPlanet.value = response;
+        switchPlanetWindow()
+    } else if (error.value) {
+
+    }
 }
 </script>
 <style scoped>
@@ -27,7 +54,6 @@ function viewPlanet(planetName: string) {
     color: white;
     flex-wrap: nowrap;
     padding: 6px 12px;
-    cursor: pointer !important;
     width: 100%;
 
     & * {
@@ -35,5 +61,10 @@ function viewPlanet(planetName: string) {
         font-size: 12px;
         white-space: nowrap;
     }
+}
+
+.log-planet-title {
+    color: var(--accent-light) !important;
+    cursor: pointer !important;
 }
 </style>
