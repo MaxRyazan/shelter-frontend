@@ -35,6 +35,7 @@ import {currentPlanet} from "@/__elements/planet-window/ts";
 import SInput from "@/components/inputs/SInput.vue";
 import {ref} from "vue";
 import {Toast} from "@/__elements/toast/SToast";
+import {user} from "@/__stores/user-store";
 
 const props = defineProps<{
     item: StorageItemDto
@@ -46,18 +47,18 @@ const count = ref()
 const {execute, error} = useApiLazy<GetPlanetResponseDto>()
 
 async function removeItem() {
-    if(!count.value) {
+    if (!count.value) {
         Toast.info(`Сколько удалять ${Dictionary.get(props.item.type!)} ?`)
         return
     }
     const response = await execute(postApiPlanetRemoveFromStorage, {
+        userId: user.value?.id,
         planetId: currentPlanet.value?.id,
         gameItemType: props.item.type,
         amount: count.value
     })
     if (response) {
         currentPlanet.value = response
-        Toast.success(`Удалено:  ${count.value} ${Dictionary.get(props.item.type!)}`)
     } else if (error.value) {
         Toast.error(error.value.detail)
     }

@@ -94,6 +94,7 @@ function clickOutside() {
     overflow-y: auto;
     border-radius: 0 0 4px 4px;
     background: #191919;
+    z-index: 999;
 }
 
 .list-enter-from, .list-leave-to {

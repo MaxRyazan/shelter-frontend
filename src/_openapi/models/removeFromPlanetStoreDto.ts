@@ -6,6 +6,7 @@
  */
 
 export interface RemoveFromPlanetStoreDto {
+  userId: number;
   planetId: number;
   /** @nullable */
   gameItemType: string | null;

@@ -1,6 +1,8 @@
 <template>
     <div class="session-log">
-        <s-text>[ {{ dayjs().format('HH:mm') }} ]</s-text>
+        <s-text :negative="log.eventType === 'remove_operation'">
+            [ {{ dayjs().format('HH:mm') }} ]
+        </s-text>
         <s-text>{{ prefix }}</s-text>
         <s-text @click="viewPlanet(log.planetName)" class="log-planet-title">{{ planetName }}</s-text>
         <s-text class="text-ellipsis">{{ postfix }}</s-text>
