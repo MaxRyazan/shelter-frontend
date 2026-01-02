@@ -1,10 +1,22 @@
 <template>
     <div class="session-log">
-        <s-text :negative="log.eventType === 'remove_operation'">
+        <s-text :negative="log.eventType === 'remove_operation' || log.eventType === 'decay_operation'">
             [ {{ dayjs().format('HH:mm') }} ]
         </s-text>
         <s-text>{{ prefix }}</s-text>
-        <s-text @click="viewPlanet(log.planetName)" class="log-planet-title">{{ planetName }}</s-text>
+        <s-text v-if="!planetName?.includes(',')"
+                @click="viewPlanet(log.planetName)"
+                class="log-planet-title">
+            {{ planetName }}
+        </s-text>
+        <s-text class="log-planet-title" v-else>
+            <span style="padding: 0 5px"
+                  class="log-planet-title"
+                  @click="viewPlanet(name)"
+                  v-for="name in planetName.split(',')">
+                {{ name }}
+            </span>
+        </s-text>
         <s-text class="text-ellipsis">{{ postfix }}</s-text>
     </div>
 </template>

@@ -66,7 +66,7 @@ function sse() {
         }
     });
 
-    resourceSSE.addEventListener('notifications_build_service', (event) => {
+    resourceSSE.addEventListener('notifications_logs', (event) => {
         const response = JSON.parse(event.data);
         console.log(response);
         _SessionLogs.value.unshift(response);
