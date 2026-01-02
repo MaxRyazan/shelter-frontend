@@ -6,6 +6,7 @@
         </div>
         <slot name="prefix"></slot>
         <input
+            :readonly="readonly"
             v-model="model"
             :style="{
                 width: props.w,
@@ -55,6 +56,7 @@ const props = withDefaults(defineProps<{
     textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end',
     noMargin?: boolean,
     font?: string,
+    readonly?: boolean,
 }>(), {
     type: 'text',
     w: '100%',
@@ -62,7 +64,8 @@ const props = withDefaults(defineProps<{
     shadow: false,
     textAlign: 'left',
     noMargin: false,
-    font: '14px'
+    font: '14px',
+    readonly: false,
 })
 
 const model = computed({

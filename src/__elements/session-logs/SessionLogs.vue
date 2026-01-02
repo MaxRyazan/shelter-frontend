@@ -44,7 +44,7 @@ function handleOpen() {
 }
 
 function clickOutside() {
-    if (_globalSettings._closeSessionLogsOnClickOutside) {
+    if (_globalSettings.sessionLogs._closeOnClickOutside) {
         isOpen.value = false
     }
 }
@@ -62,6 +62,13 @@ function clickOutside() {
     position: relative;
     border: 1px solid var(--prime-light);
     max-width: 500px;
+
+    @media screen and (max-width: 600px) {
+        position: fixed;
+        top: 10px;
+        right: 0;
+        max-width: calc(100% - 60px);
+    }
 }
 
 .no-border-bottom {

@@ -1,12 +1,12 @@
 <template>
     <div class="menu">
-        <div style="display: flex; gap: 8px">
+        <div class="main-menu-list">
             <common-icon name="shared-resources-icon.webp"
                          @click="switchSharedResources"/>
             <common-icon name="planet-icon.webp"
                          @click="switchPlanetWindow"/>
         </div>
-        <session-logs />
+        <session-logs v-if="!_globalSettings.sessionLogs._hideAlways"/>
     </div>
 </template>
 <script setup lang="ts">
@@ -14,6 +14,7 @@ import CommonIcon from "@/components/icons/CommonIcon.vue";
 import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import SessionLogs from "@/__elements/session-logs/SessionLogs.vue";
 import {switchPlanetWindow} from "@/__elements/planet-window/ts/functions";
+import {_globalSettings} from "@/__global/settings";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
@@ -35,6 +36,19 @@ function switchSharedResources() {
         flex-direction: column;
         height: auto;
         padding: 10px 0;
+    }
+
+}
+
+.main-menu-list {
+    display: flex;
+    gap: 8px;
+
+    @media screen and (max-width: 600px) {
+        width: 40px;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
     }
 }
 </style>

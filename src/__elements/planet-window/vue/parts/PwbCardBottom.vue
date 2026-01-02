@@ -5,6 +5,7 @@
             <div class="pwb-card__bottom-button-wrapper">
                 <s-input
                     type="number"
+                    text-align="center"
                     white
                     style="margin: 0; width: 60px"
                     v-model="constructCount"/>
@@ -17,6 +18,8 @@
             <div class="pwb-card__bottom-button-wrapper">
                 <s-input :shadow="!planetBuilding"
                          type="number"
+                         :readonly="!planetBuilding"
+                         text-align="center"
                          white
                          style="margin: 0; width: 60px"
                          v-model="demolishCount"/>
