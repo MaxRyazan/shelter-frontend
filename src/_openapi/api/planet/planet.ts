@@ -9,6 +9,7 @@ import type {
   CreateBuildingDto,
   GameBuildingsResponseDto,
   GetPlanetResponseDto,
+  PlanetIndustriesDto,
   RemoveFromPlanetStoreDto,
   RemoveFromQueueDto
 } from '../../models';
@@ -103,6 +104,17 @@ export const getApiPlanetByNameUserIdPlanetName = (
     },
       );
     }
+  /**
+ * @summary Получение производств планеты по айди
+ */
+export const getApiPlanetIndustriesPowerPlanetId = (
+    planetId: number,
+ ) => {
+      return useFetchMutator<PlanetIndustriesDto>(
+      {url: `/api/planet/industries-power/${planetId}`, method: 'GET'
+    },
+      );
+    }
   export type GetApiPlanetIdResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetId>>>
 export type PostApiPlanetBuildingOperationResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetBuildingOperation>>>
 export type PostApiPlanetChangeBuildingEfficiencyResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetChangeBuildingEfficiency>>>
@@ -110,3 +122,4 @@ export type PostApiPlanetBuildingOperationRemoveFromQueueResult = NonNullable<Aw
 export type PostApiPlanetRemoveFromStorageResult = NonNullable<Awaited<ReturnType<typeof postApiPlanetRemoveFromStorage>>>
 export type GetApiPlanetGetAllBuildingsInfoResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetGetAllBuildingsInfo>>>
 export type GetApiPlanetByNameUserIdPlanetNameResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetByNameUserIdPlanetName>>>
+export type GetApiPlanetIndustriesPowerPlanetIdResult = NonNullable<Awaited<ReturnType<typeof getApiPlanetIndustriesPowerPlanetId>>>

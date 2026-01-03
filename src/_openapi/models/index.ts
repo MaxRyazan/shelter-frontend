@@ -28,6 +28,8 @@ export * from './notFoundError';
 export * from './parametersDto';
 export * from './planet';
 export * from './planetBuilding';
+export * from './planetIndustriesDto';
+export * from './planetIndustriesDtoBalance';
 export * from './planetResources';
 export * from './planetStorage';
 export * from './planetStorageDto';
