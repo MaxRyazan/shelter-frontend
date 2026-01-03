@@ -1,9 +1,9 @@
 <template>
     <div class="productions">
         <div style="flex-grow: 1; padding: 10px 12px 10px 10px; gap: 4px; display: flex; flex-direction: column; overflow-y: auto">
-            <pwp-block type="resources" :item="data?.mines"/>
-            <pwp-block type="materials" :item="data?.factories"/>
-            <pwp-block type="metamaterials" :item="data?.complexes"/>
+            <pwp-block type="resources" :item="data?.mines as any"/>
+            <pwp-block type="materials" :item="data?.factories as any"/>
+            <pwp-block type="metamaterials" :item="data?.complexes as any"/>
         </div>
         <div style="width: 100%;">
             <s-divider />
