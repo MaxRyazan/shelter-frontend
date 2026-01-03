@@ -199,7 +199,7 @@ const storageInfo = reactive<PlanetInfoParam[]>([
     overflow-y: auto;
     gap: 10px;
     height: 100%;
-    padding: 0 14px 10px;
+    padding: 0 8px 10px;
     @media screen and (min-width: 800px) {
         flex-direction: row;
     }

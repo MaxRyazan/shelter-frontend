@@ -7,7 +7,7 @@
         <div class="queue-item__right" style="justify-content: end">
             <info-block style="white-space: nowrap">{{dayjs(item.readyAt).format('DD.MM HH:mm') }}</info-block>
             <info-block style="white-space: nowrap">{{item.count}} шт.</info-block>
-            <red-cross @click="removeFromQueue"/>
+            <red-cross style="cursor:pointer;" @click="removeFromQueue"/>
         </div>
     </div>
 </template>

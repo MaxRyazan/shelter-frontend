@@ -33,7 +33,7 @@
         </div>
         <div class="storage__block">
             <s-divider style="margin: 0"/>
-            <planet-window-dashboard-short style="height: 120px;"/>
+            <planet-window-dashboard-short />
         </div>
     </div>
 </template>

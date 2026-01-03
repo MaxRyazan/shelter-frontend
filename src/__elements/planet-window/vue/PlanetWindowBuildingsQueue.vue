@@ -1,6 +1,6 @@
 <template>
     <div class="buildings-queue-wrapper">
-        <div style="flex-grow: 1; overflow: auto">
+        <div style="flex-grow: 1; overflow: auto; padding: 10px 12px 10px 10px;">
             <div class="buildings-queue-list">
                 <building-queue-card
                     v-for="(item, idx) in queue"
@@ -34,7 +34,7 @@ const queue = computed(() => {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 10px 12px 10px 8px;
+    padding: 0;
 }
 
 .buildings-queue-list {

@@ -96,12 +96,15 @@ const people = computed(() => currentPlanet.value?.citizens)
 </script>
 <style scoped>
 .dashboard-short {
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     display: flex;
     flex-direction: column;
     gap: 4px;
     @media screen and (min-width: 700px) {
         width: 50%;
+    }
+    @media screen and (max-width: 700px) {
+        padding: 10px;
     }
 }
 
