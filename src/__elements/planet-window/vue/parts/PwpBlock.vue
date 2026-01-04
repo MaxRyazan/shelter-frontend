@@ -1,53 +1,30 @@
 <template>
     <div class="items-list">
         <div class="items-list__item"
-             style="border: 1px solid var(--prime-light03); border-radius: 4px; padding: 4px"
-             v-for="mine in item">
+             v-for="row in item">
             <div :class="{
                     'resource-color': type === 'resources',
                     'material-color': type === 'materials',
                     'metamaterial-color': type === 'metamaterials',
-                }"
+                 }"
                  class="items-list__item-name">
-                {{ Dictionary.get(mine.buildingType) }}
+                {{ _name(row?.buildingType) }}
             </div>
-            <div style="display: flex; align-items: center; white-space: nowrap; font-weight: 700">{{ mine.count }}
-                шт.
-            </div>
-            <div style="display: flex; align-items: center; ">{{ mine.efficiency * 100 }}%</div>
-            <div style="display: flex; align-items: center; ">{{ dayjs(mine.nextProductionTime).format('HH:mm') }}</div>
-            <div class="items-list__item-productions">
-                <div style="width: 120px; display: flex; justify-content: center; flex-direction: column; padding: 10px 0">
-                    <div style="display: flex; gap: 10px; justify-content: space-between;"
-                         v-for="prod in mine.needResources">
-                        <div>{{ Dictionary.get(prod.type) }}</div>
-                        <s-text negative>{{ $rs(prod.count, 3) }}</s-text>
-                    </div>
-                    <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between;"
-                         v-for="prod in mine.needMaterials">
-                        <div>{{ Dictionary.get(prod.type) }}</div>
-                        <s-text negative>{{ $rs(prod.count, 3) }}</s-text>
-                    </div>
-                </div>
-                <div style="width: 120px;display: flex; justify-content: center; flex-direction: column">
-                    <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between; "
-                         v-for="prod in mine.canProduce">
-                        <div>{{ Dictionary.get(prod.type) }}</div>
-                        <s-text positive>{{ $rs(prod.count, 3) }}</s-text>
-                    </div>
-                </div>
-            </div>
+            <div class="row-count">{{ row.count }} шт.</div>
+            <div class="flex-align-center">{{ row.efficiency * 100 }}%</div>
+            <div class="flex-align-center">{{ dayjs(row.nextProductionTime).format('HH:mm') }}</div>
+            <pwp-block-need-resources :mine="row"/>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import {Dictionary} from "@/dictionaries";
-import {$rs} from "@/helpers";
 import dayjs from "dayjs";
-import SText from "@/components/common/SText.vue";
+import {PlanetIndustriesDtoItem} from "@/_openapi/models";
+import PwpBlockNeedResources from "@/__elements/planet-window/vue/parts/PwpBlockNeedResources.vue";
+import {_name} from "@/helpers";
 
 defineProps<{
-    item: any[]
+    item: PlanetIndustriesDtoItem[]
     type: 'resources' | 'materials' | 'metamaterials'
 }>()
 </script>
@@ -66,6 +43,9 @@ defineProps<{
     min-height: 32px;
     justify-items: end;
     gap: 10px;
+    border: 1px solid var(--prime-light03);
+    border-radius: 4px;
+    padding: 4px;
 
     & > * {
         width: 100%;
@@ -84,14 +64,15 @@ defineProps<{
     }
 }
 
-.items-list__item-productions {
+.flex-align-center {
     display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    @media screen and (max-width: 600px) {
-        flex-direction: column-reverse;
-        gap: 0;
-        justify-content: center;
-    }
+    align-items: center;
+}
+
+.row-count {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: 700;
 }
 </style>

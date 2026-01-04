@@ -5,7 +5,4 @@
  * OpenAPI spec version: v1
  */
 
-/**
- * @nullable
- */
-export type PlanetIndustriesDtoBalance = {[key: string]: number} | null;
+export type PlanetIndustriesDtoBalance = {[key: string]: number};

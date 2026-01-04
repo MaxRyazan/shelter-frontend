@@ -1,3 +1,5 @@
+import {Dictionary} from "@/dictionaries";
+
 export function $rs(param: number | string | undefined, precision = 3): string {
     if (!param) return toNum(param).toFixed(precision)
     let strParam = param.toString();
@@ -27,4 +29,9 @@ export function toNum(arg: any): number {
     if (typeof arg === 'string' && !/^-?\d*\.?\d+$/.test(arg.trim())) return 0;
     const num = Number(arg);
     return isNaN(num) ? 0 : num;
+}
+
+export function _name(arg: string | undefined) {
+    if(!arg) return '';
+    return Dictionary.get(arg)
 }

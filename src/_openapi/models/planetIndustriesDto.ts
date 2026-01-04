@@ -4,17 +4,13 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
+import type { PlanetIndustriesDtoItem } from './planetIndustriesDtoItem';
 import type { PlanetIndustriesDtoBalance } from './planetIndustriesDtoBalance';
 
 export interface PlanetIndustriesDto {
-  /** @nullable */
-  mines: unknown[] | null;
-  /** @nullable */
-  factories: unknown[] | null;
-  /** @nullable */
-  industries: unknown[] | null;
-  /** @nullable */
-  complexes: unknown[] | null;
-  /** @nullable */
+  mines: PlanetIndustriesDtoItem[];
+  factories: PlanetIndustriesDtoItem[];
+  industries: PlanetIndustriesDtoItem[];
+  complexes: PlanetIndustriesDtoItem[];
   balance: PlanetIndustriesDtoBalance;
 }
