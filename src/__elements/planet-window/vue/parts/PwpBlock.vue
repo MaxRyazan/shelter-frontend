@@ -75,4 +75,5 @@ defineProps<{
     white-space: nowrap;
     font-weight: 700;
 }
+
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div class="productions">
         <div class="productions__list">
+            <pwp-block-balance v-if="data?.balance"
+                               :balance="data.balance"/>
             <pwp-block v-if="data?.mines"
                        type="resources"
                        :item="data?.mines"/>
@@ -27,6 +29,7 @@ import {Toast} from "@/__elements/toast/SToast";
 import PwpBlock from "@/__elements/planet-window/vue/parts/PwpBlock.vue";
 import PlanetWindowDashboardShort from "@/__elements/planet-window/vue/PlanetWindowDashboardShort.vue";
 import SDivider from "@/components/common/SDivider.vue";
+import PwpBlockBalance from "@/__elements/planet-window/vue/parts/PwpBlockBalance.vue";
 
 const {execute} = useApiLazy<PlanetIndustriesDto>()
 const data = ref<PlanetIndustriesDto>()

@@ -72,5 +72,37 @@ export const Dictionary = new Map<string, string>([
     ['ChemicalComplex', 'Комплекс хим. элементов'],
     ['ReinforcedTitaniumComplex', 'Комплекс армированного титана'],
     ['AmorphousMetalComplex', 'Комплекс аморфного металла'],
-    ['LightAlloyComplex', 'Комплекс магналия']
+    ['LightAlloyComplex', 'Комплекс магналия'],
 ])
+
+export const DictionaryResources = {
+    Clay: 'Clay',
+    Limestone: 'Limestone',
+    Iron: 'Iron',
+    Coal: 'Coal',
+    Molybdenum: 'Molybdenum',
+    Nickel: 'Nickel',
+    Boron: 'Boron',
+    Copper: 'Copper',
+    Vanadium: 'Vanadium',
+    Oil: 'Oil',
+    Titanium: 'Titanium',
+    Magnesium: 'Magnesium',
+    Uranium: 'Uranium',
+}
+export const DictionaryMaterials = {
+    Concrete: 'Concrete',
+    Steel: 'Steel',
+    Polymers: 'Polymers',
+    Titan: 'Titan',
+    Aluminum: 'Aluminum',
+}
+
+export const DictionaryMetamaterials = {
+    ArmoredSteel: 'ArmoredSteel',
+    ElectronicComponents: 'ElectronicComponents',
+    AramidFiber: 'AramidFiber',
+    ReinforcedTitanium: 'ReinforcedTitanium',
+    AmorphousMetal: 'AmorphousMetal',
+    AluminumMagnesiumAlloy: 'AluminumMagnesiumAlloy',
+}

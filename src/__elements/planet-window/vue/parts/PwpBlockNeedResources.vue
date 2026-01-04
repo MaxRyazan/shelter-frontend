@@ -1,6 +1,7 @@
 <template>
     <div class="items-list__item-productions">
-        <div class="list-block">
+        <div v-if="mine.needResources.length || mine.needMaterials.length"
+             class="list-block">
             <div class="need-resources"
                  v-for="prod in mine.needResources"
                  :key="prod.type">
