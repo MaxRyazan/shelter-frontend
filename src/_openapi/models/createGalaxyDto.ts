@@ -7,7 +7,15 @@
 import type { GalaxyForm } from './galaxyForm';
 
 export interface CreateGalaxyDto {
-  form?: GalaxyForm;
-  coordinateX?: number;
-  coordinateY?: number;
+  form: GalaxyForm;
+  /**
+   * @minimum -1000
+   * @maximum 1000
+   */
+  coordinateX: number;
+  /**
+   * @minimum -1000
+   * @maximum 1000
+   */
+  coordinateY: number;
 }

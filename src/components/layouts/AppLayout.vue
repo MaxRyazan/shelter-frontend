@@ -16,6 +16,9 @@
                 :instance="2"
                 v-if="planetWindowsInstances.instanceTwoOpen"/>
         </transition>
+        <transition name="base" mode="out-in">
+            <settings-window v-if="isSettingsWindowOpen"/>
+        </transition>
     </div>
 </template>
 <script setup lang="ts">
@@ -27,8 +30,8 @@ import {allPlanets, currentPlanet, planetWindowsInstances} from "@/__elements/pl
 import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
 import {onMounted, ref} from "vue";
 import {useApiLazy} from "@/composables/useApi";
-import {type GameBuildingsResponseDto, GetPlanetResponseDto} from "@/_openapi/models";
-import {getApiUserGetPlanetsUserId} from "@/_openapi/api/users/users";
+import {type GameBuildingsResponseDto, GetPlanetResponseDto, type UserSettings} from "@/_openapi/models";
+import {getApiUserGetPlanetsUserId, getApiUserGetUserSettingsUserId} from "@/_openapi/api/users/users";
 import {user} from "@/__stores/user-store";
 import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 import SharedResourcesWindow from "@/__elements/shared-resources-window/vue/SharedResourcesWindow.vue";
@@ -37,7 +40,10 @@ import {useRouter} from "vue-router";
 import {_GameBuildings} from "@/__global";
 import {getApiPlanetGetAllBuildingsInfo} from "@/_openapi/api/planet/planet";
 import {_SessionLogs} from "@/__elements/session-logs/session-logs";
+import SettingsWindow from "@/__elements/settings-window/vue/SettingsWindow.vue";
+import {_userSettings, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 
+const {execute: getSettings} = useApiLazy<UserSettings[]>();
 const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
 const {execute: fetchGameBuildings} = useApiLazy<GameBuildingsResponseDto>();
 const router = useRouter()
@@ -78,8 +84,8 @@ async function registrationOrAuthorization() {
     // TODO УДАЛИТЬ !
 
     // const nickName = `TestUser`;
-    const email = `test@testuser.com`;
-    const password = `testpassword`;
+    const email = `max2.com`;
+    const password = `password11`;
     try {
         // const response = await postApiUserCreate({
         //     nickName,
@@ -105,6 +111,12 @@ onMounted(async () => {
     } else {
         url.value = `/api/sse/${user.value?.id}`
     }
+
+    const settings = await getSettings(getApiUserGetUserSettingsUserId, user.value?.id)
+    if (settings) {
+        _userSettings.value = settings[0];
+    }
+
     const response = await fetchGameBuildings(getApiPlanetGetAllBuildingsInfo)
     if (response) {
         _GameBuildings.value = response;

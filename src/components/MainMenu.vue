@@ -5,8 +5,10 @@
                          @click="switchSharedResources"/>
             <common-icon name="planet-icon.webp"
                          @click="switchPlanetWindow"/>
+            <common-icon name="planet-icon.webp"
+                         @click="openSettings"/>
         </div>
-        <session-logs v-if="!_globalSettings.sessionLogs._hideAlways"/>
+        <session-logs v-if="!_userSettings?.session_logs_hide_always"/>
     </div>
 </template>
 <script setup lang="ts">
@@ -14,10 +16,14 @@ import CommonIcon from "@/components/icons/CommonIcon.vue";
 import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import SessionLogs from "@/__elements/session-logs/SessionLogs.vue";
 import {switchPlanetWindow} from "@/__elements/planet-window/ts/functions";
-import {_globalSettings} from "@/__global/settings";
+import {_userSettings, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
+}
+
+function openSettings() {
+    isSettingsWindowOpen.value = !isSettingsWindowOpen.value
 }
 </script>
 <style scoped>

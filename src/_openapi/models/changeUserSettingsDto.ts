@@ -5,7 +5,9 @@
  * OpenAPI spec version: v1
  */
 
-export interface RefreshTokenDto {
+export interface ChangeUserSettingsDto {
+  userId: number;
   /** @nullable */
-  refreshToken: string | null;
+  setting: string | null;
+  settingValue: boolean;
 }

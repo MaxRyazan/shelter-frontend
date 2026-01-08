@@ -5,6 +5,7 @@
  * OpenAPI spec version: v1
  */
 import type { GalaxyForm } from './galaxyForm';
+import type { BlackHole } from './blackHole';
 import type { Star } from './star';
 
 export interface Galaxy {
@@ -19,10 +20,7 @@ export interface Galaxy {
   coordinateX: number;
   coordinateY: number;
   centralBlackHoleId: number;
-  /** @nullable */
-  starSystems?: number[] | null;
-  /** @nullable */
-  specialObjects?: string[] | null;
+  centralBlackHole: BlackHole;
   /** @nullable */
   stars?: Star[] | null;
   isActive: boolean;

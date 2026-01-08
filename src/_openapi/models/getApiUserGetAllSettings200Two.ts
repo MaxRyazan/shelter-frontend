@@ -5,7 +5,4 @@
  * OpenAPI spec version: v1
  */
 
-export interface RefreshTokenDto {
-  /** @nullable */
-  refreshToken: string | null;
-}
+export type GetApiUserGetAllSettings200Two = {[key: string]: string};

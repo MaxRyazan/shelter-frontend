@@ -24,7 +24,8 @@ import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import {computed, ref} from "vue";
 import SessionLogSingle from "@/__elements/session-logs/SessionLogSingle.vue";
 import {vOnClickOutside} from '@vueuse/components'
-import {_globalSettings} from "@/__global/settings";
+
+import {_userSettings} from "@/__elements/settings-window/ts";
 
 const isOpen = ref(false);
 const searchString = ref('')
@@ -44,7 +45,7 @@ function handleOpen() {
 }
 
 function clickOutside() {
-    if (_globalSettings.sessionLogs._closeOnClickOutside) {
+    if (_userSettings.value?.session_logs_close_on_click_outside) {
         isOpen.value = false
     }
 }

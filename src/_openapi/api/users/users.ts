@@ -5,11 +5,16 @@
  * OpenAPI spec version: v1
  */
 import type {
+  ChangeUserSettingsDto,
   CreateUserRequestDto,
   CreateUserResponseDto,
+  GetApiUserGetAllSettings200One,
+  GetApiUserGetAllSettings200Three,
+  GetApiUserGetAllSettings200Two,
   GetPlanetResponseDto,
   RemoveFromShareDto,
-  SharedResourcesResponseDto
+  SharedResourcesResponseDto,
+  UserSettings
 } from '../../models';
 
 import { useFetchMutator } from '../../../mutator/index';
@@ -64,7 +69,45 @@ export const getApiUserGetPlanetsUserId = (
     },
       );
     }
+  /**
+ * @summary Получение списка возможных настроек аккаунта
+ */
+export const getApiUserGetAllSettings = (
+    
+ ) => {
+      return useFetchMutator<GetApiUserGetAllSettings200One | GetApiUserGetAllSettings200Two | GetApiUserGetAllSettings200Three>(
+      {url: `/api/user/get-all-settings`, method: 'GET'
+    },
+      );
+    }
+  /**
+ * @summary Получение списка настроек аккаунта по userId
+ */
+export const getApiUserGetUserSettingsUserId = (
+    userId: number,
+ ) => {
+      return useFetchMutator<UserSettings[]>(
+      {url: `/api/user/get-user-settings/${userId}`, method: 'GET'
+    },
+      );
+    }
+  /**
+ * @summary Изменение настроек аккаунта
+ */
+export const postApiUserChangeUserSettings = (
+    changeUserSettingsDto: ChangeUserSettingsDto,
+ ) => {
+      return useFetchMutator<UserSettings>(
+      {url: `/api/user/change-user-settings`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: changeUserSettingsDto
+    },
+      );
+    }
   export type PostApiUserCreateResult = NonNullable<Awaited<ReturnType<typeof postApiUserCreate>>>
 export type GetApiUserGetSharedItemsUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetSharedItemsUserId>>>
 export type PostApiUserRemoveSharedItemResult = NonNullable<Awaited<ReturnType<typeof postApiUserRemoveSharedItem>>>
 export type GetApiUserGetPlanetsUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetPlanetsUserId>>>
+export type GetApiUserGetAllSettingsResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetAllSettings>>>
+export type GetApiUserGetUserSettingsUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetUserSettingsUserId>>>
+export type PostApiUserChangeUserSettingsResult = NonNullable<Awaited<ReturnType<typeof postApiUserChangeUserSettings>>>

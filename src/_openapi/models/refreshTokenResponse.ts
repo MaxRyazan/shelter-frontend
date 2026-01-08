@@ -7,7 +7,7 @@
 
 export interface RefreshTokenResponse {
   /** @nullable */
-  readonly access_token?: string | null;
+  accessToken: string | null;
   /** @nullable */
-  readonly refreshToken?: string | null;
+  refreshToken: string | null;
 }

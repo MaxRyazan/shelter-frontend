@@ -7,8 +7,8 @@
 import type { StarType } from './starType';
 import type { StarSize } from './starSize';
 import type { StarGravityPower } from './starGravityPower';
-import type { Planet } from './planet';
 import type { Galaxy } from './galaxy';
+import type { Planet } from './planet';
 
 export interface Star {
   id?: number;
@@ -26,12 +26,10 @@ export interface Star {
   gravityRadius: number;
   gravityPower: StarGravityPower;
   age: number;
-  /** @nullable */
-  planets?: Planet[] | null;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
   galaxy?: Galaxy;
   /** @nullable */
-  readonly planetIds?: readonly number[] | null;
+  planets?: Planet[] | null;
 }

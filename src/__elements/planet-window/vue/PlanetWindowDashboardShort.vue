@@ -11,6 +11,7 @@
                 {{ $rs(currentPlanet?.storage?.capacity?.maxCapacity, 3) }}
             </s-text>
             <s-text
+                semi-bold
                 :positive="storageCapacityBalance > 0"
                 :negative="storageCapacityBalance < 0"
                 class="dashboard-short__item-line">

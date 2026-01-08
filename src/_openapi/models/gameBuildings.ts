@@ -4,6 +4,9 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
+import type { BuildingCanProduce } from './buildingCanProduce';
+import type { BuildingNeedResources } from './buildingNeedResources';
+import type { BuildingNeedMaterials } from './buildingNeedMaterials';
 
 export interface GameBuildings {
   /**
@@ -31,4 +34,10 @@ export interface GameBuildings {
   buildingClass: string;
   needCitizens: number;
   createdAt: string;
+  /** @nullable */
+  canProduces?: BuildingCanProduce[] | null;
+  /** @nullable */
+  needResources?: BuildingNeedResources[] | null;
+  /** @nullable */
+  needMaterials?: BuildingNeedMaterials[] | null;
 }
