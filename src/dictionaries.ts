@@ -106,3 +106,7 @@ export const DictionaryMetamaterials = {
     AmorphousMetal: 'AmorphousMetal',
     AluminumMagnesiumAlloy: 'AluminumMagnesiumAlloy',
 }
+
+export const DictionaryComponents = {
+    Computers: 'Computers',
+}

@@ -3,6 +3,9 @@
         <main-menu/>
         <the-content/>
         <the-footer/>
+        <transition name="help">
+            <help-drawer/>
+        </transition>
         <transition name="base" mode="out-in">
             <shared-resources-window v-if="isSharedResourcesWindowOpen"/>
         </transition>
@@ -42,6 +45,7 @@ import {getApiPlanetGetAllBuildingsInfo} from "@/_openapi/api/planet/planet";
 import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import SettingsWindow from "@/__elements/settings-window/vue/SettingsWindow.vue";
 import {_userSettings, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
+import HelpDrawer from "@/__elements/help-drawer/vue/HelpDrawer.vue";
 
 const {execute: getSettings} = useApiLazy<UserSettings[]>();
 const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
@@ -141,5 +145,13 @@ onMounted(async () => {
         flex-wrap: nowrap;
         padding-bottom: 22px;
     }
+}
+
+.help-enter-from, .help-leave-to {
+    transform: translateX(110%);
+}
+
+.help-enter-active, .help-leave-active {
+    transition: .2s;
 }
 </style>

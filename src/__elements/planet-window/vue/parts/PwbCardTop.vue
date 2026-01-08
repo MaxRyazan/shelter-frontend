@@ -1,8 +1,14 @@
 <template>
     <div class="pwb-card__top-wrapper">
-        <div :class="{'title-exist' : !!planetBuilding}"
-             class="pwb-card__top-title">
-            {{ Dictionary.get(building.buildingType) }}
+        <div class="pwb-card__top-title-wrapper">
+            <s-text @click="showHelp"
+                    class="pwb-card__top-title-help">?
+            </s-text>
+            <s-text
+                :class="{'title-exist' : !!planetBuilding}"
+                class="pwb-card__top-title">
+                {{ Dictionary.get(building.buildingType) }}
+            </s-text>
         </div>
         <div v-if="!!planetBuilding"
              class="pwb-card__top-content">
@@ -35,6 +41,8 @@ import SDropdown from "@/components/inputs/SDropdown.vue";
 import {useApiLazy} from "@/composables/useApi";
 import {postApiPlanetChangeBuildingEfficiency} from "@/_openapi/api/planet/planet";
 import {Toast} from "@/__elements/toast/SToast";
+import SText from "@/components/common/SText.vue";
+import {showHelpAbout} from "@/__elements/help-drawer/ts";
 
 const props = defineProps<{
     building: GameBuildings
@@ -42,6 +50,9 @@ const props = defineProps<{
 const {execute, error} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
+function showHelp() {
+    showHelpAbout.value = {type: 'building', subject:  props.building}
+}
 
 async function changeEfficiency(arg: string | number) {
     const response = await execute(postApiPlanetChangeBuildingEfficiency, {
@@ -70,10 +81,6 @@ async function changeEfficiency(arg: string | number) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 94%;
-    max-width: 94%;
-    display: block;
-    margin: 0 auto;
 }
 
 .title-exist {
@@ -98,5 +105,22 @@ async function changeEfficiency(arg: string | number) {
 .pwb-card__top-image {
     width: 92px;
     height: 80px;
+}
+
+.pwb-card__top-title-wrapper {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.pwb-card__top-title-help {
+    border-radius: 50%;
+    border: 1px solid var(--prime-light03);
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 </style>
