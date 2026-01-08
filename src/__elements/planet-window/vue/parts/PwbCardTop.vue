@@ -51,7 +51,7 @@ const {execute, error} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
 function showHelp() {
-    showHelpAbout.value = {type: 'building', subject:  props.building}
+    showHelpAbout.value = {type: 'building', subject: props.building}
 }
 
 async function changeEfficiency(arg: string | number) {
@@ -114,7 +114,7 @@ async function changeEfficiency(arg: string | number) {
 }
 
 .pwb-card__top-title-help {
-    border-radius: 50%;
+    border-radius: 4px;
     border: 1px solid var(--prime-light03);
     width: 16px;
     height: 16px;
@@ -122,5 +122,6 @@ async function changeEfficiency(arg: string | number) {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: var(--prime-light03);
 }
 </style>

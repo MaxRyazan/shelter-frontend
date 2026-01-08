@@ -3,7 +3,9 @@
          v-if="showHelpAbout && showHelpAbout.subject"
          class="help-drawer">
         <div class="help-drawer__header">
-            {{ Dictionary.get(showHelpAbout.subject.buildingType) }}
+            <s-text class="text-ellipsis">
+                {{ Dictionary.get(showHelpAbout.subject.buildingType) }}
+            </s-text>
             <div @click="close"
                  class="help-drawer__close">
                 <close-outlined style="font-size: 18px;"/>
@@ -23,6 +25,7 @@ import AboutBuilding from "@/__elements/help-drawer/vue/AboutBuilding.vue";
 import {Dictionary} from "@/dictionaries";
 import {vOnClickOutside} from '@vueuse/components'
 import SDivider from "@/components/common/SDivider.vue";
+import SText from "@/components/common/SText.vue";
 
 function close() {
     showHelpAbout.value = undefined
@@ -47,10 +50,11 @@ function close() {
 }
 
 .help-drawer__header {
-    padding: 6px;
     width: 100%;
     position: relative;
     font-weight: bolder;
+    text-align: center;
+    padding: 6px 40px 6px 6px;
 }
 
 .help-drawer__close {
