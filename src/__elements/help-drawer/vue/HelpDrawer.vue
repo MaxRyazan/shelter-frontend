@@ -9,9 +9,11 @@
                 <close-outlined style="font-size: 18px;"/>
             </div>
         </div>
-        <s-divider />
-        <about-building :building="showHelpAbout.subject"
-                        v-if="showHelpAbout.subject && showHelpAbout.type === 'building'"/>
+        <s-divider/>
+        <div class="help-drawer__content">
+            <about-building :building="showHelpAbout.subject"
+                            v-if="showHelpAbout.subject && showHelpAbout.type === 'building'"/>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -39,6 +41,9 @@ function close() {
     font-family: IBM_Plex_Mono, monospace;
     color: var(--prime-light);
     border-radius: 4px;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
 }
 
 .help-drawer__header {
@@ -58,5 +63,11 @@ function close() {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.help-drawer__content {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 10px;
 }
 </style>

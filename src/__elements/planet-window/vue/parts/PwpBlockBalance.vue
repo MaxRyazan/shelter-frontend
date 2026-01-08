@@ -2,15 +2,17 @@
     <div class="item-list__balance">
         <div class="item-list__balance-column">
             <div class="item-list__balance-item"
+                 :class="{hide: value === 0}"
                  v-for="[key, value] of resources">
                 <s-text class="resource-color">
                     {{ _name(key) }}
                 </s-text>
-                <s-text :negative="value < 0" :positive="value > 0">{{ value }}</s-text>
+                <s-text :negative="value < 0" :positive="value > 0">{{ $rs(value, 3) }}</s-text>
             </div>
         </div>
         <div class="item-list__balance-column">
             <div class="item-list__balance-item"
+                 :class="{hide: value === 0}"
                  v-for="[key, value] of materialsAndMetamaterials">
                 <s-text :class="{
                     'material-color': key in DictionaryMaterials,
@@ -18,7 +20,7 @@
                 }">
                     {{ _name(key) }}
                 </s-text>
-                <s-text :negative="value < 0" :positive="value > 0">{{ value }}</s-text>
+                <s-text :negative="value < 0" :positive="value > 0">{{ $rs(value, 3) }}</s-text>
             </div>
         </div>
     </div>
@@ -26,7 +28,7 @@
 
 <script setup lang="ts">
 import {PlanetIndustriesDtoBalance} from "@/_openapi/models";
-import {_name} from "@/helpers";
+import {$rs, _name} from "@/helpers";
 import SText from "@/components/common/SText.vue";
 import {DictionaryMaterials, DictionaryMetamaterials, DictionaryResources} from "@/dictionaries";
 import {computed} from "vue";
@@ -74,5 +76,8 @@ const materialsAndMetamaterials = computed(() => {
     justify-content: space-between;
     font-family: IBM_Plex_Mono, monospace;
     margin-bottom: 4px;
+}
+.hide {
+    display: none;
 }
 </style>
