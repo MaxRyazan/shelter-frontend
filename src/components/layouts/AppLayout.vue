@@ -82,6 +82,14 @@ function sse() {
         console.log(response);
         _SessionLogs.value.unshift(response);
     });
+
+    resourceSSE.addEventListener('gameMoneyUpdater', (event) => {
+        const response = JSON.parse(event.data);
+        console.log('gameMoneyUpdater', response);
+        if (user.value) {
+            user.value.gameMoney = response.newBalance;
+        }
+    });
 }
 
 async function registrationOrAuthorization() {
