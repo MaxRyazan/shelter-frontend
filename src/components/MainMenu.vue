@@ -7,7 +7,6 @@
                          @click="switchPlanetWindow"/>
             <common-icon name="planet-icon.webp"
                          @click="openSettings"/>
-            <game-money-balance />
         </div>
         <session-logs v-if="!_userSettings?.session_logs_hide_always"/>
     </div>
@@ -18,7 +17,6 @@ import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import SessionLogs from "@/__elements/session-logs/SessionLogs.vue";
 import {switchPlanetWindow} from "@/__elements/planet-window/ts/functions";
 import {_userSettings, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
-import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
@@ -31,7 +29,7 @@ function openSettings() {
 <style scoped>
 .menu {
     width: 100%;
-    padding: 0 4px;
+    padding: 0 10px;
     height: 60px;
     background: var(--menu-back);
     display: flex;
