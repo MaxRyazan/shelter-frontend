@@ -77,6 +77,7 @@ const materialsAndMetamaterials = computed(() => {
     font-family: IBM_Plex_Mono, monospace;
     margin-bottom: 4px;
 }
+
 .hide {
     display: none;
 }
