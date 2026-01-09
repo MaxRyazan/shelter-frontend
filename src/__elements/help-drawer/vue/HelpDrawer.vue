@@ -26,11 +26,24 @@ import {Dictionary} from "@/dictionaries";
 import {vOnClickOutside} from '@vueuse/components'
 import SDivider from "@/components/common/SDivider.vue";
 import SText from "@/components/common/SText.vue";
+import {onMounted, onUnmounted} from "vue";
 
 function close() {
     showHelpAbout.value = undefined
 }
 
+function keyHandle(e: KeyboardEvent) {
+    if (e.key === "Escape") {
+        showHelpAbout.value = undefined
+    }
+}
+
+onMounted(() => {
+    window.addEventListener("keydown", keyHandle);
+})
+onUnmounted(() => {
+    window.removeEventListener("keydown", keyHandle);
+})
 </script>
 <style scoped>
 .help-drawer {
