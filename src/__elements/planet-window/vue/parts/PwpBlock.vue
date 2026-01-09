@@ -13,7 +13,7 @@
             <div class="row-count">{{ row.count }} шт.</div>
             <s-text :negative="row.efficiency * 100 <= 40"
                     class="flex-align-center">
-                {{ row.efficiency * 100 }}%
+                {{ $rs(row.efficiency * 100, 0) }}%
             </s-text>
             <div class="flex-align-center">{{ dayjs(row.nextProductionTime).format('HH:mm') }}</div>
             <pwp-block-need-resources :mine="row"/>
@@ -24,7 +24,7 @@
 import dayjs from "dayjs";
 import {PlanetIndustriesDtoItem} from "@/_openapi/models";
 import PwpBlockNeedResources from "@/__elements/planet-window/vue/parts/PwpBlockNeedResources.vue";
-import {_name} from "@/helpers";
+import {$rs, _name} from "@/helpers";
 import SText from "@/components/common/SText.vue";
 
 defineProps<{

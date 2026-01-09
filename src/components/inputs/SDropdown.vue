@@ -1,5 +1,6 @@
 <template>
-    <div :class="{'dropdown__open': isOpen}"
+    <div v-on-click-outside="() => isOpen = false"
+         :class="{'dropdown__open': isOpen}"
          class="dropdown">
         <div @click="isOpen = !isOpen"
              class="dropdown__value">
@@ -25,6 +26,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {DownOutlined, UpOutlined} from "@ant-design/icons-vue";
+import {vOnClickOutside} from '@vueuse/components'
 
 const emits = defineEmits<{
     (e: 'click', p: string | number): void
