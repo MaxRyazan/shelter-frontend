@@ -1,16 +1,15 @@
 <template>
     <drag-modal class="science"
                 @close="isScienceWindowOpen = false">
-        <VueFlow v-model="allNodes"
+        <VueFlow v-model="allNodes as any"
                  :pan-on-drag="true"
                  :nodes-draggable="false"
                  style="width: 100%; height: 100%"/>
     </drag-modal>
 
 </template>
-
-<script setup>
-import {onMounted, onUnmounted, ref} from 'vue'
+<script setup lang="ts">
+import {CSSProperties, onMounted, onUnmounted, ref} from 'vue'
 import {useVueFlow, VueFlow} from '@vue-flow/core'
 import DragModal from "@/components/modals/DragModal.vue";
 import {isScienceWindowOpen} from "@/__elements/settings-window/ts/index.js";
@@ -44,7 +43,7 @@ const nodeStyles = {
     padding: '4px',
     textAlign: 'center',
     hyphens: 'auto'
-}
+} as CSSProperties
 
 const distanceX = 120;
 const startY = 20;
