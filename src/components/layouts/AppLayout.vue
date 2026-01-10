@@ -147,7 +147,7 @@ onMounted(async () => {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     @media screen and (max-width: 600px) {
         flex-direction: row;
         flex-wrap: nowrap;

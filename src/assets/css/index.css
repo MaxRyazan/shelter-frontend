@@ -24,6 +24,7 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     position: fixed; /* Оставляем только здесь */
     top: 0;
