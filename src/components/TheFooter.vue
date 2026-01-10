@@ -21,7 +21,7 @@ import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        z-index: 9999 !important;
+        z-index: 20 !important;
         padding-left: 60px;
     }
 }
