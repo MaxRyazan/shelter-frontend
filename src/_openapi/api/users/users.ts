@@ -12,8 +12,8 @@ import type {
   GetApiUserGetAllSettings200Three,
   GetApiUserGetAllSettings200Two,
   GetPlanetResponseDto,
-  RemoveFromShareDto,
-  SharedResourcesResponseDto,
+  PlanetStorageDto,
+  RemoveFromPlanetStoreDto,
   UserSettings
 } from '../../models';
 
@@ -40,7 +40,7 @@ export const postApiUserCreate = (
 export const getApiUserGetSharedItemsUserId = (
     userId: number,
  ) => {
-      return useFetchMutator<SharedResourcesResponseDto>(
+      return useFetchMutator<PlanetStorageDto>(
       {url: `/api/user/get-shared-items/${userId}`, method: 'GET'
     },
       );
@@ -49,12 +49,12 @@ export const getApiUserGetSharedItemsUserId = (
  * @summary Удаление из общего хранилища пользователя
  */
 export const postApiUserRemoveSharedItem = (
-    removeFromShareDto: RemoveFromShareDto,
+    removeFromPlanetStoreDto: RemoveFromPlanetStoreDto,
  ) => {
       return useFetchMutator<void>(
       {url: `/api/user/remove-shared-item`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: removeFromShareDto
+      data: removeFromPlanetStoreDto
     },
       );
     }

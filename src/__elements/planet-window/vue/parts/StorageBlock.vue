@@ -4,6 +4,7 @@
         <div v-else class="block__list">
             <storage-block-item
                 :type="type"
+                :shared="shared"
                 v-for="(item, idx) in list"
                 :idx="toNum(idxStartsFrom) + idx"
                 :key="item.type!"
@@ -22,6 +23,7 @@ defineProps<{
     type: StorageTypes
     list: StorageItemDto[] | undefined | null
     idxStartsFrom?: number
+    shared?: boolean
 }>()
 </script>
 <style scoped>

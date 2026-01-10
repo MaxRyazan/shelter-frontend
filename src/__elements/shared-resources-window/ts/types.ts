@@ -34,14 +34,3 @@ export interface Components {
     Computers: { Amount: number, TotalVolume: number }
 }
 
-export interface SharedResources {
-    UserId: number | undefined
-    CurrentStorage: number,
-    IsOverflow: boolean,
-    MaxStorage: number,
-    StorageUsagePercent: number,
-    Resources: Resources,
-    Materials: Materials,
-    MetaMaterials: MetaMaterials,
-    Components: Components
-}

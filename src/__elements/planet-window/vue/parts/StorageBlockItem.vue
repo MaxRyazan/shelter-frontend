@@ -36,31 +36,50 @@ import SInput from "@/components/inputs/SInput.vue";
 import {ref} from "vue";
 import {Toast} from "@/__elements/toast/SToast";
 import {user} from "@/__stores/user-store";
+import {postApiUserRemoveSharedItem} from "@/_openapi/api/users/users";
+import {sharedItems} from "@/__elements/shared-resources-window/ts";
 
 const props = defineProps<{
     item: StorageItemDto
     type: StorageTypes
     idx: number
+    shared?: boolean
 }>()
 
 const count = ref()
 const {execute, error} = useApiLazy<GetPlanetResponseDto>()
+const {execute: shared} = useApiLazy<void>()
 
 async function removeItem() {
     if (!count.value) {
         Toast.info(`Сколько удалять ${Dictionary.get(props.item.type!)} ?`)
         return
     }
-    const response = await execute(postApiPlanetRemoveFromStorage, {
-        userId: user.value?.id,
-        planetId: currentPlanet.value?.id,
-        gameItemType: props.item.type,
-        amount: count.value
-    })
-    if (response) {
-        currentPlanet.value = response
-    } else if (error.value) {
-        Toast.error(error.value.detail)
+    if(props.shared) {
+        const response = await shared(postApiUserRemoveSharedItem, {
+            userId: user.value?.id,
+            planetId: currentPlanet.value?.id,
+            gameItemType: props.item.type,
+            amount: count.value
+        })
+        if (response) {
+            sharedItems.value = response
+        } else if (error.value) {
+            Toast.error(error.value.detail)
+        }
+    }
+    if(!props.shared) {
+        const response = await execute(postApiPlanetRemoveFromStorage, {
+            userId: user.value?.id,
+            planetId: currentPlanet.value?.id,
+            gameItemType: props.item.type,
+            amount: count.value
+        })
+        if (response) {
+            currentPlanet.value = response
+        } else if (error.value) {
+            Toast.error(error.value.detail)
+        }
     }
 }
 </script>

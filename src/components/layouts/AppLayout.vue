@@ -38,7 +38,6 @@ import {useApiLazy} from "@/composables/useApi";
 import {type GameBuildingsResponseDto, GetPlanetResponseDto, type UserSettings} from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId, getApiUserGetUserSettingsUserId} from "@/_openapi/api/users/users";
 import {user} from "@/__stores/user-store";
-import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
 import SharedWindow from "@/__elements/shared-resources-window/vue/SharedWindow.vue";
 import {authentication} from "@/__elements/authorization/ts";
 import {useRouter} from "vue-router";
@@ -64,12 +63,6 @@ function sse() {
     resourceSSE.onopen = function () {
         console.log('SSE подключение успешно для пользователя с айди=', userId);
     };
-
-    resourceSSE.addEventListener('resourcesUpdate', (event) => {
-        const eventData = JSON.parse(event.data);
-        SharedResourcesStore.value = eventData;
-        console.log('shared resources sse ', eventData);
-    });
 
     resourceSSE.addEventListener('buildingQueueUpdate', (event) => {
         const response = JSON.parse(event.data);
