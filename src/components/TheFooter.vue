@@ -1,11 +1,11 @@
 <template>
-<div class="footer">
-    <game-money-balance />
-</div>
+    <div class="footer">
+        <game-money-balance/>
+    </div>
 </template>
 <script setup lang="ts">
-
 import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
+
 </script>
 <style scoped>
 .footer {
@@ -16,15 +16,13 @@ import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
     display: flex;
     margin-top: auto;
     align-items: center;
-    /* Просто фиксируем внизу на мобилках */
+
     @media screen and (max-width: 600px) {
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
         z-index: 9999 !important;
-        background: red !important; /* Для теста - убери потом */
-        border-top: 3px solid yellow !important;
     }
 }
 </style>
