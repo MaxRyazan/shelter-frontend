@@ -7,6 +7,9 @@
                          @click="switchPlanetWindow"/>
             <common-icon name="planet-icon.webp"
                          @click="openSettings"/>
+            <div @click="openScience" class="science">
+                <span>🧪</span>
+            </div>
         </div>
         <session-logs v-if="!_userSettings?.session_logs_hide_always"/>
     </div>
@@ -16,7 +19,7 @@ import CommonIcon from "@/components/icons/CommonIcon.vue";
 import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import SessionLogs from "@/__elements/session-logs/SessionLogs.vue";
 import {switchPlanetWindow} from "@/__elements/planet-window/ts/functions";
-import {_userSettings, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
+import {_userSettings, isScienceWindowOpen, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value
@@ -24,6 +27,10 @@ function switchSharedResources() {
 
 function openSettings() {
     isSettingsWindowOpen.value = !isSettingsWindowOpen.value
+}
+
+function openScience() {
+    isScienceWindowOpen.value = !isScienceWindowOpen.value
 }
 </script>
 <style scoped>
@@ -56,5 +63,16 @@ function openSettings() {
         align-items: center;
         height: auto;
     }
+}
+
+.science {
+    border: 1px solid rgb(68, 147, 248);
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 </style>

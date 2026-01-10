@@ -1,6 +1,7 @@
 @import "var.css";
 @import "transitions.css";
 @import "special.css";
+@import '@vue-flow/core/dist/style.css';
 
 * {
     padding: 0;

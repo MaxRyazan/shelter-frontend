@@ -22,6 +22,11 @@
                 v-if="planetWindowsInstances.instanceTwoOpen"/>
         </transition>
         <transition name="base" mode="out-in">
+            <science-window
+                :instance="2"
+                v-if="isScienceWindowOpen"/>
+        </transition>
+        <transition name="base" mode="out-in">
             <settings-window v-if="isSettingsWindowOpen"/>
         </transition>
     </div>
@@ -45,8 +50,9 @@ import {_GameBuildings} from "@/__global";
 import {getApiPlanetGetAllBuildingsInfo} from "@/_openapi/api/planet/planet";
 import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import SettingsWindow from "@/__elements/settings-window/vue/SettingsWindow.vue";
-import {_userSettings, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
+import {_userSettings, isScienceWindowOpen, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 import HelpDrawer from "@/__elements/help-drawer/vue/HelpDrawer.vue";
+import ScienceWindow from "@/__elements/technology/ScienceWindow.vue";
 
 const {execute: getSettings} = useApiLazy<UserSettings[]>();
 const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
