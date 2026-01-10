@@ -11,7 +11,6 @@ import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
 .footer {
     width: 100%;
     padding: 4px 10px;
-    background-color: var(--footer-back);
     height: 60px;
     display: flex;
     margin-top: auto;
@@ -23,6 +22,7 @@ import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
         left: 0 !important;
         right: 0 !important;
         z-index: 9999 !important;
+        padding-left: 60px;
     }
 }
 </style>
