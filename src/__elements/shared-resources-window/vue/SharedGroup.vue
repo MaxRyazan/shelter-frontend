@@ -134,7 +134,6 @@ watch(() => props.entity, () => {
 </script>
 <style scoped>
 .group {
-    margin-bottom: 10px;
 }
 
 .group__line-container {

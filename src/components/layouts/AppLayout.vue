@@ -1,13 +1,15 @@
 <template>
     <div class="wrapper">
         <main-menu/>
-        <the-content/>
-        <the-footer/>
+        <div class="sub-wrapper">
+            <the-content/>
+            <the-footer/>
+        </div>
         <transition name="help">
             <help-drawer/>
         </transition>
         <transition name="base" mode="out-in">
-            <shared-resources-window v-if="isSharedResourcesWindowOpen"/>
+            <shared-window v-if="isSharedResourcesWindowOpen"/>
         </transition>
         <transition name="base" mode="out-in">
             <planet-window
@@ -37,7 +39,7 @@ import {type GameBuildingsResponseDto, GetPlanetResponseDto, type UserSettings} 
 import {getApiUserGetPlanetsUserId, getApiUserGetUserSettingsUserId} from "@/_openapi/api/users/users";
 import {user} from "@/__stores/user-store";
 import {SharedResourcesStore} from "@/__elements/shared-resources-window/ts";
-import SharedResourcesWindow from "@/__elements/shared-resources-window/vue/SharedResourcesWindow.vue";
+import SharedWindow from "@/__elements/shared-resources-window/vue/SharedWindow.vue";
 import {authentication} from "@/__elements/authorization/ts";
 import {useRouter} from "vue-router";
 import {_GameBuildings} from "@/__global";
@@ -151,8 +153,14 @@ onMounted(async () => {
     @media screen and (max-width: 600px) {
         flex-direction: row;
         flex-wrap: nowrap;
-        padding-bottom: 22px;
     }
+}
+
+.sub-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .help-enter-from, .help-leave-to {

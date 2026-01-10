@@ -54,6 +54,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
     max-width: 130px;
+    height: 30px;
 }
 
 .cr-balance__money {

@@ -88,9 +88,6 @@ onMounted(async () => {
     }
 }
 
-:deep(.dragmodal__inner-header) {
-    background: #0d1117 !important;
-}
 
 .planet-window__refresh {
     position: absolute;

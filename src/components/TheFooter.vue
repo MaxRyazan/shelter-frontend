@@ -1,7 +1,6 @@
 <template>
 <div class="footer">
     <game-money-balance />
-
 </div>
 </template>
 <script setup lang="ts">
@@ -14,9 +13,8 @@ import GameMoneyBalance from "@/components/GameMoneyBalance.vue";
     padding: 4px 10px;
     background-color: var(--footer-back);
     height: 60px;
-    position: absolute;
-    bottom: 0;
     display: flex;
+    margin-top: auto;
     align-items: center;
 }
 </style>

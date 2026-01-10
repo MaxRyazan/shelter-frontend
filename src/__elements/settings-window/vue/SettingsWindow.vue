@@ -4,6 +4,7 @@
         <template #header>
             <s-text semi-bold>Настройки</s-text>
         </template>
+        <s-divider />
         <div class="settings-window__list">
             <single-setting v-for="[key, value] of settings"
                             @handle-change-setting="(newVal: boolean) => handleChangeSettings(key, newVal)"
@@ -23,6 +24,7 @@ import SingleSetting from "@/__elements/settings-window/vue/SingleSetting.vue";
 import SText from "@/components/common/SText.vue";
 import type {UserSettings} from "@/_openapi/models";
 import {user} from "@/__stores/user-store";
+import SDivider from "@/components/common/SDivider.vue";
 
 const {execute} = useApiLazy<{ [key: string]: string }>()
 const {execute: changeUserSetting} = useApiLazy<UserSettings>()
@@ -50,10 +52,10 @@ onMounted(async () => {
 </script>
 <style scoped>
 .settings-window {
-    padding: 10px;
+    background: #0d1117 !important;
 }
-
 .settings-window__list {
+    padding: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;

@@ -3,7 +3,7 @@
          @click.stop="bringToFront"
          :style="computedStyle"
          style="position: fixed">
-        <div ref="el" class="dragmodal__inner dragmodal__inner-header">
+        <div ref="el" class="dragmodal__inner dragmodal__inner-header back-gradient">
             <slot name="header"></slot>
             <div @click="emits('close')" class="dragmodal__inner-cross-wrapper">
                 <div class="dragmodal__inner-cross">+</div>
@@ -85,7 +85,6 @@ onUnmounted(() => {
 }
 
 .dragmodal__inner-header {
-    background: var(--prime-back-reverse);
     height: 40px;
     min-height: 40px;
     flex-grow: 0;
