@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "incremental": false,
+    "tsBuildInfoFile": null,
     "target": "ES2020",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
