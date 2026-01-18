@@ -51,7 +51,7 @@ export const getApiUserGetSharedItemsUserId = (
 export const postApiUserRemoveSharedItem = (
     removeFromPlanetStoreDto: RemoveFromPlanetStoreDto,
  ) => {
-      return useFetchMutator<void>(
+      return useFetchMutator<PlanetStorageDto>(
       {url: `/api/user/remove-shared-item`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: removeFromPlanetStoreDto

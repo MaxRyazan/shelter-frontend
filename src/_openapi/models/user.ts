@@ -5,6 +5,8 @@
  * OpenAPI spec version: v1
  */
 import type { Planet } from './planet';
+import type { UserTechnology } from './userTechnology';
+import type { TechnologyQueue } from './technologyQueue';
 import type { PlayerResource } from './playerResource';
 
 export interface User {
@@ -69,6 +71,10 @@ export interface User {
   isAdmin?: boolean;
   /** Whether user has moderator privileges */
   isModerator?: boolean;
+  /** @nullable */
+  technologies?: UserTechnology[] | null;
+  /** @nullable */
+  technologyQueue?: TechnologyQueue[] | null;
   /** Date and time of user's last activity */
   readonly lastActivityTime?: string;
   /**
