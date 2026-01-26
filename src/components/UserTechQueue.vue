@@ -10,6 +10,7 @@
         </div>
         <div class="tech-queue__faster-tech-percent">{{ fasterTech.readyPercent }}%</div>
     </div>
+    <div v-else class="tech-queue tech-queue__empty">Нет исследований</div>
 </template>
 <script setup lang="ts">
 import {userTechQueue} from "@/__stores/user-store";
@@ -54,6 +55,15 @@ watch(userTechQueue, () => {
     user-select: none;
     justify-content: space-between;
     font-family: IBM_Plex_Mono, monospace;
+}
+.tech-queue__empty {
+    color: var(--accent-light);
+    padding: 4px 10px;
+    height: 30px;
+    font-family: "PT Mono", sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 
 .tech-queue__progress {

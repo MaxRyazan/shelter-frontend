@@ -59,7 +59,7 @@ onUnmounted(() => {
     max-height: 80%;
     display: flex;
     flex-direction: column;
-    background-color: #191919
+    background-color: rgb(13, 17, 23)
 }
 
 .help-drawer__header {
