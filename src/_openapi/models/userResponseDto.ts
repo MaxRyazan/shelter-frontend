@@ -20,6 +20,7 @@ export interface UserResponseDto {
   /** @nullable */
   fleetsIds?: number[] | null;
   money?: number;
+  sciencePower?: number;
   gameMoney?: number;
   subscriptionActive?: boolean;
   isAdmin?: boolean;

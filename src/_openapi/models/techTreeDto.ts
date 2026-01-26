@@ -4,12 +4,12 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
-import type { TechNode } from './techNode';
+import type { TechTreeClasses } from './techTreeClasses';
 import type { TechEdge } from './techEdge';
 
 export interface TechTreeDto {
   /** @nullable */
-  nodes: TechNode[] | null;
+  nodes: TechTreeClasses[] | null;
   /** @nullable */
   edges: TechEdge[] | null;
 }

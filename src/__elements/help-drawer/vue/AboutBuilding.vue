@@ -1,5 +1,5 @@
 <template>
-    <div class="params__wrapper">
+    <div v-if="building" class="params__wrapper">
         <div class="params__interactive">
             <s-text style="text-wrap: nowrap">Посчитать для</s-text>
             <div style="display: flex; gap: 6px">
@@ -109,7 +109,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import {GameBuildings} from "@/_openapi/models";
 import SText from "@/components/common/SText.vue";
 import {
     Dictionary,
@@ -121,11 +120,10 @@ import {
 import SInput from "@/components/inputs/SInput.vue";
 import {ref} from "vue";
 import {$rs} from "@/helpers";
+import {showHelpAbout} from "@/__elements/help-drawer/ts";
+import {GameBuildings} from "@/_openapi/models";
 
-defineProps<{
-    building: GameBuildings
-}>()
-
+const building = ref(showHelpAbout.value?.subject as GameBuildings)
 const count = ref(1)
 </script>
 <style scoped>

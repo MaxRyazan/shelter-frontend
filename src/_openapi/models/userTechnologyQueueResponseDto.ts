@@ -5,25 +5,19 @@
  * OpenAPI spec version: v1
  */
 
-export interface TechnologyQueue {
+export interface UserTechnologyQueueResponseDto {
   id?: number;
   userId?: number;
   techInnerId?: number;
+  /** @nullable */
+  techName: string | null;
   targetLevel?: number;
+  efficiency?: number;
+  scienceInvested?: number;
+  needScience?: number;
+  readyPercent: number;
   startedAt?: string;
   readyAt?: string;
-  /**
-   * @minimum 0
-   * @maximum 1
-   */
-  efficiency?: number;
-  /**
-   * @maxLength 50
-   * @nullable
-   */
+  /** @nullable */
   status?: string | null;
-  sciencePowerSnapshot?: number;
-  needScience?: number;
-  scienceInvested?: number;
-  lastUpdatedAt?: string;
 }

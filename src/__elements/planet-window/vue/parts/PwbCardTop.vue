@@ -51,7 +51,11 @@ const {execute, error} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
 
 function showHelp() {
-    showHelpAbout.value = {type: 'building', subject: props.building}
+    showHelpAbout.value = {
+        type: 'building',
+        subject: props.building,
+        title: Dictionary.get(props.building.buildingType)
+    }
 }
 
 async function changeEfficiency(arg: string | number) {

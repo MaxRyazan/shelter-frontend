@@ -1,9 +1,10 @@
 import {ref} from "vue";
-import {GameBuildings} from "@/_openapi/models";
+import {GameBuildings, type UserTechnologyQueueResponseDto} from "@/_openapi/models";
 
 export interface Help {
-    type: 'building' | undefined,
-    subject: GameBuildings | undefined
+    type: 'building' | 'tech-in-queue' | undefined,
+    subject: GameBuildings | UserTechnologyQueueResponseDto[] | undefined
+    title: string | undefined
 }
 
 export const showHelpAbout = ref<Help | undefined>()

@@ -14,6 +14,7 @@
     --divider: rgba(255, 255, 255, .6);
     --accent: rgb(68, 147, 248);
     --accent-light: rgb(68, 147, 248);
+    --accent-light03: rgba(68, 147, 248, .3);
     --resources: rgba(205, 133, 63);
     --materials: rgba(70, 130, 180);
     --metamaterials: rgba(147, 112, 219);

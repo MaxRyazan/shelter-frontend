@@ -12,6 +12,7 @@ import type {
   GetApiUserGetAllSettings200Three,
   GetApiUserGetAllSettings200Two,
   GetPlanetResponseDto,
+  GetUserBonusDto,
   PlanetStorageDto,
   RemoveFromPlanetStoreDto,
   UserSettings
@@ -31,6 +32,17 @@ export const postApiUserCreate = (
       {url: `/api/user/create`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createUserRequestDto
+    },
+      );
+    }
+  /**
+ * @summary Получение технологических бонусов пользователя
+ */
+export const getApiUserGetUserTechBonusesUserId = (
+    userId: number,
+ ) => {
+      return useFetchMutator<GetUserBonusDto>(
+      {url: `/api/user/get-user-tech-bonuses/${userId}`, method: 'GET'
     },
       );
     }
@@ -105,6 +117,7 @@ export const postApiUserChangeUserSettings = (
       );
     }
   export type PostApiUserCreateResult = NonNullable<Awaited<ReturnType<typeof postApiUserCreate>>>
+export type GetApiUserGetUserTechBonusesUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetUserTechBonusesUserId>>>
 export type GetApiUserGetSharedItemsUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetSharedItemsUserId>>>
 export type PostApiUserRemoveSharedItemResult = NonNullable<Awaited<ReturnType<typeof postApiUserRemoveSharedItem>>>
 export type GetApiUserGetPlanetsUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserGetPlanetsUserId>>>

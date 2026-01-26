@@ -24,6 +24,7 @@ export interface GameBuildings {
   needEnergy: number;
   /** Energy produced per hour */
   produceEnergy: number;
+  sciencePowerBonus: number;
   foodProducePerDay: number;
   citizensBonus: number;
   birthRateBonus: number;

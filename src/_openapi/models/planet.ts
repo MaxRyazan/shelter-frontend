@@ -21,6 +21,7 @@ export interface Planet {
   energyDelta?: number;
   energyProduction?: number;
   energyConsumption?: number;
+  sciencePower?: number;
   notEnoughEnergyPercent?: number;
   maxCitizens?: number;
   currentCitizens?: number;

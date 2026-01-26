@@ -2,9 +2,9 @@
     <div v-on-click-outside="() => showHelpAbout = undefined"
          v-if="showHelpAbout && showHelpAbout.subject"
          class="help-drawer">
-        <div class="help-drawer__header">
+        <div class="help-drawer__header back-gradient">
             <s-text class="text-ellipsis">
-                {{ Dictionary.get(showHelpAbout.subject.buildingType) }}
+                {{ showHelpAbout.title }}
             </s-text>
             <div @click="close"
                  class="help-drawer__close">
@@ -13,8 +13,8 @@
         </div>
         <s-divider/>
         <div class="help-drawer__content">
-            <about-building :building="showHelpAbout.subject"
-                            v-if="showHelpAbout.subject && showHelpAbout.type === 'building'"/>
+            <about-building v-if="showHelpAbout.type === 'building'"/>
+            <about-tech-in-queue v-if="showHelpAbout.type === 'tech-in-queue'"/>
         </div>
     </div>
 </template>
@@ -22,11 +22,11 @@
 import {showHelpAbout} from "../ts";
 import {CloseOutlined} from "@ant-design/icons-vue";
 import AboutBuilding from "@/__elements/help-drawer/vue/AboutBuilding.vue";
-import {Dictionary} from "@/dictionaries";
 import {vOnClickOutside} from '@vueuse/components'
 import SDivider from "@/components/common/SDivider.vue";
 import SText from "@/components/common/SText.vue";
 import {onMounted, onUnmounted} from "vue";
+import AboutTechInQueue from "@/__elements/help-drawer/vue/AboutTechInQueue.vue";
 
 function close() {
     showHelpAbout.value = undefined
@@ -48,7 +48,6 @@ onUnmounted(() => {
 <style scoped>
 .help-drawer {
     z-index: 9999999;
-    background-color: #191919;
     position: absolute;
     right: 0;
     top: 50px;
@@ -60,6 +59,7 @@ onUnmounted(() => {
     max-height: 80%;
     display: flex;
     flex-direction: column;
+    background-color: #191919
 }
 
 .help-drawer__header {
@@ -86,5 +86,6 @@ onUnmounted(() => {
     overflow-y: auto;
     flex-grow: 1;
     padding-right: 10px;
+    background-color: var(--prime-back);
 }
 </style>

@@ -40,9 +40,14 @@ import {allPlanets, currentPlanet, planetWindowsInstances} from "@/__elements/pl
 import PlanetWindow from "@/__elements/planet-window/vue/PlanetWindow.vue";
 import {onMounted, ref} from "vue";
 import {useApiLazy} from "@/composables/useApi";
-import {type GameBuildingsResponseDto, GetPlanetResponseDto, type UserSettings} from "@/_openapi/models";
+import {
+    type GameBuildingsResponseDto,
+    GetPlanetResponseDto,
+    type UserSettings,
+    type UserTechnologyQueueResponseDto
+} from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId, getApiUserGetUserSettingsUserId} from "@/_openapi/api/users/users";
-import {user} from "@/__stores/user-store";
+import {user, userTechQueue} from "@/__stores/user-store";
 import SharedWindow from "@/__elements/shared-resources-window/vue/SharedWindow.vue";
 import {authentication} from "@/__elements/authorization/ts";
 import {useRouter} from "vue-router";
@@ -53,10 +58,12 @@ import SettingsWindow from "@/__elements/settings-window/vue/SettingsWindow.vue"
 import {_userSettings, isScienceWindowOpen, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 import HelpDrawer from "@/__elements/help-drawer/vue/HelpDrawer.vue";
 import ScienceWindow from "@/__elements/technology/ScienceWindow.vue";
+import {getApiUserTechGetTechQueueUserId} from "@/_openapi/api/user-tech/user-tech";
 
 const {execute: getSettings} = useApiLazy<UserSettings[]>();
 const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
 const {execute: fetchGameBuildings} = useApiLazy<GameBuildingsResponseDto>();
+const {execute: fetchUserTechQueue} = useApiLazy<UserTechnologyQueueResponseDto[]>();
 const router = useRouter()
 const url = ref('')
 
@@ -97,7 +104,7 @@ async function registrationOrAuthorization() {
     // TODO УДАЛИТЬ !
 
     // const nickName = `TestUser`;
-    const email = `max2.com`;
+    const email = `max22.com`;
     const password = `password11`;
     try {
         // const response = await postApiUserCreate({
@@ -139,6 +146,11 @@ onMounted(async () => {
     allPlanets.value = await fetchPlanetById(getApiUserGetPlanetsUserId, user.value?.id)
     if (allPlanets.value?.length) {
         currentPlanet.value = allPlanets.value?.find(planet => planet.isHomePlanet)
+    }
+
+    const techQueue = await fetchUserTechQueue(getApiUserTechGetTechQueueUserId, user.value?.id)
+    if(techQueue) {
+        userTechQueue.value = techQueue
     }
     sse()
 })

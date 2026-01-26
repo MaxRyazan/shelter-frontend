@@ -23,6 +23,7 @@ export interface GetPlanetResponseDto {
   hasMagneticField?: boolean;
   isHomePlanet?: boolean;
   averageTemperature?: number;
+  sciencePower?: number;
   square?: number;
   freeSquare?: number;
   gravityPower?: number;

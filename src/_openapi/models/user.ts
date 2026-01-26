@@ -7,6 +7,7 @@
 import type { Planet } from './planet';
 import type { UserTechnology } from './userTechnology';
 import type { TechnologyQueue } from './technologyQueue';
+import type { UserTechBonus } from './userTechBonus';
 import type { PlayerResource } from './playerResource';
 
 export interface User {
@@ -60,6 +61,7 @@ export interface User {
    * @maximum 999000000000
    */
   gameMoney?: number;
+  sciencePower?: number;
   /** Whether user's subscription is active */
   subscriptionActive?: boolean;
   /**
@@ -75,6 +77,8 @@ export interface User {
   technologies?: UserTechnology[] | null;
   /** @nullable */
   technologyQueue?: TechnologyQueue[] | null;
+  /** @nullable */
+  techBonuses?: UserTechBonus[] | null;
   /** Date and time of user's last activity */
   readonly lastActivityTime?: string;
   /**

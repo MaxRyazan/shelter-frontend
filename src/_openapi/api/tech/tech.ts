@@ -12,7 +12,10 @@ import { useFetchMutator } from '../../../mutator/index';
 
 
 
-  export const getApiTechGetTechTree = (
+  /**
+ * @summary Получение полного дерева технологий для отрисовки на клиенте
+ */
+export const getApiTechGetTechTree = (
     
  ) => {
       return useFetchMutator<TechTreeDto>(

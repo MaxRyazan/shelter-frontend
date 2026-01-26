@@ -4,7 +4,6 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
-import type { Galaxy } from './galaxy';
 
 export interface BlackHole {
   id?: number;
@@ -13,5 +12,4 @@ export interface BlackHole {
   horizonRadius: number;
   /** @nullable */
   galaxyId?: number | null;
-  galaxy?: Galaxy;
 }

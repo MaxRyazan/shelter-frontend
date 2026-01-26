@@ -24,7 +24,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import type {GetPlanetResponseDto, StorageItemDto} from "@/_openapi/models";
+import type {GetPlanetResponseDto, PlanetStorageDto, StorageItemDto} from "@/_openapi/models";
 import {StorageTypes} from "@/__elements/planet-window/ts/enums";
 import RedCross from "@/components/icons/RedCross.vue";
 import {Dictionary} from "@/dictionaries";
@@ -48,7 +48,7 @@ const props = defineProps<{
 
 const count = ref()
 const {execute, error} = useApiLazy<GetPlanetResponseDto>()
-const {execute: shared} = useApiLazy<void>()
+const {execute: shared} = useApiLazy<PlanetStorageDto>()
 
 async function removeItem() {
     if (!count.value) {
