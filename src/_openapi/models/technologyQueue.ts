@@ -10,6 +10,7 @@ export interface TechnologyQueue {
   userId?: number;
   techInnerId?: number;
   targetLevel?: number;
+  currentLevel?: number;
   startedAt?: string;
   readyAt?: string;
   /**

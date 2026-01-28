@@ -8,8 +8,8 @@
             <s-text>{{tech.techName}}</s-text>
         </div>
         <div class="flexbox">
-            <s-text shadow>Исследуемый уровень</s-text>
-            <s-text>{{tech.targetLevel}}</s-text>
+            <s-text shadow>Уровень технологии</s-text>
+            <s-text>{{tech.currentLevel}} -> {{tech.targetLevel}}</s-text>
         </div>
         <div class="flexbox">
             <s-text shadow>Исследовано</s-text>
@@ -29,8 +29,15 @@
             <s-text shadow>Будет готово</s-text>
             <s-text>{{dayjs(tech.readyAt).format('DD.MM.YY HH:mm')}}</s-text>
         </div>
+        <div class="flexbox" style="flex-direction: column; margin-top: 20px; gap: 0">
+            <s-text shadow>Текущие бонусы</s-text>
+            <s-text class="flexbox" v-for="bonus in tech.bonuses">
+                <div class="text-ellipsis">{{bonus.description}}</div>
+                <div>{{bonus.valuePerLevel * (tech.currentLevel ?? 0)}}%</div>
+            </s-text>
+        </div>
         <div v-if="tech.bonuses?.length"
-             class="flexbox" style="flex-direction: column; margin-top: 20px;">
+             class="flexbox" style="flex-direction: column; margin-top: 20px; gap: 0">
             <s-text shadow>Бонусы за каждый уровень</s-text>
             <s-text class="flexbox" v-for="bonus in tech.bonuses">
                 <div class="text-ellipsis">{{bonus.description}}</div>

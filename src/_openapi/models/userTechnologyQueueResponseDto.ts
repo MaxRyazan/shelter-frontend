@@ -13,6 +13,7 @@ export interface UserTechnologyQueueResponseDto {
   /** @nullable */
   techName: string | null;
   targetLevel?: number;
+  currentLevel?: number;
   efficiency?: number;
   scienceInvested?: number;
   needScience?: number;
