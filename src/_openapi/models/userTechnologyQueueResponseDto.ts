@@ -4,6 +4,7 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
+import type { TechnologyBonus } from './technologyBonus';
 
 export interface UserTechnologyQueueResponseDto {
   id?: number;
@@ -20,4 +21,6 @@ export interface UserTechnologyQueueResponseDto {
   readyAt?: string;
   /** @nullable */
   status?: string | null;
+  /** @nullable */
+  bonuses?: TechnologyBonus[] | null;
 }

@@ -98,6 +98,12 @@ function sse() {
             user.value.gameMoney = response.newBalance;
         }
     });
+
+    resourceSSE.addEventListener('research_progress', (event) => {
+        const response = JSON.parse(event.data);
+        console.log('research_progress', response);
+        userTechQueue.value = response
+    });
 }
 
 async function registrationOrAuthorization() {
