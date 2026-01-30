@@ -72,6 +72,8 @@ function createNodes(dto: TechTreeDto) {
 
 function createEdges(dto: TechTreeDto) {
     edges.value = dto.edges?.map(edge => {
+    console.log(edge.source)
+    console.log()
         return {
             id: edge.id,
             source: edge.source,
