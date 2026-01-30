@@ -105,6 +105,15 @@ function sse() {
         console.log('research_progress', response);
         userTechQueue.value = response
     });
+
+    resourceSSE.addEventListener('technology_complete_operation', async (event) => {
+        const response = JSON.parse(event.data);
+        console.log('technology_complete_operation', response);
+        const teches = await fetchUserTechnologies(getApiUserTechGetUserTeches)
+        if (teches) {
+            allUserTechnologies.value = teches
+        }
+    });
 }
 
 async function registrationOrAuthorization() {
