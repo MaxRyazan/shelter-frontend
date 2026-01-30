@@ -1,11 +1,16 @@
 <template>
     <drag-modal class="science"
                 @close="isScienceWindowOpen = false">
+        <template #header>
+            <s-text :size="16" style="font-family: 'PT Mono', sans-serif;">Древо технологий</s-text>
+        </template>
+        <s-divider/>
         <VueFlow v-model="nodesPlusEdges"
                  :pan-on-drag="true"
                  :nodes-draggable="false"
                  @node-click="onNodeClick"
-                 style="width: 100%; height: 100%"/>
+                 style="width: 100%; height: 100%">
+        </VueFlow>
     </drag-modal>
 </template>
 <script setup lang="ts">
@@ -20,6 +25,8 @@ import {getApiTechGetTechTree, getApiTechTechInnerId} from "@/_openapi/api/tech/
 import {nodeStyles} from "@/__elements/technology/nodes";
 import {showHelpAbout, treeTechForObserve} from "@/__elements/help-drawer/ts";
 import {allUserTechnologies} from "@/__stores/user-store";
+import SText from "@/components/common/SText.vue";
+import SDivider from "@/components/common/SDivider.vue";
 
 const {setViewport} = useVueFlow()
 const timer = ref()
@@ -68,8 +75,9 @@ function createNodes(dto: TechTreeDto) {
             targetPosition: 'left',
             style: {
                 ...nodeStyles.value,
-                background: allUserTechnologies.value.some(tech => tech.technology.innerId === node.innerId)  ?
-                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'darkgray'
+                background: allUserTechnologies.value.some(tech => tech.technology.innerId === node.innerId) ?
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'darkgray',
+
             }
         }
     })
