@@ -2,12 +2,16 @@
     <div class="tech">
         <div v-if="showHelpAbout?.subject"
              class="tech-info">
-            <!--        {{ tech }}-->
-            <div class="tech-info__required">
-                <s-text shadow>Требует исследования</s-text>
-                <div v-for="required in tech.requiredTeches" :key="tech.innerId">
-                    <div>{{ required.technology.name }}</div>
+            <div class="flexbox">
+                <s-text shadow>Текущий уровень</s-text>
+                <div class="tech-info__description">
+                    {{ isTechAlreadyBeenLearned ? [tech.currentLearnedLevel] : "[ не изучено ]" }}
                 </div>
+            </div>
+            <div v-if="tech.maxAvailableLevelToLearn >=0"
+                 class="flexbox">
+                <s-text shadow>Доступный уровень</s-text>
+                <div class="tech-info__description">[ {{ tech.maxAvailableLevelToLearn }} ]</div>
             </div>
             <div>
                 <s-text shadow>Описание технологии</s-text>
@@ -20,7 +24,8 @@
                     <div>{{ bonus.valuePerLevel }}%</div>
                 </s-text>
             </div>
-            <div class="tech-info__actions">
+            <div v-if="!isTechAlreadyInQueue && isTechAvailableToLearn"
+                 class="tech-info__actions">
                 <s-input white
                          class="tech-info__input"
                          type="number"
@@ -32,13 +37,26 @@
                     Исследовать
                 </s-button>
             </div>
+            <div style="margin-top: 20px;" v-else-if="isTechAlreadyInQueue">
+                <s-text shadow>Сейчас исследуется</s-text>
+                <user-tech-queue-component style="width: 100%; margin-top: 4px;"
+                                           :watched-tech-inner-id="tech.innerId"/>
+            </div>
+            <div v-else-if="!isTechAvailableToLearn">
+                <s-text shadow>Требуются исследования</s-text>
+                <div style="text-align: end"
+                     v-for="required in tech.requiredTeches"
+                     :key="tech.innerId">
+                    <s-text>{{ required.technology.name }} [ {{ required.techLevel }} ]</s-text>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
 import {showHelpAbout} from "@/__elements/help-drawer/ts";
-import {ref} from "vue";
-import {Technology, type UserTechnologyQueueResponseDto} from "@/_openapi/models";
+import {computed, ref} from "vue";
+import {type GetTechInfoForUserDto, type UserTechnologyQueueResponseDto} from "@/_openapi/models";
 import SText from "@/components/common/SText.vue";
 import SButton from "@/components/buttons/SButton.vue";
 import SInput from "@/components/inputs/SInput.vue";
@@ -46,10 +64,14 @@ import {Toast} from "@/__elements/toast/SToast";
 import {useApiLazy} from "@/composables/useApi";
 import {postApiUserTechAddToQueue} from "@/_openapi/api/user-tech/user-tech";
 import {user, userTechQueue} from "@/__stores/user-store";
+import UserTechQueueComponent from "@/components/UserTechQueueComponent.vue";
 
 
 const {execute: addTechToQueueForResearch} = useApiLazy<UserTechnologyQueueResponseDto[]>();
-const tech = ref(showHelpAbout.value?.subject as Technology)
+const isTechAlreadyInQueue = computed(() => userTechQueue.value.some(ut => ut.techInnerId === tech.value.innerId));
+const isTechAvailableToLearn = computed(() => tech.value.maxAvailableLevelToLearn !== -100);
+const isTechAlreadyBeenLearned = computed(() => tech.value.currentLearnedLevel !== -1);
+const tech = ref(showHelpAbout.value?.subject as GetTechInfoForUserDto)
 const targetLevel = ref()
 
 

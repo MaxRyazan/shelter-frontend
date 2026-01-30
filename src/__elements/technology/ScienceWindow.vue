@@ -15,7 +15,7 @@ import DragModal from "@/components/modals/DragModal.vue";
 import {isScienceWindowOpen} from "@/__elements/settings-window/ts/index.js";
 import type {GraphNode, MouseTouchEvent} from "@vue-flow/core";
 import {useApiLazy} from "@/composables/useApi";
-import type {Technology, TechTreeDto} from "@/_openapi/models";
+import type {GetTechInfoForUserDto, TechTreeDto} from "@/_openapi/models";
 import {getApiTechGetTechTree, getApiTechTechInnerId} from "@/_openapi/api/tech/tech";
 import {nodeStyles} from "@/__elements/technology/nodes";
 import {showHelpAbout, treeTechForObserve} from "@/__elements/help-drawer/ts";
@@ -24,7 +24,7 @@ const {setViewport} = useVueFlow()
 const timer = ref()
 
 const {execute} = useApiLazy<TechTreeDto>()
-const {execute: getTechByInnerId} = useApiLazy<Technology>()
+const {execute: getTechByInnerId} = useApiLazy<GetTechInfoForUserDto>()
 
 async function onNodeClick(event: { event: MouseTouchEvent, node: GraphNode }) {
     const data = event.node.data;

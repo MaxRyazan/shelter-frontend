@@ -19,6 +19,10 @@ import {ref, watch} from "vue";
 import type {UserTechnologyQueueResponseDto} from "@/_openapi/models";
 import {showHelpAbout} from "@/__elements/help-drawer/ts";
 
+const props = defineProps<{
+    watchedTechInnerId?: number
+}>()
+
 const fasterTech = ref<UserTechnologyQueueResponseDto | undefined>()
 
 function showHelp() {
@@ -30,6 +34,12 @@ function showHelp() {
 }
 
 watch(userTechQueue, () => {
+    if (props.watchedTechInnerId) {
+        fasterTech.value = userTechQueue.value.find(tech => tech.techInnerId === props.watchedTechInnerId);
+        return
+    }
+
+
     if (userTechQueue.value.length > 0) {
         let earlier = userTechQueue.value[0];
         for (let tech of userTechQueue.value) {
@@ -56,6 +66,7 @@ watch(userTechQueue, () => {
     justify-content: space-between;
     font-family: IBM_Plex_Mono, monospace;
 }
+
 .tech-queue__empty {
     color: var(--accent-light);
     padding: 4px 10px;

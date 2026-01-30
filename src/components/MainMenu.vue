@@ -10,7 +10,7 @@
             <div @click="openScience" class="science">
                 <span>🧪</span>
             </div>
-            <user-tech-queue />
+            <user-tech-queue-component />
         </div>
         <session-logs v-if="!_userSettings?.session_logs_hide_always"/>
     </div>
@@ -21,7 +21,7 @@ import {isSharedResourcesWindowOpen} from "@/__stores/shared-resources-store";
 import SessionLogs from "@/__elements/session-logs/SessionLogs.vue";
 import {switchPlanetWindow} from "@/__elements/planet-window/ts/functions";
 import {_userSettings, isScienceWindowOpen, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
-import UserTechQueue from "@/components/UserTechQueue.vue";
+import UserTechQueueComponent from "@/components/UserTechQueueComponent.vue";
 
 function switchSharedResources() {
     isSharedResourcesWindowOpen.value = !isSharedResourcesWindowOpen.value

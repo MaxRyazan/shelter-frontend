@@ -5,8 +5,8 @@
  * OpenAPI spec version: v1
  */
 import type {
-  TechTreeDto,
-  Technology
+  GetTechInfoForUserDto,
+  TechTreeDto
 } from '../../models';
 
 import { useFetchMutator } from '../../../mutator/index';
@@ -30,7 +30,7 @@ export const getApiTechGetTechTree = (
 export const getApiTechTechInnerId = (
     techInnerId: number,
  ) => {
-      return useFetchMutator<Technology>(
+      return useFetchMutator<GetTechInfoForUserDto>(
       {url: `/api/tech/${techInnerId}`, method: 'GET'
     },
       );

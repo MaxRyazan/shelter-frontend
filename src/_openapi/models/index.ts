@@ -31,6 +31,7 @@ export * from './getApiUserGetAllSettings200One';
 export * from './getApiUserGetAllSettings200Three';
 export * from './getApiUserGetAllSettings200Two';
 export * from './getPlanetResponseDto';
+export * from './getTechInfoForUserDto';
 export * from './getUserBonusDto';
 export * from './iBaseTechnology';
 export * from './loginUserRequestDto';
