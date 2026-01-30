@@ -50,7 +50,7 @@ async function onNodeClick(event: { event: MouseTouchEvent, node: GraphNode }) {
 
 onMounted(() => {
     timer.value = setTimeout(() => {
-        setViewport({x: 0, y: 0, zoom: 0.7})
+        setViewport({x: 0, y: 0, zoom: 0.5})
     },)
 })
 onUnmounted(() => {
