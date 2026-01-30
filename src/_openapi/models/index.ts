@@ -74,6 +74,7 @@ export * from './techNode';
 export * from './techRequirementDto';
 export * from './techTreeClasses';
 export * from './techTreeDto';
+export * from './technology';
 export * from './technologyBonus';
 export * from './technologyQueue';
 export * from './user';

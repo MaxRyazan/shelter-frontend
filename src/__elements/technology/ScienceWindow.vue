@@ -7,7 +7,6 @@
                  @node-click="onNodeClick"
                  style="width: 100%; height: 100%"/>
     </drag-modal>
-
 </template>
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from 'vue'
@@ -16,16 +15,29 @@ import DragModal from "@/components/modals/DragModal.vue";
 import {isScienceWindowOpen} from "@/__elements/settings-window/ts/index.js";
 import type {GraphNode, MouseTouchEvent} from "@vue-flow/core";
 import {useApiLazy} from "@/composables/useApi";
-import type {TechTreeDto} from "@/_openapi/models";
-import {getApiTechGetTechTree} from "@/_openapi/api/tech/tech";
+import type {Technology, TechTreeDto} from "@/_openapi/models";
+import {getApiTechGetTechTree, getApiTechTechInnerId} from "@/_openapi/api/tech/tech";
 import {nodeStyles} from "@/__elements/technology/nodes";
+import {showHelpAbout, treeTechForObserve} from "@/__elements/help-drawer/ts";
 
 const {setViewport} = useVueFlow()
 const timer = ref()
-const {execute} = useApiLazy<TechTreeDto>()
 
-function onNodeClick(event: { event: MouseTouchEvent, node: GraphNode }) {
-    console.log(event)
+const {execute} = useApiLazy<TechTreeDto>()
+const {execute: getTechByInnerId} = useApiLazy<Technology>()
+
+async function onNodeClick(event: { event: MouseTouchEvent, node: GraphNode }) {
+    const data = event.node.data;
+    if (data && data.innerId) {
+        treeTechForObserve.value = await getTechByInnerId(getApiTechTechInnerId, data.innerId);
+        if (treeTechForObserve.value) {
+            showHelpAbout.value = {
+                type: 'tech-in-tree',
+                title: treeTechForObserve.value.name ?? '',
+                subject: treeTechForObserve.value,
+            }
+        }
+    }
 }
 
 onMounted(() => {

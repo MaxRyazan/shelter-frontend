@@ -15,6 +15,7 @@
         <div class="help-drawer__content">
             <about-building v-if="showHelpAbout.type === 'building'"/>
             <about-tech-in-queue v-if="showHelpAbout.type === 'tech-in-queue'"/>
+            <about-tech-in-tree v-if="showHelpAbout.type === 'tech-in-tree'"/>
         </div>
     </div>
 </template>
@@ -27,6 +28,7 @@ import SDivider from "@/components/common/SDivider.vue";
 import SText from "@/components/common/SText.vue";
 import {onMounted, onUnmounted} from "vue";
 import AboutTechInQueue from "@/__elements/help-drawer/vue/AboutTechInQueue.vue";
+import AboutTechInTree from "@/__elements/help-drawer/vue/AboutTechInTree.vue";
 
 function close() {
     showHelpAbout.value = undefined

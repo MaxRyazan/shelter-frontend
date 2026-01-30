@@ -5,7 +5,8 @@
  * OpenAPI spec version: v1
  */
 import type {
-  TechTreeDto
+  TechTreeDto,
+  Technology
 } from '../../models';
 
 import { useFetchMutator } from '../../../mutator/index';
@@ -23,4 +24,16 @@ export const getApiTechGetTechTree = (
     },
       );
     }
+  /**
+ * @summary Получение технологии по techInnerId
+ */
+export const getApiTechTechInnerId = (
+    techInnerId: number,
+ ) => {
+      return useFetchMutator<Technology>(
+      {url: `/api/tech/${techInnerId}`, method: 'GET'
+    },
+      );
+    }
   export type GetApiTechGetTechTreeResult = NonNullable<Awaited<ReturnType<typeof getApiTechGetTechTree>>>
+export type GetApiTechTechInnerIdResult = NonNullable<Awaited<ReturnType<typeof getApiTechTechInnerId>>>
