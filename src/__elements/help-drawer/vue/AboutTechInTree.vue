@@ -2,28 +2,12 @@
     <div class="tech">
         <div v-if="showHelpAbout?.subject"
              class="tech-info">
-            <div class="flexbox">
-                <s-text shadow>Текущий уровень</s-text>
-                <div class="tech-info__description">
-                    {{ isTechAlreadyBeenLearned ? [tech.currentLearnedLevel] : "[ не изучено ]" }}
-                </div>
-            </div>
-            <div v-if="tech.maxAvailableLevelToLearn >=0"
-                 class="flexbox">
-                <s-text shadow>Доступный уровень</s-text>
-                <div class="tech-info__description">[ {{ tech.maxAvailableLevelToLearn }} ]</div>
-            </div>
-            <div>
-                <s-text shadow>Описание технологии</s-text>
-                <div class="tech-info__description">{{ tech.description }}</div>
-            </div>
-            <div v-if="tech.bonuses?.length">
-                <s-text shadow>Бонусы за каждый уровень</s-text>
-                <s-text class="flexbox" v-for="bonus in tech.bonuses">
-                    <div class="text-ellipsis">{{ bonus.description }}</div>
-                    <div>{{ bonus.valuePerLevel }}%</div>
-                </s-text>
-            </div>
+            <current-level>
+                {{ isTechAlreadyBeenLearned ? [tech.currentLearnedLevel] : "[ не изучено ]" }}
+            </current-level>
+            <max-level v-if="tech.maxAvailableLevelToLearn >=0">[ {{ tech.maxAvailableLevelToLearn }} ]</max-level>
+            <tech-description>{{ tech.description }}</tech-description>
+            <tech-bonuses v-if="tech.bonuses?.length" :tech="tech"/>
             <div v-if="!isTechAlreadyInQueue && isTechAvailableToLearn"
                  class="tech-info__actions">
                 <s-input white
@@ -65,6 +49,10 @@ import {useApiLazy} from "@/composables/useApi";
 import {postApiUserTechAddToQueue} from "@/_openapi/api/user-tech/user-tech";
 import {user, userTechQueue} from "@/__stores/user-store";
 import UserTechQueueComponent from "@/components/UserTechQueueComponent.vue";
+import CurrentLevel from "@/__elements/help-drawer/vue/__parts/CurrentLevel.vue";
+import MaxLevel from "@/__elements/help-drawer/vue/__parts/MaxLevel.vue";
+import TechDescription from "@/__elements/help-drawer/vue/__parts/TechDescription.vue";
+import TechBonuses from "@/__elements/help-drawer/vue/__parts/TechBonuses.vue";
 
 
 const {execute: addTechToQueueForResearch} = useApiLazy<UserTechnologyQueueResponseDto[]>();
@@ -72,11 +60,14 @@ const isTechAlreadyInQueue = computed(() => userTechQueue.value.some(ut => ut.te
 const isTechAvailableToLearn = computed(() => tech.value.maxAvailableLevelToLearn !== -100);
 const isTechAlreadyBeenLearned = computed(() => tech.value.currentLearnedLevel !== -1);
 const tech = ref(showHelpAbout.value?.subject as GetTechInfoForUserDto)
-const targetLevel = ref()
+const targetLevel = ref(tech.value.currentLearnedLevel + 1)
 
 
 async function pushTechToQueueForResearch() {
-    if (!targetLevel.value) {
+    if (!targetLevel.value ||
+        targetLevel.value <= 0 ||
+        targetLevel.value <= tech.value.currentLearnedLevel
+    ) {
         Toast.error('Введите желаемый уровень для исследования');
         return
     }
@@ -84,7 +75,7 @@ async function pushTechToQueueForResearch() {
         userId: user.value?.id,
         techInnerId: tech.value.innerId,
         status: 'active',
-        currentTechLevel: 0,
+        currentTechLevel: tech.value.currentLearnedLevel,
         targetLevel: targetLevel.value,
     })
     if (response) {
@@ -103,11 +94,6 @@ async function pushTechToQueueForResearch() {
     gap: 10px;
     padding: 10px;
     border: 1px solid var(--prime-light03);
-}
-
-.tech-info__description {
-    max-height: 240px;
-    overflow-y: auto;
 }
 
 .tech-info__actions {
