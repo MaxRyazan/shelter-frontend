@@ -57,7 +57,7 @@ import {_SessionLogs} from "@/__elements/session-logs/session-logs";
 import SettingsWindow from "@/__elements/settings-window/vue/SettingsWindow.vue";
 import {_userSettings, isScienceWindowOpen, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 import HelpDrawer from "@/__elements/help-drawer/vue/HelpDrawer.vue";
-import ScienceWindow from "@/__elements/technology/ScienceWindow.vue";
+import ScienceWindow from "@/__elements/technology/vue/ScienceWindow.vue";
 import {getApiUserTechGetTechQueueUserId, getApiUserTechGetUserTeches} from "@/_openapi/api/user-tech/user-tech";
 
 const {execute: getSettings} = useApiLazy<UserSettings[]>();

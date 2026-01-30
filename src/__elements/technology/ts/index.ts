@@ -1,16 +1,5 @@
 import {CSSProperties, Ref, ref} from "vue";
 
-export const distanceY = 280;
-export const startY = 20;
-export const columns = {
-    col1: 20,
-    col2: 200,
-    col3: 380,
-    col4: 560,
-    col5: 740,
-}
-
-
 export const nodeStyles = ref({
     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
     width: '90px',
