@@ -1,4 +1,4 @@
-import {CSSProperties} from "vue";
+import {CSSProperties, Ref, ref} from "vue";
 
 export const distanceY = 280;
 export const startY = 20;
@@ -11,11 +11,10 @@ export const columns = {
 }
 
 
-export const nodeStyles = {
+export const nodeStyles = ref({
     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
     width: '90px',
     height: '50px',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     color: 'white',
     display: 'flex',
     alignItems: 'center',
@@ -27,5 +26,6 @@ export const nodeStyles = {
     overflowWrap: 'break-word',
     padding: '4px',
     textAlign: 'center',
-    hyphens: 'auto'
-} as CSSProperties
+    hyphens: 'auto',
+    cursor: 'pointer',
+}) as Ref<CSSProperties>

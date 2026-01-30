@@ -43,11 +43,11 @@ import {useApiLazy} from "@/composables/useApi";
 import {
     type GameBuildingsResponseDto,
     GetPlanetResponseDto,
-    type UserSettings,
+    type UserSettings, type UserTechnologyDto,
     type UserTechnologyQueueResponseDto
 } from "@/_openapi/models";
 import {getApiUserGetPlanetsUserId, getApiUserGetUserSettingsUserId} from "@/_openapi/api/users/users";
-import {user, userTechQueue} from "@/__stores/user-store";
+import {allUserTechnologies, user, userTechQueue} from "@/__stores/user-store";
 import SharedWindow from "@/__elements/shared-resources-window/vue/SharedWindow.vue";
 import {authentication} from "@/__elements/authorization/ts";
 import {useRouter} from "vue-router";
@@ -58,12 +58,13 @@ import SettingsWindow from "@/__elements/settings-window/vue/SettingsWindow.vue"
 import {_userSettings, isScienceWindowOpen, isSettingsWindowOpen} from "@/__elements/settings-window/ts";
 import HelpDrawer from "@/__elements/help-drawer/vue/HelpDrawer.vue";
 import ScienceWindow from "@/__elements/technology/ScienceWindow.vue";
-import {getApiUserTechGetTechQueueUserId} from "@/_openapi/api/user-tech/user-tech";
+import {getApiUserTechGetTechQueueUserId, getApiUserTechGetUserTeches} from "@/_openapi/api/user-tech/user-tech";
 
 const {execute: getSettings} = useApiLazy<UserSettings[]>();
 const {execute: fetchPlanetById} = useApiLazy<GetPlanetResponseDto[]>();
 const {execute: fetchGameBuildings} = useApiLazy<GameBuildingsResponseDto>();
 const {execute: fetchUserTechQueue} = useApiLazy<UserTechnologyQueueResponseDto[]>();
+const {execute: fetchUserTechnologies} = useApiLazy<UserTechnologyDto[]>();
 const router = useRouter()
 const url = ref('')
 
@@ -155,8 +156,13 @@ onMounted(async () => {
     }
 
     const techQueue = await fetchUserTechQueue(getApiUserTechGetTechQueueUserId, user.value?.id)
-    if(techQueue) {
+    if (techQueue) {
         userTechQueue.value = techQueue
+    }
+
+    const teches = await fetchUserTechnologies(getApiUserTechGetUserTeches)
+    if (teches) {
+        allUserTechnologies.value = teches
     }
     sse()
 })

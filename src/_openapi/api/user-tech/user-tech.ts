@@ -7,6 +7,7 @@
 import type {
   ChangeSpeedPercentForTechDto,
   RequiredTech,
+  UserTechnologyDto,
   UserTechnologyQueueCreateDto,
   UserTechnologyQueueResponseDto
 } from '../../models';
@@ -23,6 +24,17 @@ export const getApiUserTechGetTechQueueUserId = (
  ) => {
       return useFetchMutator<UserTechnologyQueueResponseDto[]>(
       {url: `/api/user-tech/get-tech-queue/${userId}`, method: 'GET'
+    },
+      );
+    }
+  /**
+ * @summary Получение всех исследованных технологий пользователя
+ */
+export const getApiUserTechGetUserTeches = (
+    
+ ) => {
+      return useFetchMutator<UserTechnologyDto[]>(
+      {url: `/api/user-tech/get-user-teches`, method: 'GET'
     },
       );
     }
@@ -66,6 +78,7 @@ export const putApiUserTechChangeTechSpeedPercentInQueue = (
       );
     }
   export type GetApiUserTechGetTechQueueUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserTechGetTechQueueUserId>>>
+export type GetApiUserTechGetUserTechesResult = NonNullable<Awaited<ReturnType<typeof getApiUserTechGetUserTeches>>>
 export type PostApiUserTechAddToQueueResult = NonNullable<Awaited<ReturnType<typeof postApiUserTechAddToQueue>>>
 export type GetApiUserTechGetTechTreeForTechInnerIdRequiredLevelUserIdResult = NonNullable<Awaited<ReturnType<typeof getApiUserTechGetTechTreeForTechInnerIdRequiredLevelUserId>>>
 export type PutApiUserTechChangeTechSpeedPercentInQueueResult = NonNullable<Awaited<ReturnType<typeof putApiUserTechChangeTechSpeedPercentInQueue>>>

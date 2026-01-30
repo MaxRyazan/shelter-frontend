@@ -19,6 +19,7 @@ import type {GetTechInfoForUserDto, TechTreeDto} from "@/_openapi/models";
 import {getApiTechGetTechTree, getApiTechTechInnerId} from "@/_openapi/api/tech/tech";
 import {nodeStyles} from "@/__elements/technology/nodes";
 import {showHelpAbout, treeTechForObserve} from "@/__elements/help-drawer/ts";
+import {allUserTechnologies} from "@/__stores/user-store";
 
 const {setViewport} = useVueFlow()
 const timer = ref()
@@ -65,22 +66,24 @@ function createNodes(dto: TechTreeDto) {
             },
             sourcePosition: 'right',
             targetPosition: 'left',
-            style: nodeStyles
+            style: {
+                ...nodeStyles.value,
+                background: allUserTechnologies.value.some(tech => tech.technology.innerId === node.innerId)  ?
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'darkgray'
+            }
         }
     })
 }
 
 function createEdges(dto: TechTreeDto) {
     edges.value = dto.edges?.map(edge => {
-    console.log(edge.source)
-    console.log()
         return {
             id: edge.id,
             source: edge.source,
             target: edge.target,
             type: 'smoothstep',
             style: {
-                stroke: '#4CAF50',
+                stroke: allUserTechnologies.value.some(tech => tech.technology.name === edge.source) ? '#4CAF50' : 'darkgray',
                 strokeWidth: 2
             }
         }

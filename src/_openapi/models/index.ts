@@ -83,5 +83,6 @@ export * from './userResponseDto';
 export * from './userSettings';
 export * from './userTechBonus';
 export * from './userTechnology';
+export * from './userTechnologyDto';
 export * from './userTechnologyQueueCreateDto';
 export * from './userTechnologyQueueResponseDto';
