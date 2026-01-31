@@ -1,7 +1,7 @@
 <template>
 <div class="tech-queue-help">
     <div class="tech-queue-help__item"
-         v-for="tech in userTechQueue"
+         v-for="tech in sortedQueue"
          :key="tech.techInnerId">
         <div class="flexbox">
             <s-text shadow>Название</s-text>
@@ -51,6 +51,13 @@
 import {userTechQueue} from "@/__stores/user-store";
 import dayjs from "dayjs";
 import SText from "@/components/common/SText.vue";
+import {computed} from "vue";
+
+const sortedQueue = computed(() =>
+    userTechQueue.value.toSorted((a, b) =>
+        dayjs(a.readyAt).isBefore(dayjs(b.readyAt)) ? -1 : 1
+    )
+)
 </script>
 <style scoped>
 .tech-queue-help {
