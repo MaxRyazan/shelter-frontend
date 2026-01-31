@@ -28,6 +28,8 @@ export interface GameBuildings {
   foodProducePerDay: number;
   citizensBonus: number;
   birthRateBonus: number;
+  /** @nullable */
+  cost?: string | null;
   /**
    * @minLength 1
    * @maxLength 20

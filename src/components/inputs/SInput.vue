@@ -57,6 +57,7 @@ const props = withDefaults(defineProps<{
     noMargin?: boolean,
     font?: string,
     readonly?: boolean,
+    maxValue?: number,
 }>(), {
     type: 'text',
     w: '100%',
@@ -66,6 +67,7 @@ const props = withDefaults(defineProps<{
     noMargin: false,
     font: '14px',
     readonly: false,
+    maxValue: 99999999,
 })
 
 const model = computed({
@@ -80,6 +82,7 @@ function rewriteType() {
         rewritedType.value = undefined;
     }
 }
+
 </script>
 <style scoped>
 .input-wrapper {

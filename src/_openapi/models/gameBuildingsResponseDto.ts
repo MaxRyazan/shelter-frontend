@@ -4,14 +4,14 @@
  * Shelter API
  * OpenAPI spec version: v1
  */
-import type { GameBuildings } from './gameBuildings';
+import type { GetBuildingInfoDto } from './getBuildingInfoDto';
 
 export interface GameBuildingsResponseDto {
-  common: GameBuildings[];
-  complex: GameBuildings[];
-  energy: GameBuildings[];
-  factory: GameBuildings[];
-  food: GameBuildings[];
-  industrial: GameBuildings[];
-  mine: GameBuildings[];
+  common: GetBuildingInfoDto[];
+  complex: GetBuildingInfoDto[];
+  energy: GetBuildingInfoDto[];
+  factory: GetBuildingInfoDto[];
+  food: GetBuildingInfoDto[];
+  industrial: GetBuildingInfoDto[];
+  mine: GetBuildingInfoDto[];
 }
