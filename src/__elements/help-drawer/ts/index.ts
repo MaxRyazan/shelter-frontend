@@ -1,9 +1,13 @@
 import {ref} from "vue";
-import {GameBuildings, GetTechInfoForUserDto, type UserTechnologyQueueResponseDto} from "@/_openapi/models";
+import {
+    GetBuildingInfoDto,
+    GetTechInfoForUserDto,
+    type UserTechnologyQueueResponseDto
+} from "@/_openapi/models";
 
 export interface Help {
     type: 'building' | 'tech-in-queue' | 'tech-in-tree' | undefined,
-    subject: GameBuildings | UserTechnologyQueueResponseDto[] | GetTechInfoForUserDto | undefined
+    subject: GetBuildingInfoDto | UserTechnologyQueueResponseDto[] | GetTechInfoForUserDto | undefined
     title: string | undefined
 }
 

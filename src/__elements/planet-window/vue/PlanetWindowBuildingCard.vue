@@ -9,12 +9,12 @@
 import SDivider from "@/components/common/SDivider.vue";
 import PwbCardTop from "@/__elements/planet-window/vue/parts/PwbCardTop.vue";
 import PwbCardBottom from "@/__elements/planet-window/vue/parts/PwbCardBottom.vue";
-import {GameBuildings} from "@/_openapi/models";
 import {computed} from "vue";
 import {currentPlanet} from "@/__elements/planet-window/ts";
+import {GetBuildingInfoDto} from "@/_openapi/models";
 
 const props = defineProps<{
-    building: GameBuildings
+    building: GetBuildingInfoDto
 }>()
 
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))

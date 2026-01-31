@@ -10,10 +10,10 @@ import type { BuildingNeedResources } from './buildingNeedResources';
 import type { BuildingNeedMaterials } from './buildingNeedMaterials';
 
 export interface GetBuildingInfoDto {
-  /** @nullable */
-  buildingType: string | null;
-  /** @nullable */
-  buildingClass: string | null;
+  /** @minLength 1 */
+  buildingType: string;
+  /** @minLength 1 */
+  buildingClass: string;
   capacity: number;
   needSpace: number;
   amortization: number;
@@ -24,13 +24,9 @@ export interface GetBuildingInfoDto {
   birthRateBonus: number;
   foodProducePerDay: number;
   sciencePowerBonus: number;
-  /** @nullable */
-  cost: BuildingCost[] | null;
+  cost: BuildingCost[];
   createdAt: string;
-  /** @nullable */
-  canProduces: BuildingCanProduce[] | null;
-  /** @nullable */
-  needResources: BuildingNeedResources[] | null;
-  /** @nullable */
-  needMaterials: BuildingNeedMaterials[] | null;
+  canProduces: BuildingCanProduce[];
+  needResources: BuildingNeedResources[];
+  needMaterials: BuildingNeedMaterials[];
 }

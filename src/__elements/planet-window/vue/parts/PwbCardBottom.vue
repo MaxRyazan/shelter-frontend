@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import SButton from "@/components/buttons/SButton.vue";
 import {useApiLazy} from "@/composables/useApi";
-import {GameBuildings, GetPlanetResponseDto} from "@/_openapi/models";
+import {GetBuildingInfoDto, GetPlanetResponseDto} from "@/_openapi/models";
 import {postApiPlanetBuildingOperation} from "@/_openapi/api/planet/planet";
 import {currentPlanet} from "@/__elements/planet-window/ts";
 import {computed, ref} from "vue";
@@ -47,7 +47,7 @@ import {v4} from "uuid";
 import {user} from "@/__stores/user-store";
 
 const props = defineProps<{
-    building: GameBuildings
+    building: GetBuildingInfoDto
 }>()
 
 const {execute, error} = useApiLazy<GetPlanetResponseDto>();

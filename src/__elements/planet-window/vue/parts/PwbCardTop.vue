@@ -31,7 +31,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import {GameBuildings, GetPlanetResponseDto} from "@/_openapi/models";
+import {GetBuildingInfoDto, GetPlanetResponseDto} from "@/_openapi/models";
 import {Dictionary} from "@/dictionaries";
 import {currentPlanet} from "@/__elements/planet-window/ts";
 import {computed} from "vue";
@@ -45,7 +45,7 @@ import SText from "@/components/common/SText.vue";
 import {showHelpAbout} from "@/__elements/help-drawer/ts";
 
 const props = defineProps<{
-    building: GameBuildings
+    building: GetBuildingInfoDto
 }>()
 const {execute, error} = useApiLazy<GetPlanetResponseDto>();
 const planetBuilding = computed(() => currentPlanet.value?.buildings?.find(building => building.buildingType === props.building.buildingType))
