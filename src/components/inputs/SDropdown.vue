@@ -107,4 +107,8 @@ function handleClick(arg: string | number) {
     padding: 4px;
     cursor: pointer;
 }
+:deep(.anticon)  {
+    display: flex;
+    align-items: center;
+}
 </style>
