@@ -58,7 +58,7 @@ onUnmounted(() => {
     font-family: IBM_Plex_Mono, monospace;
     color: var(--prime-light);
     border-radius: 4px;
-    max-height: 80%;
+    max-height: 90%;
     display: flex;
     flex-direction: column;
     background-color: rgb(13, 17, 23)

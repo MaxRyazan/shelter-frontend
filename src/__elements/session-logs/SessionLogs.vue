@@ -66,9 +66,11 @@ function clickOutside() {
 
     @media screen and (max-width: 600px) {
         position: fixed;
-        top: 10px;
+        top: 50px;
         right: 0;
-        max-width: calc(100% - 60px);
+        width: calc(100% - 60px);
+        max-width: 400px;
+        margin-right: 20px;
     }
 }
 

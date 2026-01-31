@@ -10,7 +10,7 @@
             <div @click="openScience" class="science">
                 <span>🧪</span>
             </div>
-            <user-tech-queue-component />
+            <user-tech-queue-component class="tech-queue-in-main-menu"/>
         </div>
         <session-logs v-if="!_userSettings?.session_logs_hide_always"/>
     </div>
@@ -76,5 +76,16 @@ function openScience() {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.tech-queue-in-main-menu {
+    @media screen and (max-width: 600px) {
+        position: fixed;
+        top: 10px;
+        right: 0;
+        width: calc(100% - 60px);
+        max-width: 400px;
+        margin-right: 20px;
+    }
 }
 </style>
