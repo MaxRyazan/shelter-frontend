@@ -55,7 +55,7 @@ import TechDescription from "@/__elements/help-drawer/vue/__parts/TechDescriptio
 import TechBonuses from "@/__elements/help-drawer/vue/__parts/TechBonuses.vue";
 
 
-const {execute: addTechToQueueForResearch} = useApiLazy<UserTechnologyQueueResponseDto[]>();
+const {execute: addTechToQueueForResearch, error} = useApiLazy<UserTechnologyQueueResponseDto[]>();
 const isTechAlreadyInQueue = computed(() => userTechQueue.value.some(ut => ut.techInnerId === tech.value.innerId));
 const isTechAvailableToLearn = computed(() => tech.value.maxAvailableLevelToLearn !== -100);
 const isTechAlreadyBeenLearned = computed(() => tech.value.currentLearnedLevel !== -1);
@@ -80,6 +80,9 @@ async function pushTechToQueueForResearch() {
     })
     if (response) {
         userTechQueue.value = response
+    }
+    if(error.value) {
+        Toast.error(error.value?.detail);
     }
 }
 </script>

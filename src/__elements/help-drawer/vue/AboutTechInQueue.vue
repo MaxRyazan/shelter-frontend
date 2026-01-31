@@ -8,8 +8,12 @@
                 <s-text>{{ tech.techName }}</s-text>
             </div>
             <div class="flexbox">
-                <s-text shadow>Уровень технологии</s-text>
-                <s-text>{{ tech.currentLevel }} -> {{ tech.targetLevel }}</s-text>
+                <s-text shadow>Текущий исследованный уровень</s-text>
+                <s-text>{{ tech.currentLevel }}</s-text>
+            </div>
+            <div class="flexbox">
+                <s-text shadow>Исследуемый уровень</s-text>
+                <s-text> {{ tech.targetLevel }}</s-text>
             </div>
             <div class="flexbox">
                 <s-text shadow>Исследовано</s-text>
