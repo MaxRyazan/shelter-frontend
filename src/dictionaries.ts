@@ -73,6 +73,9 @@ export const Dictionary = new Map<string, string>([
     ['ReinforcedTitaniumComplex', 'Комплекс армированного титана'],
     ['AmorphousMetalComplex', 'Комплекс аморфного металла'],
     ['LightAlloyComplex', 'Комплекс магналия'],
+
+
+    ['Academy', 'Академия'],
 ])
 
 export const DictionaryResources = {

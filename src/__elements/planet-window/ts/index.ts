@@ -44,4 +44,5 @@ export enum SubTabsBuildings {
     common = 'общие',
     food = 'провизия',
     energy = 'энергетика',
+    science = 'наука',
 }

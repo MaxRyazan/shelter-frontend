@@ -10,4 +10,5 @@ export const _GameBuildings = shallowRef<GameBuildingsResponseDto>({
     food: [],
     industrial: [],
     mine: [],
+    science: [],
 });

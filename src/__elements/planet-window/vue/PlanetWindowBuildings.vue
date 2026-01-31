@@ -59,6 +59,14 @@
                         :key="building.buildingType"
                         :building="building"/>
                 </template>
+
+                <!-- Science -->
+                <template v-if="menuSet.has(7)">
+                    <planet-window-building-card
+                        v-for="building in _GameBuildings.science"
+                        :key="building.buildingType"
+                        :building="building"/>
+                </template>
             </div>
         </div>
         <s-divider/>

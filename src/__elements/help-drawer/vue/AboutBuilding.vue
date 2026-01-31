@@ -28,6 +28,10 @@
                 <s-text>Содержание</s-text>
                 <s-text semi-bold>{{ $rs(building.amortization * maxCount, 3) }}</s-text>
             </div>
+            <div class="params__item">
+                <s-text>Производит научного потенциала</s-text>
+                <s-text semi-bold>{{ $rs(building.sciencePowerBonus * maxCount, 3) }}</s-text>
+            </div>
             <div v-if="building.capacity"
                  class="params__item">
                 <s-text semi>Бонус вместимости складов</s-text>

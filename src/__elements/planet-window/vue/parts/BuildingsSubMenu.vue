@@ -56,6 +56,10 @@ const firstRow = shallowRef<TopSubMenuType[]>([
         id: 6,
         text: SubTabsBuildings.industrial,
     },
+    {
+        id: 7,
+        text: SubTabsBuildings.science,
+    },
 ])
 </script>
 <style scoped>

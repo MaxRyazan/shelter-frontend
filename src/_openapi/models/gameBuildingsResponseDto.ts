@@ -14,4 +14,5 @@ export interface GameBuildingsResponseDto {
   food: GetBuildingInfoDto[];
   industrial: GetBuildingInfoDto[];
   mine: GetBuildingInfoDto[];
+  science: GetBuildingInfoDto[];
 }
